@@ -1,0 +1,98 @@
+HAL 外设
+========
+
+概述
+----
+
+``platform/hal/api`` 提供片内外设的统一接口。应用通过默认配置、初始化、传输/控制、回调和
+反初始化完成外设生命周期，具体管脚复用和实例由板级配置决定。
+
+外设选择
+--------
+
+.. list-table:: Het-X1 HAL 专题
+   :header-rows: 1
+   :widths: 18 38 44
+
+   * - 外设
+     - 能力描述
+     - 使用重点与 API
+   * - GPIO
+     - 输入、输出、上下拉、复用和边沿中断
+     - 配置 ``pin/mode/pull/irq_trigger``；见 :doc:`../api/peripherals/gpio`
+   * - ADC
+     - 10 位模拟采样，可用于电池、按键和温度
+     - 先校准和选择通道；见 :doc:`../api/peripherals/adc`
+   * - DAC
+     - 模拟电平和音频/波形输出
+     - 核对通道、范围和 DMA；见 :doc:`../api/peripherals/dac`
+   * - IIC
+     - 传感器、EEPROM 和触摸控制器总线
+     - 核对地址宽度、速率和上拉；见 :doc:`../api/peripherals/iic`
+   * - SPI
+     - Flash、显示和图像传感器高速总线
+     - 核对模式、CS、DMA 缓冲和片选时序；见 :doc:`../api/peripherals/spi`
+   * - UART
+     - 普通串口和 HSUART DMA/流控
+     - 回调只投递数据；见 :doc:`../api/peripherals/uart`
+   * - Timer
+     - 周期、计数、捕获和系统节拍
+     - ISR 保持有界；见 :doc:`../api/peripherals/timer`
+   * - PWM
+     - 背光、蜂鸣器、电机和灯效
+     - 频率/千分比占空比；见 :doc:`../api/peripherals/pwm`
+   * - QDEC
+     - 旋转编码器计数、方向和点按
+     - 核对 2/4 倍频；见 :doc:`../api/peripherals/qdec`
+   * - LCD
+     - 8080、QSPI、SPI 和 RGB 显示传输
+     - 核对封装、Driver IC、TE 和 DMA；见 :doc:`../api/peripherals/lcd`
+
+使用方法
+--------
+
+1. 包含 ``het_api_hal.h`` 或目标外设头文件。
+2. 获取 ``het_*_def_cfg()`` 并覆盖实例、管脚、速率等必要字段。
+3. 调用初始化函数并检查返回值。
+4. 执行同步读写或注册异步回调。
+5. 停止中断/DMA，注销回调并反初始化。
+
+示例
+----
+
+.. code-block:: c
+
+   #include "het_api_hal.h"
+
+   int led_init(het_gpio_id_t pin)
+   {
+       het_gpio_handle_t cfg = het_gpio_def_cfg();
+       cfg.pin = pin;
+       cfg.mode = HET_GPIO_MODE_OUTPUT;
+       cfg.default_level = 0;
+       return het_gpio_init(&cfg);
+   }
+
+注意事项
+--------
+
+* 中断回调中避免阻塞、动态分配和长日志。
+* IIC/SPI 设备地址、寄存器宽度和字节序应来自器件数据手册。
+* LCD、音频等高吞吐接口需要验证 DMA 缓冲区和刷新时序。
+
+主要 API
+--------
+
+完整头文件级说明见 :doc:`../api/peripherals/index`。
+
+验证示例
+--------
+
+GPIO、IIC、SPI、UART、Timer、PWM、QDEC、LCD、音频和杯体协议示例均来自
+``platform/examples``，可按下列入口逐项上板验证：
+
+* :doc:`../examples/hal-gpio`：GPIO 输出、输入和中断回调。
+* :doc:`../examples/hal-iic`：IIC 寄存器读写。
+* :doc:`../examples/hal-spi-uart`：SPI 同步/DMA 与 UART DMA 回调。
+* :doc:`../examples/timer-pwm-qdec`：定时器、PWM 和编码器。
+* :doc:`../examples/lcd-audio-protocol`：显示、音频和协议能力。

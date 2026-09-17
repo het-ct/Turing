@@ -1,0 +1,46 @@
+DAC 数模转换（het_dac.h）
+=========================
+
+源文件：``platform/hal/api/het_dac.h``
+
+概述
+----
+
+DAC 用于输出可编程模拟电平或连续采样数据，可服务于音频、波形和模拟控制场景。实际通道、精度和输出范围以板级实现为准。
+
+用法
+----
+
+取得默认配置后初始化指定 DAC 实例，通过单点写入或缓冲区写入输出数据，完成后反初始化。
+
+典型流程
+--------
+
+#. 获取默认配置或准备板级配置。
+#. 初始化外设并检查返回值。
+#. 执行读写、控制或回调注册操作。
+#. 停止异步来源并反初始化外设。
+
+示例
+----
+
+.. code-block:: c
+
+   #include "het_dac.h"
+
+   int dac_write_value(het_dac_id_t id, uint8_t channel, uint32_t value)
+   {
+       het_dac_config_t cfg = het_dac_def_cfg();
+       int ret = het_dac_init(id, &cfg);
+       if (ret != HET_OK) return ret;
+       ret = het_dac_write(id, channel, value);
+       het_dac_deinit(id);
+       return ret;
+   }
+
+API 介绍
+--------
+
+.. doxygenfile:: het_dac.h
+   :project: bt8790
+   :sections: func

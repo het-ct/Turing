@@ -1,0 +1,34 @@
+硬件概述
+========
+
+Het-X1 面向显示、音频、通信和本地智能融合的 MCU 产品。平台集成 32 位 RISC-V CPU、NPU、
+2.5D GPU、片上 SRAM，并提供显示、摄像头、音频、蓝牙、可选 Wi-Fi 与丰富控制外设。
+
+.. image:: /_static/img/manual/architecture.png
+   :alt: Het-X1 硬件架构
+   :class: manual-figure
+   :align: center
+
+.. list-table:: 核心能力摘要
+   :header-rows: 1
+   :widths: 25 75
+
+   * - 模块
+     - 说明
+   * - CPU
+     - 32 位 RISC-V，支持 FPU，最高 180 MHz，CPU 独占 288 KB SRAM
+   * - NPU
+     - 最高 50 GOPS，兼容 DSP 指令，NPU 独占 480 KB SRAM
+   * - GPU
+     - 2.5D 图形加速、3×3 Matrix、JPEG/GIF 编解码相关能力
+   * - 显示
+     - 8080、DSPI/QSPI/SPI、RGB565，具体能力受封装和屏驱动限制
+   * - 摄像头
+     - SPI-CSI；QFN68 可提供 DVP，支持范围以适配驱动为准
+   * - 音频
+     - 双 DAC、双麦 ADC、EQ 及部分语音前处理能力
+   * - 通信
+     - BR/EDR、BLE、可选 Wi-Fi、USB、UART、SPI、IIC、IR
+
+QFN32 与 QFN68 的存储和接口资源不同，选型时需同时核对显示、摄像头、PSRAM/ROM、GPIO 数量
+和 PCB 工艺。

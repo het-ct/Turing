@@ -1,0 +1,169 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hardware platform &mdash; Het-X1 SDK 2.0</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=bca555e8" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=60dbed4a"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/language-switch.js?v=c94157ab"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Hardware overview" href="overview.html" />
+    <link rel="prev" title="Multimodal demo project" href="../demo-projects/multimodal.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" ><label class="sdk-language-switch sdk-language-switch-static sdk-language-switch-sidebar" aria-label="切换语言"><span class="fa fa-globe" aria-hidden="true"></span><select title="切换语言" onchange="window.location.href=this.value"><option selected value="../../../en/guide/platform/index.html">English</option><option value="../../../zh/guide/platform/index.html">简体中文</option></select></label>
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Het-X1 SDK
+              <img src="../../_static/het_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Document directory</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quick-start/index.html">quick start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/index.html">Get started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer-guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../demo-projects/index.html">Demonstration project</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Hardware platform</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html">Hardware overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="electrical-characteristics.html">Electrical Characteristics and Design Boundaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources.html">Hardware resource description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pinout.html">Pin definition and reuse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packages-boards.html">Packaging and development board</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware-circuits.html">Standard Circuits and Review Checklist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware-materials.html">Critical Materials and AVL</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">tool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Support and Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Het-X1 SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Hardware platform</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>Hardware platform<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<p>This chapter summarizes the Het-X1 hardware capabilities, key electrical parameters, resources, packaging, core board and reference circuits in the “Turing Platform User Manual”. Formal mass production is subject to the corresponding chip batch data manual, schematic diagram and controlled hardware release package.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Hardware overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="electrical-characteristics.html">Electrical Characteristics and Design Boundaries</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="electrical-characteristics.html#id2">Power supply and charging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="electrical-characteristics.html#id3">Audio and RF Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="electrical-characteristics.html#id4">environment and protection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="electrical-characteristics.html#id5">Power-on sequence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="electrical-characteristics.html#id6">Board Level Verification Recommendations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">Hardware resource description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pinout.html">Pin definition and reuse</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pinout.html#id2">Configuration steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pinout.html#s1">S1 core board example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="packages-boards.html">Packaging and development board</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="packages-boards.html#id2">Chip packaging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packages-boards.html#id3">core board</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packages-boards.html#id4">Check before boarding</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="hardware-circuits.html">Standard Circuits and Review Checklist</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="hardware-circuits.html#id2">power circuit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware-circuits.html#id3">load circuit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware-circuits.html#id4">Communication and storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware-circuits.html#hmi">HMI circuit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware-circuits.html#id5">design deliverables</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="hardware-materials.html">Critical Materials and AVL</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="hardware-materials.html#id1">Display and touch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware-materials.html#id2">Image and Sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware-materials.html#id3">Audio and Actuators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware-materials.html#id4">Admission of alternative materials</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../demo-projects/multimodal.html" class="btn btn-neutral float-left" title="Multimodal demo project" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="overview.html" class="btn btn-neutral float-right" title="Hardware overview" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

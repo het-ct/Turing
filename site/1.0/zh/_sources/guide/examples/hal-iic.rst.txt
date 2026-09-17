@@ -1,0 +1,19 @@
+IIC 外设示例
+============
+
+源文件：``platform/examples/hal/example_iic.c``。示例初始化 IIC1，选择 PA8/PA9 复用组，并访问
+地址 ``0x14`` 的设备寄存器。该地址和寄存器来自原测试器件，不能直接用于其他传感器。
+
+.. code-block:: c
+
+   het_iic_handle_t iic = het_iic_def_cfg();
+   iic.id = HET_IIC_ID_1;
+   iic.port_map = HET_IIC1_G2_PA8_PA9;
+   int ret = het_iic_init(&iic);
+   if (ret < 0) return ret;
+
+   uint8_t value = 0;
+   return het_iic_read(HET_IIC_ID_1, 0x14, 0x814E, 2, &value, 1);
+
+验证时确认 7 位/8 位地址约定、寄存器宽度、上拉电阻和供电。API 见
+:doc:`../api/peripherals/iic`。

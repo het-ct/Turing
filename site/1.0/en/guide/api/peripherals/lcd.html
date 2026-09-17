@@ -1,0 +1,174 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LCD display controller (het_lcd.h) &mdash; Het-X1 SDK 1.0</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=bca555e8" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/language-switch.js?v=c94157ab"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="PWM pulse width modulation (het_pwm.h)" href="pwm.html" />
+    <link rel="prev" title="IIC bus (het_iic.h)" href="iic.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" ><label class="sdk-language-switch sdk-language-switch-static sdk-language-switch-sidebar" aria-label="切换语言"><span class="fa fa-globe" aria-hidden="true"></span><select title="切换语言" onchange="window.location.href=this.value"><option selected value="../../../../en/guide/api/peripherals/lcd.html">English</option><option value="../../../../zh/guide/api/peripherals/lcd.html">简体中文</option></select></label>
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Het-X1 SDK
+              <img src="../../../_static/het_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Document directory</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../quick-start/index.html">quick start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started/index.html">Get started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer-guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">API reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#id1">Table of contents</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Peripheral HAL (on-chip and on-chip peripherals)</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="index.html#id1">HAL layering</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="index.html#id2">On-chip and on-chip peripherals</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../middleware.html">Middleware API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cbb.html">CBB API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ui.html">UI API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../services.html">Service API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo-projects/index.html">Demonstration project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../platform/index.html">Hardware platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/index.html">tool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Support and Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Het-X1 SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">API reference</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Peripheral HAL (on-chip and on-chip peripherals)</a></li>
+      <li class="breadcrumb-item active">LCD display controller (het_lcd.h)</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="lcd-het-lcd-h">
+<h1>LCD display controller (het_lcd.h)<a class="headerlink" href="#lcd-het-lcd-h" title="Link to this heading"></a></h1>
+<p>Source file: <code class="docutils literal notranslate"><span class="pre">platform/hal/api/het_lcd.h</span></code></p>
+<section id="id1">
+<h2>Overview<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<p>The Het-X1 LCD controller supports serial/parallel RGB, 8080, DSPI, QSPI and 3/4-wire SPI interfaces, and supports multiple pixel formats and GPU rendering result output.</p>
+</section>
+<section id="id2">
+<h2>usage<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>Initialize the LCD after preparing a driver description that matches the panel, and then configure the brightness, transmission timing, and TE mode. Panel commands and pixel transfers should comply with the data sheet of the specific screen.</p>
+</section>
+<section id="id3">
+<h2>Typical process<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Get the default configuration or prepare board-level configuration.</p></li>
+<li><p>Initialize the peripheral and check the return value.</p></li>
+<li><p>Perform read, write, control, or callback registration operations.</p></li>
+<li><p>Stop the asynchronous source and deinitialize the peripheral.</p></li>
+</ol>
+</section>
+<section id="id4">
+<h2>Example<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;het_lcd.h&quot;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">display_start</span><span class="p">(</span><span class="n">lcd_drv_t</span><span class="w"> </span><span class="o">*</span><span class="n">driver</span><span class="p">,</span><span class="w"> </span><span class="n">u8</span><span class="w"> </span><span class="n">brightness</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">het_lcd_init</span><span class="p">(</span><span class="n">driver</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ret</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">HET_OK</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">ret</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">het_lcd_set_brightness</span><span class="p">(</span><span class="n">brightness</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">display_stop</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">het_lcd_deinit</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="api">
+<h2>API introduction<a class="headerlink" href="#api" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="iic.html" class="btn btn-neutral float-left" title="IIC bus (het_iic.h)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pwm.html" class="btn btn-neutral float-right" title="PWM pulse width modulation (het_pwm.h)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

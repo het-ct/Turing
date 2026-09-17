@@ -1,0 +1,197 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Het-X1 SDK Development Manual &mdash; Het-X1 SDK 2.0</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=bca555e8" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=60dbed4a"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/language-switch.js?v=c94157ab"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="quick start" href="guide/quick-start/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" ><label class="sdk-language-switch sdk-language-switch-static sdk-language-switch-sidebar" aria-label="切换语言"><span class="fa fa-globe" aria-hidden="true"></span><select title="切换语言" onchange="window.location.href=this.value"><option selected value="../en/index.html">English</option><option value="../zh/index.html">简体中文</option></select></label>
+
+          
+          
+          <a href="#" class="icon icon-home">
+            Het-X1 SDK
+              <img src="_static/het_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Document directory</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="guide/quick-start/index.html">quick start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide/getting-started/index.html">Get started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide/developer-guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide/api/index.html">API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide/examples/index.html">Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide/demo-projects/index.html">Demonstration project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide/platform/index.html">Hardware platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide/tools/index.html">tool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide/reference/index.html">Support and Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Het-X1 SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Het-X1 SDK Development Manual</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="het-x1-sdk">
+<h1>Het-X1 SDK Development Manual<a class="headerlink" href="#het-x1-sdk" title="Link to this heading"></a></h1>
+<p>This manual is oriented to Het-X1 MCU product development, starting from the development kit, environment installation and engineering construction, and gradually moving into software architecture, board-level adaptation, peripheral API, UI/CBB, hardware design and mass production delivery. The content is based on the current warehouse code and the “Turing Platform User Manual”; chapters that have no stable implementation or data are clearly marked as “to be developed”.</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Document directory</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="guide/quick-start/index.html">quick start</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="guide/quick-start/six-in-one.html">Six-in-one development kit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/quick-start/multimodal-kit.html">Multimodal Development Kit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/quick-start/coffee-kit.html">Coffee machine demo kit</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="guide/getting-started/index.html">Get started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="guide/getting-started/environment.html">Environment setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="guide/developer-guide/index.html">Developer Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="guide/developer-guide/architecture.html">Software architecture and layering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/developer-guide/security.html">System security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/developer-guide/board-config.html">Board level configuration config.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/developer-guide/memory.html">Memory and storage management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/developer-guide/hal.html">HAL peripherals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/developer-guide/drivers.html">Drivers and BSP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/developer-guide/middleware.html">middleware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/developer-guide/cbb.html">CBB capability components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/developer-guide/ui-widgets.html">UI controls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/developer-guide/ui-effects.html">UI special effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/developer-guide/os.html">OS and task model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/developer-guide/power-management.html">Low power consumption and power management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/developer-guide/ota.html">OTA upgrade</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="guide/api/index.html">API reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="guide/api/index.html#id1">Table of contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="guide/examples/index.html">Example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="guide/examples/overview.html">How to run the example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/examples/hal-gpio.html">GPIO Peripheral Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/examples/hal-iic.html">IIC Peripheral Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/examples/hal-spi-uart.html">SPI vs. UART Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/examples/timer-pwm-qdec.html">Timer, PWM and QDEC Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/examples/lcd-audio-protocol.html">LCD, audio and protocol examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="guide/demo-projects/index.html">Demonstration project</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="guide/demo-projects/watch320.html">watch320 demo project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/demo-projects/haier-hmi.html">haier_hmi demo project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/demo-projects/coffee-machine.html">Coffee machine demonstration project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/demo-projects/multimodal.html">Multimodal demo project</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="guide/platform/index.html">Hardware platform</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="guide/platform/overview.html">Hardware overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/platform/electrical-characteristics.html">Electrical Characteristics and Design Boundaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/platform/resources.html">Hardware resource description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/platform/pinout.html">Pin definition and reuse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/platform/packages-boards.html">Packaging and development board</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/platform/hardware-circuits.html">Standard Circuits and Review Checklist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/platform/hardware-materials.html">Critical Materials and AVL</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="guide/tools/index.html">tool</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="guide/tools/vscode.html">VS Code and plug-ins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/tools/build-download.html">Compile, download and debug</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/tools/gui-tools.html">GUI design tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/tools/planned-tools.html">planning tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/tools/docs-toolchain.html">Documentation tool chain</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="guide/reference/index.html">Support and Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="guide/reference/cases.html">Demonstration case</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/reference/faq.html">FAQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/reference/release-delivery.html">Versions, Downloads and Deliverables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/reference/version-policy.html">version rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/reference/license.html">Licensing and Third-Party Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/reference/contact.html">Contact us</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/reference/errror.html">Unified error code</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="guide/quick-start/index.html" class="btn btn-neutral float-right" title="quick start" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

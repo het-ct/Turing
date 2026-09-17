@@ -1,0 +1,172 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Six-in-one development kit &mdash; Het-X1 SDK 2.0</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=bca555e8" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=60dbed4a"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/language-switch.js?v=c94157ab"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Multimodal Development Kit" href="multimodal-kit.html" />
+    <link rel="prev" title="quick start" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" ><label class="sdk-language-switch sdk-language-switch-static sdk-language-switch-sidebar" aria-label="切换语言"><span class="fa fa-globe" aria-hidden="true"></span><select title="切换语言" onchange="window.location.href=this.value"><option selected value="../../../en/guide/quick-start/six-in-one.html">English</option><option value="../../../zh/guide/quick-start/six-in-one.html">简体中文</option></select></label>
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Het-X1 SDK
+              <img src="../../_static/het_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Document directory</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">quick start</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Six-in-one development kit</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Development board overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Source code or firmware acquisition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Environment setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Firmware or program download</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="multimodal-kit.html">Multimodal Development Kit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coffee-kit.html">Coffee machine demo kit</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/index.html">Get started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer-guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../demo-projects/index.html">Demonstration project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">Hardware platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">tool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Support and Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Het-X1 SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">quick start</a></li>
+      <li class="breadcrumb-item active">Six-in-one development kit</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>Six-in-one development kit<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<section id="id2">
+<h2>Development board overview<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>The six-in-one development kit uses the Het-X1 core board as the control core for centralized verification of display and touch, audio input and output, cameras, Bluetooth/Wi-Fi, sensors and common control peripherals. The kit is suitable for evaluating chip capabilities, running HAL examples, and building production board configurations, and should not be used as a direct replacement for electrical and reliability verification of production hardware.</p>
+<img alt="Het-X1 six-in-one development kit in action" class="manual-figure align-center" src="../../_images/%E5%85%AD%E5%90%88%E4%B8%80%E5%AE%9E%E7%89%A9%E6%B8%B2%E6%9F%93.png" />
+<p>Before powering on, confirm the core board model, backplane version, display and touch module, power input, debugging serial port and jumper position. For S1 core board interface information, see <a class="reference internal" href="../platform/packages-boards.html"><span class="doc">Packaging and development board</span></a>；S2、S3 complete package information <strong>to be developed</strong>.</p>
+<img alt="Het-X1 six-in-one development board" class="manual-figure align-center" src="../../_images/%E5%85%AD%E5%90%88%E4%B8%80%E5%BC%80%E5%8F%91%E6%9D%BFPCB.png" />
+</section>
+<section id="id3">
+<h2>Source code or firmware acquisition<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<p>The current warehouse already contains SDK source code, <code class="docutils literal notranslate"><span class="pre">projects/watch320</span></code>, <code class="docutils literal notranslate"><span class="pre">projects/haier_hmi</span></code> and peripheral examples. The delivery package should contain at least:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">platform</span></code>: HAL, BSP, middleware, services and examples.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">projects</span></code>: Compilable product or demonstration project.</p></li>
+<li><p>Compilation tool chain, burning tools, board information, version records and known issues.</p></li>
+<li><p>Firmware <code class="docutils literal notranslate"><span class="pre">Output/bin/app.dcf</span></code> has been built and its applicable board descriptions.</p></li>
+</ul>
+<p>The official download address, historical version archive and verification list are <strong>to be developed</strong> and should currently be obtained from the controlled delivery package provided by the project leader.</p>
+</section>
+<section id="id4">
+<h2>Environment setup<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<p>Install the compilation chain, Python, VS Code, serial port driver and plug-in, see <a class="reference internal" href="../getting-started/environment.html"><span class="doc">Environment setup</span></a>。. After completion, compile the existing project:</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd </span><span class="p">.\</span><span class="n">projects</span><span class="p">\</span><span class="n">watch320</span>
+<span class="n">python</span> <span class="n">gen-srclist</span><span class="p">.</span><span class="n">py</span>
+<span class="n">make</span>
+</pre></div>
+</div>
+</section>
+<section id="id5">
+<h2>Firmware or program download<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Confirm that the target board type, chip package and <code class="docutils literal notranslate"><span class="pre">config.h</span></code> configuration are consistent.</p></li>
+<li><p>Close the serial port assistant occupying the download serial port, connect the development board and enter download mode.</p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Output/bin/app.dcf</span></code> in the supporting Downloader, check the port and start downloading.</p></li>
+<li><p>Reset the development board, reopen the serial terminal, and check the version, reset reason, and startup log.</p></li>
+<li><p>Verify display, touch, audio, camera, communications, and target peripherals in order.</p></li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>There is no controlled public description of the download tool’s port parameters, startup pin level, encrypted burning, and failure recovery steps, and remains to be developed. Do not modify the security configuration or erase unknown partitions before the mass production process is released.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="quick start" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="multimodal-kit.html" class="btn btn-neutral float-right" title="Multimodal Development Kit" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

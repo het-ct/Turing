@@ -1,0 +1,18 @@
+API 参考
+========
+
+本章仅给出 ``het`` 前缀公开接口的函数签名、参数、返回值、事件和调用约束，不重复开发者指南的
+架构、业务流程和场景化示例。``bsp_*``、第三方库、芯片内部实现和无 ``het`` 前缀的兼容接口不在
+本 API 手册范围内。
+
+目录
+----
+
+.. toctree::
+   :maxdepth: 2
+
+   peripherals/index
+   middleware
+   cbb
+   ui
+   services

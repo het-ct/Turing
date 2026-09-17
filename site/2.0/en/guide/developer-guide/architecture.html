@@ -1,0 +1,167 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Software architecture and layering &mdash; Het-X1 SDK 2.0</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=bca555e8" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=60dbed4a"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/language-switch.js?v=c94157ab"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="System security" href="security.html" />
+    <link rel="prev" title="Developer Guide" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" ><label class="sdk-language-switch sdk-language-switch-static sdk-language-switch-sidebar" aria-label="切换语言"><span class="fa fa-globe" aria-hidden="true"></span><select title="切换语言" onchange="window.location.href=this.value"><option selected value="../../../en/guide/developer-guide/architecture.html">English</option><option value="../../../zh/guide/developer-guide/architecture.html">简体中文</option></select></label>
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Het-X1 SDK
+              <img src="../../_static/het_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Document directory</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quick-start/index.html">quick start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/index.html">Get started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Developer Guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Software architecture and layering</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Hierarchical responsibilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Boundaries and principles of responsibilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#osal">OSAL boundaries</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">System security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="board-config.html">Board level configuration config.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html">Memory and storage management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal.html">HAL peripherals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drivers.html">Drivers and BSP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="middleware.html">middleware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cbb.html">CBB capability components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ui-widgets.html">UI controls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ui-effects.html">UI special effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="os.html">OS and task model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="power-management.html">Low power consumption and power management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ota.html">OTA upgrade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cbb/index.html">CBB capability components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../widgets/index.html">UI components</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../demo-projects/index.html">Demonstration project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">Hardware platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">tool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Support and Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Het-X1 SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Developer Guide</a></li>
+      <li class="breadcrumb-item active">Software architecture and layering</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>Software architecture and layering<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<section id="id2">
+<h2>Overview<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>Het-X1 uses a bottom-up layered design. Each layer only relies on the stable capabilities provided by the next layer. The upper layer uses the lower layer through interfaces and callbacks to prevent business code from directly accessing registers, chip startup code or specific device drivers. In this way, when the package, display device or RTOS is replaced, only the adaptation layer can be adjusted without rewriting the product business.</p>
+<img alt="Het-X1 software layered architecture" class="manual-figure align-center" src="../../_images/%E8%BD%AF%E4%BB%B6%E5%88%86%E5%B1%82%E6%9E%B6%E6%9E%84.png" />
+</section>
+<section id="id3">
+<h2>Hierarchical responsibilities<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>L1 Chip and SoC</strong>: Provides hardware resources such as CPU, storage, clock, interrupts and on-chip controller.</p></li>
+<li><p><strong>L2 peripheral HAL/BSP</strong>: Abstract GPIO, UART, IIC, SPI, LCD, timer and other hardware into a unified interface, and complete board-level pin, power and clock adaptation.</p></li>
+<li><p><strong>L3 OS/OSAL</strong>: Provides system services such as thread management, task communication, software timers, memory and critical sections, and isolates specific operating systems.</p></li>
+<li><p><strong>L4 middleware</strong>: Provides general capabilities such as GUI, file system, database, protocol stack, and sensor framework.</p></li>
+<li><p><strong>L5 CBB capability component</strong>: Encapsulates audio, Bluetooth, algorithms, logs, secure storage and other capabilities into composable modules.</p></li>
+<li><p><strong>L6 product application</strong>: complete the page, business state machine, device strategy and product configuration, without directly operating the underlying registers.</p></li>
+</ul>
+</section>
+<section id="id4">
+<h2>Boundaries and principles of responsibilities<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<p>The dependency direction is always L6 → L5 → L4 → L3 → L2 → L1. Cross-layer access should be completed through public header files, configuration items, or registered callbacks. Modules at the same level remain independent, and the creator explicitly manages resource ownership and lifecycles. Interrupt handlers only clear status and deliver sampling events; time-consuming processing belongs in tasks or main loops. For storage partition and code segment planning, see <a class="reference internal" href="memory.html"><span class="doc">Memory and storage management</span></a>; for board selection, see <a class="reference internal" href="board-config.html"><span class="doc">Board level configuration config.h</span></a>.</p>
+</section>
+<section id="osal">
+<h2>OSAL boundaries<a class="headerlink" href="#osal" title="Link to this heading"></a></h2>
+<p>OSAL provides the upper layer with threads, queues, mutexes, software timers, heap allocation and critical section interfaces that are independent of the operating system; the lower layer is responsible for adapting specific schedulers, system beats, interrupts and memory implementations. The current repository does not yet provide a complete and unified OSAL porting package. The missing thread scheduler, queue backend and port adaptation are marked as <strong>to be developed</strong>. Applications must not bypass OSAL and directly rely on a certain RTOS native type.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Developer Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="security.html" class="btn btn-neutral float-right" title="System security" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

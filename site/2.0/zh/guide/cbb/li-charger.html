@@ -1,0 +1,263 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Li-Charger &mdash; Het-X1 SDK 2.0</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=bca555e8" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=8ba3eb92"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/translations.js?v=beaddf03"></script>
+      <script src="../../_static/language-switch.js?v=c94157ab"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="日志管理" href="log-mgmt.html" />
+    <link rel="prev" title="IR 通讯库" href="ir-comm.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" ><label class="sdk-language-switch sdk-language-switch-static sdk-language-switch-sidebar" aria-label="切换语言"><span class="fa fa-globe" aria-hidden="true"></span><select title="切换语言" onchange="window.location.href=this.value"><option selected value="../../../zh/guide/cbb/li-charger.html">简体中文</option><option value="../../../en/guide/cbb/li-charger.html">English</option></select></label>
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Het-X1 SDK
+              <img src="../../_static/het_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">文档目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quick-start/index.html">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/index.html">开始使用</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../developer-guide/index.html">开发者指南</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/architecture.html">软件架构与分层</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/security.html">系统安全</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/board-config.html">板级配置 config.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/memory.html">内存与存储管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/hal.html">HAL 外设</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/drivers.html">驱动与 BSP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/middleware.html">中间件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/cbb.html">CBB 能力组件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/ui-widgets.html">UI 控件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/ui-effects.html">UI 特效</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/os.html">OS 与任务模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/power-management.html">低功耗与电源管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/ota.html">OTA 升级</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">CBB 能力组件</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#id1">目录</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="audio-algo.html">音频算法库</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bt-comm.html">蓝牙通讯库</a></li>
+<li class="toctree-l4"><a class="reference internal" href="canopen-comm.html">CANOpen 通讯库</a></li>
+<li class="toctree-l4"><a class="reference internal" href="imu-algo.html">IMU 运动算法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ir-comm.html">IR 通讯库</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Li-Charger</a></li>
+<li class="toctree-l4"><a class="reference internal" href="log-mgmt.html">日志管理</a></li>
+<li class="toctree-l4"><a class="reference internal" href="modbus-comm.html">Modbus 通讯库</a></li>
+<li class="toctree-l4"><a class="reference internal" href="motor-algo.html">电机算法库</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rgb-light.html">RGB 彩灯</a></li>
+<li class="toctree-l4"><a class="reference internal" href="secure-storage.html">安全存储库</a></li>
+<li class="toctree-l4"><a class="reference internal" href="usb-comm.html">USB 通讯库</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vision-algo.html">视觉算法库</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wifi-comm.html">WIFI 通讯库</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../widgets/index.html">UI 组件</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API 参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../demo-projects/index.html">演示工程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">硬件平台</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">支持与参考</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Het-X1 SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../developer-guide/index.html">开发者指南</a></li>
+          <li class="breadcrumb-item"><a href="index.html">CBB 能力组件</a></li>
+      <li class="breadcrumb-item active">Li-Charger</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="li-charger">
+<h1>Li-Charger<a class="headerlink" href="#li-charger" title="Link to this heading"></a></h1>
+<div class="module-summary cbb-summary docutils container">
+<p><strong>CBB 能力组件</strong></p>
+<p>对应充电管理与 PD 快充能力。</p>
+</div>
+<section id="id1">
+<h2>概述<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<p>本模块面向 <strong>锂电充电管理</strong>。该页面建议补充充电策略、状态机、保护机制、快充协商与故障诊断内容。</p>
+</section>
+<section id="id2">
+<h2>核心能力<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<div class="capability-list docutils container">
+<ul class="simple">
+<li><p><strong>充电管理</strong>：说明状态机、电流电压策略和异常保护。</p></li>
+<li><p><strong>PD 快充</strong>：说明 PD 协议协商、档位控制和兼容性。</p></li>
+<li><p><strong>诊断接口</strong>：说明充电异常日志和状态查询接口。</p></li>
+</ul>
+</div>
+</section>
+<section id="id3">
+<h2>使用方法<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<p>读取电池、电源和温度状态，通过状态机控制预充、恒流、恒压和结束阶段，并上报异常。</p>
+<ol class="arabic simple">
+<li><p>准备依赖的 HAL、板级资源和任务/中断上下文。</p></li>
+<li><p>创建配置并注册状态、数据或错误回调。</p></li>
+<li><p>启动组件，将输入数据或系统事件送入处理接口。</p></li>
+<li><p>在业务循环中消费输出，并处理超时、断连和资源不足。</p></li>
+<li><p>停止数据源，等待异步操作结束，再释放组件资源。</p></li>
+</ol>
+</section>
+<section id="id4">
+<h2>使用示例<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<p>以下代码展示应用适配层的接入骨架。函数名用于说明职责，应替换为项目中实际提供的 CBB 接口。</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">app_charger_event</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">event</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="cm">/* 将状态或处理结果投递到产品业务层。 */</span>
+<span class="w">    </span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">event</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">app_charger_start</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">board_charger_prepare</span><span class="p">();</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ret</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">ret</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">product_charger_init</span><span class="p">(</span><span class="n">app_charger_event</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ret</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">ret</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">product_charger_start</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">app_charger_process</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">power_state</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">power_state</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">product_charger_process</span><span class="p">(</span><span class="n">power_state</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="api">
+<h2>API 说明<a class="headerlink" href="#api" title="Link to this heading"></a></h2>
+<p>当前 CBB 页面尚未关联稳定的公开头文件。建议由具体实现提供以下适配层职责，并在公开头文件落地后改为 Doxygen 自动接口说明。</p>
+<table class="docutils align-default" id="id6">
+<caption><span class="caption-text">建议适配层接口</span><a class="headerlink" href="#id6" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 28.0%" />
+<col style="width: 45.0%" />
+<col style="width: 27.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>接口职责</p></th>
+<th class="head"><p>说明</p></th>
+<th class="head"><p>调用约束</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">init(config,</span> <span class="pre">callback)</span></code></p></td>
+<td><p>校验配置、创建上下文并注册事件回调。</p></td>
+<td><p>每个实例只初始化一次。</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">start()</span></code></p></td>
+<td><p>启动数据源、协议状态机或算法任务。</p></td>
+<td><p>必须在初始化成功后调用。</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">process(input)</span></code></p></td>
+<td><p>输入数据帧或系统事件并产生结果。</p></td>
+<td><p>明确线程、中断和缓冲区所有权。</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">set_callback(callback)</span></code></p></td>
+<td><p>注册状态、数据和错误通知。</p></td>
+<td><p>回调中避免阻塞操作。</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">stop()</span> <span class="pre">/</span> <span class="pre">deinit()</span></code></p></td>
+<td><p>停止异步来源并释放资源。</p></td>
+<td><p>先停止，再销毁上下文。</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id5">
+<h2>注意事项<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>对实时数据链路明确采样周期、最大延迟和缓冲深度。</p></li>
+<li><p>错误码应保留底层原因，并由产品层决定重试、降级或复位策略。</p></li>
+<li><p>回调、DMA 和任务仍在运行时，不得释放配置、缓冲区或用户上下文。</p></li>
+<li><p>CBB 与 HAL 的依赖关系应集中在适配层，避免业务代码直接访问芯片实现。</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="ir-comm.html" class="btn btn-neutral float-left" title="IR 通讯库" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="log-mgmt.html" class="btn btn-neutral float-right" title="日志管理" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

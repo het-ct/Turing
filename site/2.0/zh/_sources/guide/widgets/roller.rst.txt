@@ -1,0 +1,227 @@
+.. Generated from platform/docs/pages/gui\roller.js
+
+het_roller 滚轮选择器组件
+=========================
+
+.. container:: module-summary widget-summary
+
+   **UI 组件**
+
+   include/het_roller.h · src/het_roller.c · 依赖 include/het_physics.h
+
+include/het_roller.h · src/het_roller.c · 依赖 include/het_physics.h
+
+类图
+----
+
+生命周期序列图
+--------------
+
+事件拦截过滤
+------------
+
+组件说明
+--------
+
+het_roller 用于在有限候选集中进行上下滚动选择，常见于日期、时间、枚举配置等场景。
+
+物理效果
+--------
+
+参数与选项
+----------
+
+.. list-table::
+   :header-rows: 1
+
+   * - 监听消息
+     - 过滤条件
+     - 结果
+   * - MSG_CTP_TOUCH
+     - 触点命中 roller 背景区域
+     - 命中：进入拖动并消费消息；未命中：透传消息
+   * - MSG_CTP_MOVE\_\*、MSG_CTP_LONG\*、MSG_CTP_SHORT\_\*、MSG_CTP_CLICK、MSG_CTP_LONG_LIFT
+     - dragging=true
+     - 拖动中更新位移；松手时启动惯性/吸附；消费消息
+   * - 其他消息
+     - 若仍处于 dragging 也会执行收尾释放
+     - 收尾后消费消息，否则透传消息
+
+参数与选项
+----------
+
+.. list-table::
+   :header-rows: 1
+
+   * - 模式
+     - 语义
+     - 适用场景
+   * - HET_ROLLER_PHYSICS_SNAP
+     - 无惯性，松手后直接吸附
+     - 严谨配置页
+   * - HET_ROLLER_PHYSICS_INERTIA
+     - 按速度滑动后再吸附
+     - 通用列表滚动
+   * - HET_ROLLER_PHYSICS_ELASTIC
+     - 惯性 + 边界阻尼/回弹
+     - 更自然触感
+
+API 介绍
+--------
+
+.. rst-class:: api-entry
+
+void \*het_roller_create(compo_form_t \*frm, uint8_t visible_cnt)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+创建 roller，指定可见行数。
+
+参数：frm 目标表单；visible_cnt 可见行数，建议使用奇数。
+
+返回：void\* roller 组件句柄，失败返回 NULL。
+
+.. rst-class:: api-entry
+
+void het_roller_set_geometry(void \*obj, const rect_t rect)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置中心坐标与宽高，行高会按 hei / visible_cnt 自动计算。
+
+参数：obj roller 句柄；rect 几何信息。
+
+.. rst-class:: api-entry
+
+void het_roller_set_options(void \*obj, const char \*\*opts, uint16_t opt_cnt)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置选项字符串数组。注意字符串生命周期需覆盖控件生命周期。
+
+参数：obj roller 句柄；opts 选项字符串数组；opt_cnt 选项数量。
+
+.. rst-class:: api-entry
+
+void het_roller_set_selected(void \*obj, uint16_t idx)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+无动画直接选中指定项。
+
+参数：obj roller 句柄；idx 目标索引，0-based。
+
+.. rst-class:: api-entry
+
+void het_roller_set_row_height(void \*obj, int16_t row_h)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+手动设定行高。
+
+参数：obj roller 句柄；row_h 每行高度。
+
+.. rst-class:: api-entry
+
+void het_roller_set_color(void \*obj, uint16_t bg_color, uint16_t sel_color, uint16_t text_color, uint16_t sel_text_color)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置背景、选中条、普通文字、选中文字颜色。
+
+参数：obj roller 句柄；bg_color 背景色；sel_color 选中条颜色；text_color 普通文字颜色；sel_text_color 选中文字颜色。
+
+.. rst-class:: api-entry
+
+void het_roller_set_font(void \*obj, uint32_t font)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置字体，建议先于 set_options 调用。
+
+参数：obj roller 句柄；font 字体资源 ID。
+
+.. rst-class:: api-entry
+
+void het_roller_set_radius(void \*obj, uint16_t radius)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置背景圆角半径。
+
+参数：obj roller 句柄；radius 圆角半径。
+
+.. rst-class:: api-entry
+
+void het_roller_set_inf(void \*obj, bool inf)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+开启/关闭无限循环滚动。
+
+参数：obj roller 句柄；inf 是否开启无限循环。
+
+.. rst-class:: api-entry
+
+void het_roller_set_physics(void \*obj, const het_roller_physics_t \*physics)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置物理效果，传 NULL 恢复默认 SNAP。
+
+参数：obj roller 句柄；physics 物理配置指针，为 NULL 时恢复默认配置。
+
+.. rst-class:: api-entry
+
+void het_roller_set_slot(void \*obj, event_cb slot, void \*user_data)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+注册回调，吸附完成且值改变后触发 HET_EVENT_VALUE_CHANGED。
+
+参数：obj roller 句柄；slot 回调函数；user_data 用户透传指针。
+
+.. rst-class:: api-entry
+
+void het_roller_set_visible(void \*obj, bool visible)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置可见性。
+
+参数：obj roller 句柄；visible 是否显示。
+
+.. rst-class:: api-entry
+
+uint16_t het_roller_get_selected(const void \*obj)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+获取当前选中索引（0-based）。
+
+参数：obj roller 句柄。
+
+返回：uint16_t 当前选中项索引。
+
+.. rst-class:: api-entry
+
+const char \*het_roller_get_selected_str(const void \*obj)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+获取当前选中文本。
+
+参数：obj roller 句柄。
+
+返回：const char\* 当前选中项字符串指针。
+
+使用示例
+--------
+
+.. code-block:: c
+
+   const het_roller_physics_t p = HET_ROLLER_PHYSICS_CONFIG(
+       HET_ROLLER_PHYSICS_INERTIA,
+       180,   // snap_ms
+       3600,  // decel
+       5,     // max_throw_rows
+       96     // edge_resist
+   );
+   het_roller_set_physics(roller, &p);
+
+.. code-block:: c
+
+   static const char *days[] = {"一", "二", "三", "四", "五", "六", "日"};
+   
+   void *roller = het_roller_create(frm, 5);
+   het_roller_set_geometry(roller, HET_GEOMETRY(160, 130, 92, 120));
+   het_roller_set_font(roller, UI_BUF_COFFEE_FONT_ARIAL_11_BIN);
+   het_roller_set_options(roller, days, 7);
+   het_roller_set_inf(roller, true);
+   het_roller_set_selected(roller, 2);

@@ -1,0 +1,216 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coffee machine platform solution &mdash; Het-X1 SDK 2.0</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=bca555e8" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=60dbed4a"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/language-switch.js?v=c94157ab"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="multimodal sensor" href="multimodal-sensor.html" />
+    <link rel="prev" title="LCD, audio and protocol examples" href="lcd-audio-protocol.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" ><label class="sdk-language-switch sdk-language-switch-static sdk-language-switch-sidebar" aria-label="切换语言"><span class="fa fa-globe" aria-hidden="true"></span><select title="切换语言" onchange="window.location.href=this.value"><option selected value="../../../en/guide/examples/coffee-machine.html">English</option><option value="../../../zh/guide/examples/coffee-machine.html">简体中文</option></select></label>
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Het-X1 SDK
+              <img src="../../_static/het_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Document directory</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quick-start/index.html">quick start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/index.html">Get started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer-guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Example</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview.html">How to run the example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal-gpio.html">GPIO Peripheral Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal-iic.html">IIC Peripheral Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal-spi-uart.html">SPI vs. UART Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="timer-pwm-qdec.html">Timer, PWM and QDEC Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lcd-audio-protocol.html">LCD, audio and protocol examples</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Coffee machine platform solution</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Permanent page</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">work page</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">User feedback</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Exception handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Module layering</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="multimodal-sensor.html">multimodal sensor</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../demo-projects/index.html">Demonstration project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">Hardware platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">tool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Support and Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Het-X1 SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Example</a></li>
+      <li class="breadcrumb-item active">Coffee machine platform solution</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>Coffee machine platform solution<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<p>The coffee machine case shows how to combine UI, sensors, actuators, algorithms, communication and exception handling into a complete product process. The page is not an isolated interface, but a visual entrance to the equipment state machine: user operations must be consistent with the waterway, temperature control, pressure and safety interlocking.</p>
+<section id="id2">
+<h2>Permanent page<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<div class="figure-pair docutils container">
+<img alt="Coffee machine resident information page" class="manual-figure product-screen" src="../../_images/coffee-home-1.png" />
+<img alt="Coffee machine shortcut function page" class="manual-figure product-screen" src="../../_images/coffee-home-2.png" />
+</div>
+<p>The resident layer can combine self-test, identity authentication, energy saving, time, weather, dynamic background, status icons and quick settings. State data is published uniformly by the business layer, and the page only subscribes to the normalized view model to prevent each control from directly reading the hardware.</p>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-text">Status update skeleton for resident pages</span><a class="headerlink" href="#id7" title="Link to this code"></a></div>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">coffee_home_update</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">coffee_status_t</span><span class="w"> </span><span class="o">*</span><span class="n">status</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">ui_set_temperature</span><span class="p">(</span><span class="n">status</span><span class="o">-&gt;</span><span class="n">water_temperature_c</span><span class="p">);</span>
+<span class="w">    </span><span class="n">ui_set_supply_level</span><span class="p">(</span><span class="n">COFFEE_SUPPLY_BEANS</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="o">-&gt;</span><span class="n">bean_percent</span><span class="p">);</span>
+<span class="w">    </span><span class="n">ui_set_network_state</span><span class="p">(</span><span class="n">status</span><span class="o">-&gt;</span><span class="n">network_state</span><span class="p">);</span>
+<span class="w">    </span><span class="n">ui_set_alarm_visible</span><span class="p">(</span><span class="n">status</span><span class="o">-&gt;</span><span class="n">alarm_count</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="id3">
+<h2>work page<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<img alt="Coffee making process page" class="manual-figure product-screen align-center" src="../../_images/coffee-work.png" />
+<p>The workflow can be broken down into roasting degree identification, programmable pressure control, precise temperature control, TDS adaptive extraction and milk foam control. Each step should define entry conditions, target values, timeouts, cancellability points, and failovers, rather than infer device status from progress animations.</p>
+<table class="docutils align-default" id="id8">
+<caption><span class="caption-text">Working status and dependencies</span><a class="headerlink" href="#id8" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 24.0%" />
+<col style="width: 40.0%" />
+<col style="width: 36.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>stage</p></th>
+<th class="head"><p>main input</p></th>
+<th class="head"><p>main output</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>preheat</p></td>
+<td><p>Temperature, flow rate, water level, door cover/water tank status</p></td>
+<td><p>Heater and pump controls</p></td>
+</tr>
+<tr class="row-odd"><td><p>Grinding and Powdering</p></td>
+<td><p>Bean quantity, grinding gear, motor current, encoder</p></td>
+<td><p>Motor speed and stall protection</p></td>
+</tr>
+<tr class="row-even"><td><p>extraction</p></td>
+<td><p>Pressure, temperature, flow, TDS, time</p></td>
+<td><p>Pump, valve, heating power curves</p></td>
+</tr>
+<tr class="row-odd"><td><p>Finish</p></td>
+<td><p>Output, time consumption, alarms and user recipes</p></td>
+<td><p>Results display, cleaning reminders and recipe records</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id4">
+<h2>User feedback<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<img alt="Coffee taste review page" class="manual-figure product-screen align-center" src="../../_images/coffee-feedback.png" />
+<p>Reviews and taste memories should save “recipe version + actual process data + user ratings” rather than just recording the star rating. The next time you apply your preferences, you still need to tailor them to safety boundaries such as temperature, pressure, and material margin.</p>
+</section>
+<section id="id5">
+<h2>Exception handling<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<p>The exception page covers descaling/residue cleaning, adding beans/milk/water and guided troubleshooting. Error information should include: current impact, user-executable actions, device automatic processing status, and exit conditions. Faults involving heating, pressure, motor stalling or door cover interlocking must be entered into the safe state by the control layer first, and the UI cannot provide a continue button to bypass the protection.</p>
+</section>
+<section id="id6">
+<h2>Module layering<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<div class="capability-list docutils container">
+<ul class="simple">
+<li><p><strong>UI layer</strong>: pages, controls, animations, input events, and accessibility feedback.</p></li>
+<li><p><strong>Category CBB</strong>: Recipes, process orchestration, fault mapping, maintenance cycles and user preferences.</p></li>
+<li><p><strong>Capabilities CBB</strong>: Vision, audio, IMU, motor control, communications, logging and secure storage.</p></li>
+<li><p><strong>HAL/BSP</strong>: ADC, PWM, QDEC, GPIO, IIC, SPI, LCD and actual board-level device drivers.</p></li>
+</ul>
+</div>
+<p>The joint debugging sequence is recommended to start with a single sensor and actuator, then verify the closed-loop control, and finally access the UI and networking functions. Logs, timeouts and manual stop entries are retained at each step so that the level to which the system belongs can be quickly located when problems with the entire machine occur.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="lcd-audio-protocol.html" class="btn btn-neutral float-left" title="LCD, audio and protocol examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="multimodal-sensor.html" class="btn btn-neutral float-right" title="multimodal sensor" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

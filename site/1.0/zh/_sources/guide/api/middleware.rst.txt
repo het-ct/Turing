@@ -1,0 +1,35 @@
+中间件 API
+==========
+
+本节只列出中间件中的 ``het`` 前缀公开接口：
+
+.. list-table:: 中间件 API 入口
+   :header-rows: 1
+   :widths: 32 68
+
+   * - 头文件
+     - 用途
+   * - ``platform/middlewares/fs/het_fs.h``
+     - Het 文件系统统一接口
+   * - ``platform/middlewares/sensor/include/het_camera.h``
+     - 摄像头配置、控制和帧处理
+   * - ``platform/middlewares/het_list.h``
+     - Het 链表容器
+   * - ``platform/middlewares/het_ringbuf.h``
+     - Het 环形缓冲区
+
+FlashDB、FAL、LittleFS 原生接口以及器件厂商驱动不属于 Het 公共 API，不在此处生成。
+
+文件系统声明
+------------
+
+.. doxygenfile:: het_fs.h
+   :project: bt8790
+   :sections: func typedef enum struct
+
+摄像头声明
+----------
+
+.. doxygenfile:: het_camera.h
+   :project: bt8790
+   :sections: func typedef enum struct

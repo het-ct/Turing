@@ -1,0 +1,176 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>系统安全 &mdash; Het-X1 SDK 2.0</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=bca555e8" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=8ba3eb92"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/translations.js?v=beaddf03"></script>
+      <script src="../../_static/language-switch.js?v=c94157ab"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="板级配置 config.h" href="board-config.html" />
+    <link rel="prev" title="软件架构与分层" href="architecture.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" ><label class="sdk-language-switch sdk-language-switch-static sdk-language-switch-sidebar" aria-label="切换语言"><span class="fa fa-globe" aria-hidden="true"></span><select title="切换语言" onchange="window.location.href=this.value"><option selected value="../../../zh/guide/developer-guide/security.html">简体中文</option><option value="../../../en/guide/developer-guide/security.html">English</option></select></label>
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Het-X1 SDK
+              <img src="../../_static/het_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">文档目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quick-start/index.html">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/index.html">开始使用</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">开发者指南</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="architecture.html">软件架构与分层</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">系统安全</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">安全架构</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">信任根与固件保护</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">安全存储与防篡改</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">安全通信与隐私</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">开发与发布检查</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="board-config.html">板级配置 config.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html">内存与存储管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal.html">HAL 外设</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drivers.html">驱动与 BSP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="middleware.html">中间件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cbb.html">CBB 能力组件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ui-widgets.html">UI 控件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ui-effects.html">UI 特效</a></li>
+<li class="toctree-l2"><a class="reference internal" href="os.html">OS 与任务模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="power-management.html">低功耗与电源管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ota.html">OTA 升级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cbb/index.html">CBB 能力组件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../widgets/index.html">UI 组件</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API 参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../demo-projects/index.html">演示工程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">硬件平台</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">支持与参考</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Het-X1 SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">开发者指南</a></li>
+      <li class="breadcrumb-item active">系统安全</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>系统安全<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<section id="id2">
+<h2>安全架构<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>本节依据《图灵平台使用说明书》1.3 “X1 安全架构”整理。安全目标包括固件机密性与完整性、设备身份保护、
+敏感数据安全存储、防篡改和通信安全。安全策略应从启动链、存储分区、密钥生命周期和量产流程整体设计，
+不能只在应用层增加校验。</p>
+</section>
+<section id="id3">
+<h2>信任根与固件保护<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<p>X1 使用 eFuse 保存设备级密钥和安全配置。BootROM/BootLoader 对 Flash 中的固件执行签名校验，固件可使用
+<code class="docutils literal notranslate"><span class="pre">SPI_ENC_KEY</span></code> 加密存储，并在运行时解密到 RAM。eFuse 一旦写入通常不可逆，必须在受控量产工位操作。</p>
+</section>
+<section id="id4">
+<h2>安全存储与防篡改<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<p>Wi-Fi 密码、用户令牌等敏感数据应加密存放在 <code class="docutils literal notranslate"><span class="pre">USER_DATA</span></code> 分区；关键 SPI Flash 总线可启用总线加扰。
+芯片支持主动防拆检测，检测到外壳打开等事件时可触发密钥擦除。安全存储 CBB 的具体密钥管理接口仍需结合
+产品方案，缺失部分 <strong>待开发</strong>。</p>
+</section>
+<section id="id5">
+<h2>安全通信与隐私<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<p>设备证书可由 <code class="docutils literal notranslate"><span class="pre">DEVICE_SECRET</span></code> 派生并存放于安全区域；网络连接使用 TLS/DTLS，并执行服务端证书校验。
+对外通信避免暴露芯片唯一标识，日志、配置和传感器历史等用户数据按产品要求选择加密和匿名化策略。</p>
+</section>
+<section id="id6">
+<h2>开发与发布检查<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>开发阶段保留可调试镜像，发布镜像启用签名、加密和版本校验。</p></li>
+<li><p>OTA 必须验证镜像完整性、签名、版本和回滚状态，流程见 <a class="reference internal" href="ota.html"><span class="doc">OTA 升级</span></a>。</p></li>
+<li><p>禁止把密钥、令牌和 Wi-Fi 密码写入普通日志或明文配置文件。</p></li>
+<li><p>eFuse 烧录、证书注入、量产恢复和安全审计工具：<strong>待开发</strong>。</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="architecture.html" class="btn btn-neutral float-left" title="软件架构与分层" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="board-config.html" class="btn btn-neutral float-right" title="板级配置 config.h" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

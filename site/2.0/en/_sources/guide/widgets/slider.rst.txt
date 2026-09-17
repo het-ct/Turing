@@ -1,0 +1,206 @@
+.. Generated from platform/docs/pages/gui\slider.js
+
+het_slider 滑动条组件
+=====================
+
+.. container:: module-summary widget-summary
+
+   **UI 组件**
+
+   include/het_slider.h · src/het_slider.c
+
+include/het_slider.h · src/het_slider.c
+
+类图
+----
+
+生命周期序列图
+--------------
+
+事件拦截过滤
+------------
+
+组件说明
+--------
+
+het_slider 基于 het_bar 扩展，提供可拖动旋钮，用于交互式数值选择（音量、亮度、进度定位等）。
+
+参数与选项
+----------
+
+.. list-table::
+   :header-rows: 1
+
+   * - 监听消息
+     - 过滤条件
+     - 结果
+   * - MSG_CTP_TOUCH/CLICK/LONG/LONG\_\*/SHORT\_\*
+     - 触点命中 slider 命中区（轨道与旋钮尺寸取较大范围）
+     - 更新 dragging 状态
+   * - MSG_CTP_MOVE_RT/LT/UP/DN（及默认分支）
+     - dragging=true 且可获取当前触点
+     - 可更新时：消费消息并刷新值；否则：透传消息
+
+API 介绍
+--------
+
+.. rst-class:: api-entry
+
+void \* het_slider_create(compo_form_t \*frm)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+创建 slider 组件。
+
+参数：frm 目标表单。
+
+返回：void\* slider 组件句柄，失败返回 NULL。
+
+.. rst-class:: api-entry
+
+void het_slider_set_geometry(void \*obj, const rect_t rect)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置位置和大小。
+
+参数：obj slider 句柄；rect 几何信息。
+
+.. rst-class:: api-entry
+
+void het_slider_set_range(void \*obj, const int32_t min, const int32_t max)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置取值范围。
+
+参数：obj slider 句柄；min 最小值；max 最大值。
+
+.. rst-class:: api-entry
+
+void het_slider_set_value(void \*obj, const int32_t value)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置值，不触发回调。
+
+参数：obj slider 句柄；value 目标值。
+
+.. rst-class:: api-entry
+
+void het_slider_set_value_notify(void \*obj, const int32_t value, void \*param)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置值并触发值变化事件，param 可透传业务上下文。
+
+参数：obj slider 句柄；value 目标值；param 回调透传参数。
+
+.. rst-class:: api-entry
+
+void het_slider_set_knob_size(void \*obj, const uint8_t size)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置旋钮尺寸。
+
+参数：obj slider 句柄；size 旋钮尺寸。
+
+.. rst-class:: api-entry
+
+void het_slider_set_knob_color(void \*obj, const uint16_t color)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置旋钮颜色（RGB565）。
+
+参数：obj slider 句柄；color 旋钮颜色。
+
+.. rst-class:: api-entry
+
+void het_slider_set_color(void \*obj, const uint16_t knob_color, const uint16_t indic_color, const uint16_t bg_color)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+一次性设置旋钮、指示器和轨道背景色。
+
+参数：obj slider 句柄；knob_color 旋钮颜色；indic_color 已走过区域颜色；bg_color 轨道背景色。
+
+.. rst-class:: api-entry
+
+void het_slider_set_radius(void \*obj, const uint16_t radius)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置轨道圆角。
+
+参数：obj slider 句柄；radius 轨道圆角半径。
+
+.. rst-class:: api-entry
+
+void het_slider_set_indic_padding(void \*obj, const het_pad_t padding)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置指示器内缩，控制已走过区域与轨道边缘间距。
+
+参数：obj slider 句柄；padding 指示器内边距。
+
+.. rst-class:: api-entry
+
+void het_slider_set_orientation(void \*obj, const het_bar_orientation orientation)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置水平或垂直方向。
+
+参数：obj slider 句柄；orientation 方向枚举。
+
+.. rst-class:: api-entry
+
+void het_slider_set_slot(void \*obj, event_cb slot, void \*user_data)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+注册回调，事件码为 HET_EVENT_VALUE_CHANGED。
+
+参数：obj slider 句柄；slot 回调函数；user_data 用户透传指针。
+
+.. rst-class:: api-entry
+
+void het_slider_set_visible(void \*obj, const bool visible)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置可见性。
+
+参数：obj slider 句柄；visible 是否显示。
+
+.. rst-class:: api-entry
+
+int32_t het_slider_get_value(const void \*obj)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+获取当前值。
+
+参数：obj slider 句柄。
+
+返回：int32_t 当前值。
+
+.. rst-class:: api-entry
+
+int32_t het_slider_get_min(const void \*obj) / int32_t het_slider_get_max(const void \*obj)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+获取最小值 / 最大值。
+
+参数：obj slider 句柄。
+
+返回：int32_t 当前配置的最小值或最大值。
+
+使用示例
+--------
+
+.. code-block:: c
+
+   static void on_volume_changed(const het_event_t * const e)
+   {
+       void *slider = e->original;
+       int32_t vol = het_slider_get_value(slider);
+       (void)vol;
+   }
+   
+   void *slider = het_slider_create(frm);
+   het_slider_set_geometry(slider, HET_GEOMETRY(160, 152, 180, 22));
+   het_slider_set_range(slider, 0, 100);
+   het_slider_set_color(slider, COLOR_WHITE, make_color(67, 145, 255), make_color(45, 52, 66));
+   het_slider_set_knob_size(slider, 18);
+   het_slider_set_value(slider, 40);
+   het_slider_set_slot(slider, on_volume_changed, NULL);

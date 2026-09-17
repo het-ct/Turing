@@ -1,0 +1,21 @@
+示例
+====
+
+本章对应 ``platform/examples`` 中的可运行代码，适合验证单个 HAL 或服务。示例中的管脚、实例和
+设备型号仅适用于其原始测试环境，接入目标板前必须按 ``config.h`` 和原理图调整。
+
+.. toctree::
+   :maxdepth: 2
+
+   overview
+   hal-gpio
+   hal-iic
+   hal-spi-uart
+   timer-pwm-qdec
+   lcd-audio-protocol
+
+.. toctree::
+   :hidden:
+
+   coffee-machine
+   multimodal-sensor

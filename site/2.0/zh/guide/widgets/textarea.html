@@ -1,0 +1,381 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>het_textarea 文本输入框组件 &mdash; Het-X1 SDK 2.0</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=bca555e8" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=8ba3eb92"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/translations.js?v=beaddf03"></script>
+      <script src="../../_static/language-switch.js?v=c94157ab"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="API 参考" href="../api/index.html" />
+    <link rel="prev" title="het_switch 拨动开关组件" href="switch.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" ><label class="sdk-language-switch sdk-language-switch-static sdk-language-switch-sidebar" aria-label="切换语言"><span class="fa fa-globe" aria-hidden="true"></span><select title="切换语言" onchange="window.location.href=this.value"><option selected value="../../../zh/guide/widgets/textarea.html">简体中文</option><option value="../../../en/guide/widgets/textarea.html">English</option></select></label>
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Het-X1 SDK
+              <img src="../../_static/het_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">文档目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quick-start/index.html">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/index.html">开始使用</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../developer-guide/index.html">开发者指南</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/architecture.html">软件架构与分层</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/security.html">系统安全</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/board-config.html">板级配置 config.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/memory.html">内存与存储管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/hal.html">HAL 外设</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/drivers.html">驱动与 BSP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/middleware.html">中间件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/cbb.html">CBB 能力组件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/ui-widgets.html">UI 控件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/ui-effects.html">UI 特效</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/os.html">OS 与任务模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/power-management.html">低功耗与电源管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/ota.html">OTA 升级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cbb/index.html">CBB 能力组件</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">UI 组件</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#id1">目录</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="arc.html">het_arc 圆弧组件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bar.html">het_bar 进度条组件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="button.html">het_button 按钮组件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="checkbox.html">het_checkbox 复选框组件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="flex.html">het_flex 弹性布局容器</a></li>
+<li class="toctree-l4"><a class="reference internal" href="grid.html">het_grid 网格布局容器</a></li>
+<li class="toctree-l4"><a class="reference internal" href="image.html">het_image 图片组件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="label.html">het_label 文本标签组件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="led.html">het_led LED 指示灯组件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="roller.html">het_roller 滚轮选择器组件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="slider.html">het_slider 滑动条组件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="switch.html">het_switch 拨动开关组件</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">het_textarea 文本输入框组件</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API 参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../demo-projects/index.html">演示工程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">硬件平台</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">支持与参考</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Het-X1 SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../developer-guide/index.html">开发者指南</a></li>
+          <li class="breadcrumb-item"><a href="index.html">UI 组件</a></li>
+      <li class="breadcrumb-item active">het_textarea 文本输入框组件</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="het-textarea">
+<h1>het_textarea 文本输入框组件<a class="headerlink" href="#het-textarea" title="Link to this heading"></a></h1>
+<div class="module-summary widget-summary docutils container">
+<p><strong>UI 组件</strong></p>
+<p>include/het_textarea.h · src/het_textarea.c</p>
+</div>
+<p>include/het_textarea.h · src/het_textarea.c</p>
+<section id="id1">
+<h2>类图<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+</section>
+<section id="id2">
+<h2>生命周期序列图<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+</section>
+<section id="id3">
+<h2>事件拦截过滤<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+</section>
+<section id="id4">
+<h2>组件说明<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<p>het_textarea 对齐 LVGL lv_textarea 语义，支持多行/单行输入、光标定位与闪烁、占位符、密码掩码、文本增删改等能力。</p>
+</section>
+<section id="id5">
+<h2>能力清单<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+</section>
+<section id="id6">
+<h2>参数与选项<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>监听消息</p></th>
+<th class="head"><p>过滤条件</p></th>
+<th class="head"><p>结果</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>MSG_CTP_CLICK</p></td>
+<td><p>触点命中输入框背景（中心命中检测）</p></td>
+<td><p>命中：光标移到末尾并消费消息；未命中：透传消息</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id7">
+<h2>参数与选项<a class="headerlink" href="#id7" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>能力</p></th>
+<th class="head"><p>相关接口</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>文本写入与清空</p></td>
+<td><p>set_text / add_text / add_char / clear_text</p></td>
+</tr>
+<tr class="row-odd"><td><p>删除操作</p></td>
+<td><p>del_char / del_char_forward</p></td>
+</tr>
+<tr class="row-even"><td><p>光标控制</p></td>
+<td><p>set_cursor_pos / set_cursor_begin / set_cursor_end</p></td>
+</tr>
+<tr class="row-odd"><td><p>光标样式与闪烁</p></td>
+<td><p>set_cursor_style / set_cursor_blink_time</p></td>
+</tr>
+<tr class="row-even"><td><p>占位符</p></td>
+<td><p>set_placeholder</p></td>
+</tr>
+<tr class="row-odd"><td><p>密码模式</p></td>
+<td><p>set_password_mode</p></td>
+</tr>
+<tr class="row-even"><td><p>单行模式</p></td>
+<td><p>set_one_line</p></td>
+</tr>
+<tr class="row-odd"><td><p>事件回调</p></td>
+<td><p>set_slot（VALUE_CHANGED / CLICKED）</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="api">
+<h2>API 介绍<a class="headerlink" href="#api" title="Link to this heading"></a></h2>
+<section class="api-entry" id="void-het-textarea-create-compo-form-t-frm">
+<h3>void * het_textarea_create(compo_form_t *frm)<a class="headerlink" href="#void-het-textarea-create-compo-form-t-frm" title="Link to this heading"></a></h3>
+<p>创建 textarea 组件。</p>
+<p>参数：frm 目标表单。</p>
+<p>返回：void* textarea 组件句柄，失败返回 NULL。</p>
+</section>
+<section class="api-entry" id="void-het-textarea-set-geometry-void-obj-const-rect-t-rect">
+<h3>void het_textarea_set_geometry(void *obj, const rect_t rect)<a class="headerlink" href="#void-het-textarea-set-geometry-void-obj-const-rect-t-rect" title="Link to this heading"></a></h3>
+<p>设置位置与大小。</p>
+<p>参数：obj textarea 句柄；rect 几何信息。</p>
+</section>
+<section class="api-entry" id="void-het-textarea-set-font-void-obj-const-uint32-t-font">
+<h3>void het_textarea_set_font(void *obj, const uint32_t font)<a class="headerlink" href="#void-het-textarea-set-font-void-obj-const-uint32-t-font" title="Link to this heading"></a></h3>
+<p>设置字体，建议创建后优先调用。</p>
+<p>参数：obj textarea 句柄；font 字体资源 ID。</p>
+</section>
+<section class="api-entry" id="void-het-textarea-set-text-void-obj-const-char-txt">
+<h3>void het_textarea_set_text(void *obj, const char *txt)<a class="headerlink" href="#void-het-textarea-set-text-void-obj-const-char-txt" title="Link to this heading"></a></h3>
+<p>覆盖设置全文本，光标移动到末尾。</p>
+<p>参数：obj textarea 句柄；txt 新文本内容。</p>
+</section>
+<section class="api-entry" id="void-het-textarea-add-text-void-obj-const-char-txt">
+<h3>void het_textarea_add_text(void *obj, const char *txt)<a class="headerlink" href="#void-het-textarea-add-text-void-obj-const-char-txt" title="Link to this heading"></a></h3>
+<p>在光标处追加字符串（UTF-8）。</p>
+<p>参数：obj textarea 句柄；txt 要追加的字符串。</p>
+</section>
+<section class="api-entry" id="void-het-textarea-add-char-void-obj-const-char-c">
+<h3>void het_textarea_add_char(void *obj, const char c)<a class="headerlink" href="#void-het-textarea-add-char-void-obj-const-char-c" title="Link to this heading"></a></h3>
+<p>在光标处追加单个 ASCII 字符。</p>
+<p>参数：obj textarea 句柄；c 要追加的字符。</p>
+</section>
+<section class="api-entry" id="void-het-textarea-del-char-void-obj">
+<h3>void het_textarea_del_char(void *obj)<a class="headerlink" href="#void-het-textarea-del-char-void-obj" title="Link to this heading"></a></h3>
+<p>删除光标左侧一个 UTF-8 字符（退格）。</p>
+<p>参数：obj textarea 句柄。</p>
+</section>
+<section class="api-entry" id="void-het-textarea-del-char-forward-void-obj">
+<h3>void het_textarea_del_char_forward(void *obj)<a class="headerlink" href="#void-het-textarea-del-char-forward-void-obj" title="Link to this heading"></a></h3>
+<p>删除光标右侧一个 UTF-8 字符（Delete）。</p>
+<p>参数：obj textarea 句柄。</p>
+</section>
+<section class="api-entry" id="void-het-textarea-clear-text-void-obj">
+<h3>void het_textarea_clear_text(void *obj)<a class="headerlink" href="#void-het-textarea-clear-text-void-obj" title="Link to this heading"></a></h3>
+<p>清空全部文本并将光标归零。</p>
+<p>参数：obj textarea 句柄。</p>
+</section>
+<section class="api-entry" id="void-het-textarea-set-placeholder-void-obj-const-char-txt-const-uint32-t-font-const-uint16-t-color">
+<h3>void het_textarea_set_placeholder(void *obj, const char *txt, const uint32_t font, const uint16_t color)<a class="headerlink" href="#void-het-textarea-set-placeholder-void-obj-const-char-txt-const-uint32-t-font-const-uint16-t-color" title="Link to this heading"></a></h3>
+<p>设置占位符文本、字体与颜色。</p>
+<p>参数：obj textarea 句柄；txt 占位符文本；font 占位符字体；color 占位符颜色。</p>
+</section>
+<section class="api-entry" id="void-het-textarea-set-password-mode-void-obj-const-bool-en">
+<h3>void het_textarea_set_password_mode(void *obj, const bool en)<a class="headerlink" href="#void-het-textarea-set-password-mode-void-obj-const-bool-en" title="Link to this heading"></a></h3>
+<p>开启后文本以 * 掩码显示。</p>
+<p>参数：obj textarea 句柄；en 是否启用密码模式。</p>
+</section>
+<section class="api-entry" id="void-het-textarea-set-one-line-void-obj-const-bool-en">
+<h3>void het_textarea_set_one_line(void *obj, const bool en)<a class="headerlink" href="#void-het-textarea-set-one-line-void-obj-const-bool-en" title="Link to this heading"></a></h3>
+<p>开启单行模式后回车输入被忽略。</p>
+<p>参数：obj textarea 句柄；en 是否启用单行模式。</p>
+</section>
+<section class="api-entry" id="void-het-textarea-set-text-color-void-obj-const-uint16-t-color">
+<h3>void het_textarea_set_text_color(void *obj, const uint16_t color)<a class="headerlink" href="#void-het-textarea-set-text-color-void-obj-const-uint16-t-color" title="Link to this heading"></a></h3>
+<p>设置文本颜色。</p>
+<p>参数：obj textarea 句柄；color 文本颜色（RGB565）。</p>
+</section>
+<section class="api-entry" id="void-het-textarea-set-bg-color-void-obj-const-het-bg-res-t-style">
+<h3>void het_textarea_set_bg_color(void *obj, const het_bg_res_t style)<a class="headerlink" href="#void-het-textarea-set-bg-color-void-obj-const-het-bg-res-t-style" title="Link to this heading"></a></h3>
+<p>设置背景样式（纯色或背景资源）。</p>
+<p>参数：obj textarea 句柄；style 背景样式资源。</p>
+</section>
+<section class="api-entry" id="void-het-textarea-set-bg-radius-void-obj-const-uint16-t-radius">
+<h3>void het_textarea_set_bg_radius(void *obj, const uint16_t radius)<a class="headerlink" href="#void-het-textarea-set-bg-radius-void-obj-const-uint16-t-radius" title="Link to this heading"></a></h3>
+<p>设置输入框背景圆角。</p>
+<p>参数：obj textarea 句柄；radius 圆角半径（像素）。</p>
+</section>
+<section class="api-entry" id="void-het-textarea-set-padding-void-obj-const-het-pad-t-padding">
+<h3>void het_textarea_set_padding(void *obj, const het_pad_t padding)<a class="headerlink" href="#void-het-textarea-set-padding-void-obj-const-het-pad-t-padding" title="Link to this heading"></a></h3>
+<p>设置内边距（文本与背景边缘间距）。</p>
+<p>参数：obj textarea 句柄；padding 内边距参数。</p>
+</section>
+<section class="api-entry" id="void-het-textarea-set-visible-void-obj-const-bool-visible">
+<h3>void het_textarea_set_visible(void *obj, const bool visible)<a class="headerlink" href="#void-het-textarea-set-visible-void-obj-const-bool-visible" title="Link to this heading"></a></h3>
+<p>设置控件可见性。</p>
+<p>参数：obj textarea 句柄；visible 为 true 显示，false 隐藏。</p>
+</section>
+<section class="api-entry" id="void-het-textarea-set-cursor-pos-void-obj-const-uint16-t-pos">
+<h3>void het_textarea_set_cursor_pos(void *obj, const uint16_t pos)<a class="headerlink" href="#void-het-textarea-set-cursor-pos-void-obj-const-uint16-t-pos" title="Link to this heading"></a></h3>
+<p>设置光标字节偏移（自动对齐 UTF-8 边界）。</p>
+<p>参数：obj textarea 句柄；pos 目标光标字节位置。</p>
+</section>
+<section class="api-entry" id="void-het-textarea-set-cursor-end-void-obj">
+<h3>void het_textarea_set_cursor_end(void *obj)<a class="headerlink" href="#void-het-textarea-set-cursor-end-void-obj" title="Link to this heading"></a></h3>
+<p>将光标移动到文本末尾。</p>
+<p>参数：obj textarea 句柄。</p>
+</section>
+<section class="api-entry" id="void-het-textarea-set-cursor-begin-void-obj">
+<h3>void het_textarea_set_cursor_begin(void *obj)<a class="headerlink" href="#void-het-textarea-set-cursor-begin-void-obj" title="Link to this heading"></a></h3>
+<p>将光标移动到文本开头。</p>
+<p>参数：obj textarea 句柄。</p>
+</section>
+<section class="api-entry" id="void-het-textarea-set-cursor-style-void-obj-const-uint16-t-width-const-uint16-t-height-const-uint16-t-color">
+<h3>void het_textarea_set_cursor_style(void *obj, const uint16_t width, const uint16_t height, const uint16_t color)<a class="headerlink" href="#void-het-textarea-set-cursor-style-void-obj-const-uint16-t-width-const-uint16-t-height-const-uint16-t-color" title="Link to this heading"></a></h3>
+<p>设置光标样式。</p>
+<p>参数：obj textarea 句柄；width/height 光标尺寸；color 光标颜色。</p>
+</section>
+<section class="api-entry" id="void-het-textarea-set-cursor-blink-time-void-obj-const-uint16-t-ms">
+<h3>void het_textarea_set_cursor_blink_time(void *obj, const uint16_t ms)<a class="headerlink" href="#void-het-textarea-set-cursor-blink-time-void-obj-const-uint16-t-ms" title="Link to this heading"></a></h3>
+<p>设置光标闪烁半周期，0 表示常亮。</p>
+<p>参数：obj textarea 句柄；ms 光标闪烁半周期，单位 ms。</p>
+</section>
+<section class="api-entry" id="void-het-textarea-set-slot-void-obj-event-cb-cb-void-user-data">
+<h3>void het_textarea_set_slot(void *obj, event_cb cb, void *user_data)<a class="headerlink" href="#void-het-textarea-set-slot-void-obj-event-cb-cb-void-user-data" title="Link to this heading"></a></h3>
+<p>注册回调，支持 HET_EVENT_VALUE_CHANGED / HET_EVENT_CLICKED。</p>
+<p>参数：obj textarea 句柄；cb 回调函数；user_data 用户透传指针。</p>
+</section>
+<section class="api-entry" id="const-char-het-textarea-get-text-const-void-obj">
+<h3>const char * het_textarea_get_text(const void *obj)<a class="headerlink" href="#const-char-het-textarea-get-text-const-void-obj" title="Link to this heading"></a></h3>
+<p>获取当前文本只读指针。</p>
+<p>参数：obj textarea 句柄。</p>
+<p>返回：const char* 当前文本缓冲区只读指针。</p>
+</section>
+<section class="api-entry" id="uint16-t-het-textarea-get-text-len-const-void-obj">
+<h3>uint16_t het_textarea_get_text_len(const void *obj)<a class="headerlink" href="#uint16-t-het-textarea-get-text-len-const-void-obj" title="Link to this heading"></a></h3>
+<p>获取文本字节长度。</p>
+<p>参数：obj textarea 句柄。</p>
+<p>返回：uint16_t 当前文本字节长度。</p>
+</section>
+<section class="api-entry" id="uint16-t-het-textarea-get-cursor-pos-const-void-obj">
+<h3>uint16_t het_textarea_get_cursor_pos(const void *obj)<a class="headerlink" href="#uint16-t-het-textarea-get-cursor-pos-const-void-obj" title="Link to this heading"></a></h3>
+<p>获取当前光标位置。</p>
+<p>参数：obj textarea 句柄。</p>
+<p>返回：uint16_t 当前光标字节偏移。</p>
+</section>
+</section>
+<section id="id8">
+<h2>使用示例<a class="headerlink" href="#id8" title="Link to this heading"></a></h2>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">ta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">het_textarea_create</span><span class="p">(</span><span class="n">frm</span><span class="p">);</span>
+<span class="n">het_textarea_set_geometry</span><span class="p">(</span><span class="n">ta</span><span class="p">,</span><span class="w"> </span><span class="n">HET_GEOMETRY</span><span class="p">(</span><span class="mi">160</span><span class="p">,</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w"> </span><span class="mi">220</span><span class="p">,</span><span class="w"> </span><span class="mi">76</span><span class="p">));</span>
+<span class="n">het_textarea_set_font</span><span class="p">(</span><span class="n">ta</span><span class="p">,</span><span class="w"> </span><span class="n">UI_BUF_COFFEE_FONT_ARIAL_11_BIN</span><span class="p">);</span>
+<span class="n">het_textarea_set_bg_color</span><span class="p">(</span><span class="n">ta</span><span class="p">,</span><span class="w"> </span><span class="n">HET_BG_COLOR</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span><span class="w"> </span><span class="mi">38</span><span class="p">,</span><span class="w"> </span><span class="mi">52</span><span class="p">));</span>
+<span class="n">het_textarea_set_text_color</span><span class="p">(</span><span class="n">ta</span><span class="p">,</span><span class="w"> </span><span class="n">COLOR_WHITE</span><span class="p">);</span>
+<span class="n">het_textarea_set_placeholder</span><span class="p">(</span><span class="n">ta</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;请输入设备名称&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">UI_BUF_COFFEE_FONT_ARIAL_11_BIN</span><span class="p">,</span><span class="w"> </span><span class="n">make_color</span><span class="p">(</span><span class="mi">145</span><span class="p">,</span><span class="w"> </span><span class="mi">156</span><span class="p">,</span><span class="w"> </span><span class="mi">178</span><span class="p">));</span>
+<span class="n">het_textarea_set_one_line</span><span class="p">(</span><span class="n">ta</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span>
+<span class="n">het_textarea_set_cursor_blink_time</span><span class="p">(</span><span class="n">ta</span><span class="p">,</span><span class="w"> </span><span class="mi">350</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="switch.html" class="btn btn-neutral float-left" title="het_switch 拨动开关组件" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="../api/index.html" class="btn btn-neutral float-right" title="API 参考" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

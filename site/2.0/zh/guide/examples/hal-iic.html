@@ -1,0 +1,145 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IIC 外设示例 &mdash; Het-X1 SDK 2.0</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=bca555e8" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=8ba3eb92"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/translations.js?v=beaddf03"></script>
+      <script src="../../_static/language-switch.js?v=c94157ab"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="SPI 与 UART 示例" href="hal-spi-uart.html" />
+    <link rel="prev" title="GPIO 外设示例" href="hal-gpio.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" ><label class="sdk-language-switch sdk-language-switch-static sdk-language-switch-sidebar" aria-label="切换语言"><span class="fa fa-globe" aria-hidden="true"></span><select title="切换语言" onchange="window.location.href=this.value"><option selected value="../../../zh/guide/examples/hal-iic.html">简体中文</option><option value="../../../en/guide/examples/hal-iic.html">English</option></select></label>
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Het-X1 SDK
+              <img src="../../_static/het_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">文档目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quick-start/index.html">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/index.html">开始使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer-guide/index.html">开发者指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API 参考</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">示例</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview.html">示例运行方式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal-gpio.html">GPIO 外设示例</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">IIC 外设示例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal-spi-uart.html">SPI 与 UART 示例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="timer-pwm-qdec.html">Timer、PWM 与 QDEC 示例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lcd-audio-protocol.html">LCD、音频与协议示例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coffee-machine.html">咖啡机平台方案</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multimodal-sensor.html">多模态传感器</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../demo-projects/index.html">演示工程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">硬件平台</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">支持与参考</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Het-X1 SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">示例</a></li>
+      <li class="breadcrumb-item active">IIC 外设示例</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="iic">
+<h1>IIC 外设示例<a class="headerlink" href="#iic" title="Link to this heading"></a></h1>
+<p>源文件：<code class="docutils literal notranslate"><span class="pre">platform/examples/hal/example_iic.c</span></code>。示例初始化 IIC1，选择 PA8/PA9 复用组，并访问
+地址 <code class="docutils literal notranslate"><span class="pre">0x14</span></code> 的设备寄存器。该地址和寄存器来自原测试器件，不能直接用于其他传感器。</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">het_iic_handle_t</span><span class="w"> </span><span class="n">iic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">het_iic_def_cfg</span><span class="p">();</span>
+<span class="n">iic</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HET_IIC_ID_1</span><span class="p">;</span>
+<span class="n">iic</span><span class="p">.</span><span class="n">port_map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HET_IIC1_G2_PA8_PA9</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">het_iic_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">iic</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ret</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">ret</span><span class="p">;</span>
+
+<span class="kt">uint8_t</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="k">return</span><span class="w"> </span><span class="n">het_iic_read</span><span class="p">(</span><span class="n">HET_IIC_ID_1</span><span class="p">,</span><span class="w"> </span><span class="mh">0x14</span><span class="p">,</span><span class="w"> </span><span class="mh">0x814E</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>验证时确认 7 位/8 位地址约定、寄存器宽度、上拉电阻和供电。API 见
+<a class="reference internal" href="../api/peripherals/iic.html"><span class="doc">IIC 总线（het_iic.h）</span></a>。</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="hal-gpio.html" class="btn btn-neutral float-left" title="GPIO 外设示例" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="hal-spi-uart.html" class="btn btn-neutral float-right" title="SPI 与 UART 示例" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,226 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Board level configuration config.h &mdash; Het-X1 SDK 2.0</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=bca555e8" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=60dbed4a"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/language-switch.js?v=c94157ab"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Memory and storage management" href="memory.html" />
+    <link rel="prev" title="System security" href="security.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" ><label class="sdk-language-switch sdk-language-switch-static sdk-language-switch-sidebar" aria-label="切换语言"><span class="fa fa-globe" aria-hidden="true"></span><select title="切换语言" onchange="window.location.href=this.value"><option selected value="../../../en/guide/developer-guide/board-config.html">English</option><option value="../../../zh/guide/developer-guide/board-config.html">简体中文</option></select></label>
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Het-X1 SDK
+              <img src="../../_static/het_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Document directory</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quick-start/index.html">quick start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/index.html">Get started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Developer Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="architecture.html">Software architecture and layering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">System security</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Board level configuration config.h</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Configuration process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Configure dependency order</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Common configuration items</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Things to note</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html">Memory and storage management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal.html">HAL peripherals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drivers.html">Drivers and BSP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="middleware.html">middleware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cbb.html">CBB capability components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ui-widgets.html">UI controls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ui-effects.html">UI special effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="os.html">OS and task model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="power-management.html">Low power consumption and power management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ota.html">OTA upgrade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cbb/index.html">CBB capability components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../widgets/index.html">UI components</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../demo-projects/index.html">Demonstration project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">Hardware platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">tool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Support and Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Het-X1 SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Developer Guide</a></li>
+      <li class="breadcrumb-item active">Board level configuration config.h</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="config-h">
+<h1>Board level configuration config.h<a class="headerlink" href="#config-h" title="Link to this heading"></a></h1>
+<section id="id1">
+<h2>Overview<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<p>Each product project selects chip packaging, clock, storage, display, touch, communication and business functions through <code class="docutils literal notranslate"><span class="pre">projects/&lt;project&gt;/config.h</span></code>. Currently, you can refer to <code class="docutils literal notranslate"><span class="pre">projects/watch320/config.h</span></code> and <code class="docutils literal notranslate"><span class="pre">projects/haier_hmi/config.h</span></code>, but their parameters cannot be directly reused across boards.</p>
+</section>
+<section id="id2">
+<h2>Configuration process<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Document packaging, power, Flash/PSRAM, display, touch and debug serial ports from the target board schematic.</p></li>
+<li><p>Copy the closest project configuration and turn off functions unrelated to the target board first.</p></li>
+<li><p>Configure <code class="docutils literal notranslate"><span class="pre">CHIP_PACKAGE_SELECT</span></code>, <code class="docutils literal notranslate"><span class="pre">SYS_CLK_SEL</span></code>, <code class="docutils literal notranslate"><span class="pre">FLASH_*</span></code> and <code class="docutils literal notranslate"><span class="pre">NOC_PSRAM_*</span></code>.</p></li>
+<li><p>Configure <code class="docutils literal notranslate"><span class="pre">GUI_SELECT</span></code>, <code class="docutils literal notranslate"><span class="pre">CTP_SELECT</span></code> and corresponding reset, interrupt, backlight and bus pins.</p></li>
+<li><p>Execute <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">gen-srclist.py</span></code>, check the generated source code and header file list, and then compile it in full.</p></li>
+</ol>
+</section>
+<section id="id3">
+<h2>Configure dependency order<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<p>It is recommended to modify in the order of “Chip and Clock → Flash/PSRAM → Pin Multiplexing → Display/Touch → Communication/Audio → Function Tailoring → UI Resources”. Do not enable high-level functions before the pre-configuration is confirmed. For example, do not enable pages or complex special effects directly before the LCD and touch pins, power supplies, and buses are verified.</p>
+<p><code class="docutils literal notranslate"><span class="pre">config.h</span></code> only saves the product selection and does not directly put it into the initialization process. The initialization sequence should be implemented in the project entry or the corresponding BSP to avoid repeated initialization of the same peripheral due to scattered macro switches.</p>
+</section>
+<section id="id4">
+<h2>Common configuration items<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<table class="docutils align-default" id="id7">
+<caption><span class="caption-text">Configure grouping</span><a class="headerlink" href="#id7" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 34.0%" />
+<col style="width: 36.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Configuration</p></th>
+<th class="head"><p>effect</p></th>
+<th class="head"><p>Key inspections</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CHIP_PACKAGE_SELECT</span></code></p></td>
+<td><p>Chip packaging and resource selection</p></td>
+<td><p>Must be consistent with the actual object</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SYS_CLK_SEL</span></code></p></td>
+<td><p>System frequency</p></td>
+<td><p>Performance, power consumption and peripheral clocks</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">FLASH_CODE_SIZE</span></code> / <code class="docutils literal notranslate"><span class="pre">FLASH_UI_*</span></code></p></td>
+<td><p>Firmware and UI resource partitions</p></td>
+<td><p>Addresses cannot overlap and satisfy erase alignment</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">GUI_SELECT</span></code> / <code class="docutils literal notranslate"><span class="pre">CTP_SELECT</span></code></p></td>
+<td><p>Display and touch driver</p></td>
+<td><p>Model, resolution, orientation and bus</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PORT_*</span></code></p></td>
+<td><p>Pins and multiplexing</p></td>
+<td><p>Check item by item with schematic diagram</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">FUNC_*_EN</span></code></p></td>
+<td><p>Product function tailoring</p></td>
+<td><p>Synchronously generate source code manifest</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id5">
+<h2>Things to note<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<p>Draw the address map before modifying the partition; verify the touch coordinates after modifying the screen parameters; retest UART, IIC, SPI, LCD and audio sampling after modifying the clock. There are still some historical annotations in the configuration file that are encoded abnormally. Options with unclear meanings should be confirmed with the module leader.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">gen-srclist.py</span></code> must be re-executed after modifying <code class="docutils literal notranslate"><span class="pre">FUNC_*_EN</span></code>, <code class="docutils literal notranslate"><span class="pre">GUI_USE_*</span></code> or resource options, otherwise the source code manifest may still refer to the old module.</p></li>
+<li><p>Record the board version, <code class="docutils literal notranslate"><span class="pre">config.h</span></code> submission, firmware version and test results for each change to avoid misdiagnosing runtime problems as driver problems.</p></li>
+</ul>
+</section>
+<section id="id6">
+<h2>Example<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define SYS_CLK_SEL       SYS_192M</span>
+<span class="cp">#define FLASH_SIZE        FSIZE_16M</span>
+<span class="cp">#define GUI_SELECT        GUI_TFT_480_272_ST6201</span>
+<span class="cp">#define CTP_SELECT        CTP_GT911</span>
+<span class="cp">#define UART0_PRINTF_SEL  PRINTF_PB3</span>
+</pre></div>
+</div>
+<p>After completing the configuration, check the initialization sequence of the onboard devices at <a class="reference internal" href="drivers.html"><span class="doc">Drivers and BSP</span></a> and review the pin definitions at <a class="reference internal" href="../platform/pinout.html"><span class="doc">Pin definition and reuse</span></a>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="security.html" class="btn btn-neutral float-left" title="System security" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="memory.html" class="btn btn-neutral float-right" title="Memory and storage management" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

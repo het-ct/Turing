@@ -1,0 +1,177 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>标准电路与评审清单 &mdash; Het-X1 SDK 2.0</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=bca555e8" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=8ba3eb92"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/translations.js?v=beaddf03"></script>
+      <script src="../../_static/language-switch.js?v=c94157ab"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="关键物料与 AVL" href="hardware-materials.html" />
+    <link rel="prev" title="封装与开发板" href="packages-boards.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" ><label class="sdk-language-switch sdk-language-switch-static sdk-language-switch-sidebar" aria-label="切换语言"><span class="fa fa-globe" aria-hidden="true"></span><select title="切换语言" onchange="window.location.href=this.value"><option selected value="../../../zh/guide/platform/hardware-circuits.html">简体中文</option><option value="../../../en/guide/platform/hardware-circuits.html">English</option></select></label>
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Het-X1 SDK
+              <img src="../../_static/het_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">文档目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quick-start/index.html">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/index.html">开始使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer-guide/index.html">开发者指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API 参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../demo-projects/index.html">演示工程</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">硬件平台</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview.html">硬件概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="electrical-characteristics.html">电气特性与设计边界</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources.html">硬件资源说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pinout.html">引脚定义与复用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packages-boards.html">封装与开发板</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">标准电路与评审清单</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">电源电路</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">负载电路</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">通信与存储</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hmi">HMI 电路</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">设计交付物</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="hardware-materials.html">关键物料与 AVL</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">支持与参考</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Het-X1 SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">硬件平台</a></li>
+      <li class="breadcrumb-item active">标准电路与评审清单</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>标准电路与评审清单<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<p>平台硬件按电源、负载、通信和 HMI 四类模块组织。复用经过验证的参考电路时，仍需针对目标器件、
+PCB 层叠、结构和法规要求重新计算，不应只复制原理图网络。</p>
+<section id="id2">
+<h2>电源电路<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>覆盖 AC-DC、LDO、BUCK、BOOST、电池、充电、电源路径和滤波。评审时检查输入保护、额定值降额、
+环路稳定性、纹波、上电时序、待机功耗、热路径及测试点。</p>
+</section>
+<section id="id3">
+<h2>负载电路<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>电机/风机/泵/阀</strong>：核算启动与堵转电流，增加续流、过流、过温和反接保护。</p></li>
+<li><p><strong>加热/制冷</strong>：隔离控制与功率回路，处理温度传感器失效和继电器/功率管粘连。</p></li>
+<li><p><strong>灯光与背光</strong>：使用恒流或专用驱动，验证 PWM 频率、EMI、低亮闪烁和热衰减。</p></li>
+</ul>
+</section>
+<section id="id4">
+<h2>通信与存储<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<p>标准模块包含 RS-485、CAN、USB、以太网、Wi-Fi/蓝牙、Flash 和 SD 卡等。差分接口保持阻抗连续，
+连接器侧布置 ESD 防护；晶振、Flash 和高速时钟走线短且有完整参考地。</p>
+</section>
+<section id="hmi">
+<h2>HMI 电路<a class="headerlink" href="#hmi" title="Link to this heading"></a></h2>
+<p>TFT、Touch、PEDOT、音频和外部存储往往共享电源与 GPIO 复用资源。原理图冻结前应联合软件确认：</p>
+<ol class="arabic simple">
+<li><p>接口带宽能覆盖目标分辨率、刷新率和像素格式。</p></li>
+<li><p>复位、背光、TE、触摸中断和音频静音脚都有确定默认态。</p></li>
+<li><p>显示、摄像头、SD 和外部 Flash 的复用组不存在冲突。</p></li>
+<li><p>模拟音频、射频和开关电源的布局区域彼此隔离，回流路径连续。</p></li>
+</ol>
+</section>
+<section id="id5">
+<h2>设计交付物<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>原理图、PCB、BOM、Gerber、坐标和受控封装库。</p></li>
+<li><p>电源预算、热分析、关键时序和接口带宽计算。</p></li>
+<li><p>板级启动检查表、测试点定义、产测方案和故障注入记录。</p></li>
+<li><p>与软件工程版本绑定的管脚表、屏幕/触摸配置和关键物料 AVL。</p></li>
+</ul>
+<p>更多芯片边界和封装信息见 <a class="reference internal" href="electrical-characteristics.html"><span class="doc">电气特性与设计边界</span></a> 与 <a class="reference internal" href="packages-boards.html"><span class="doc">封装与开发板</span></a>。</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="packages-boards.html" class="btn btn-neutral float-left" title="封装与开发板" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="hardware-materials.html" class="btn btn-neutral float-right" title="关键物料与 AVL" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

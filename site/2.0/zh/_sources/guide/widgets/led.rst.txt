@@ -1,0 +1,151 @@
+.. Generated from platform/docs/pages/gui\led.js
+
+het_led LED 指示灯组件
+======================
+
+.. container:: module-summary widget-summary
+
+   **UI 组件**
+
+   include/het_led.h · src/het_led.c
+
+include/het_led.h · src/het_led.c
+
+类图
+----
+
+生命周期序列图
+--------------
+
+事件拦截过滤
+------------
+
+组件说明
+--------
+
+het_led 提供 LVGL 风格的圆形状态指示灯，支持颜色、亮度、开关、翻转、闪烁和点击回调。
+
+参数与选项
+----------
+
+.. list-table::
+   :header-rows: 1
+
+   * - 监听消息
+     - 过滤条件
+     - 结果
+   * - MSG_CTP_CLICK
+     - 触点命中 LED 圆形区域（中心命中判断）
+     - 命中：触发回调并消费消息；未命中：透传消息
+
+API 介绍
+--------
+
+.. rst-class:: api-entry
+
+void \*het_led_create(compo_form_t \*frm)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+创建 LED 组件，默认绿色且处于熄灭亮度。
+
+参数：frm 目标表单。
+
+返回：void\* LED 组件句柄，失败返回 NULL。
+
+.. rst-class:: api-entry
+
+void het_led_set_geometry(void \*obj, const rect_t rect)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置几何属性。
+
+参数：obj LED 句柄；rect 几何信息。
+
+.. rst-class:: api-entry
+
+void het_led_set_color(void \*obj, const uint8_t r, const uint8_t g, const uint8_t b)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置 RGB888 颜色。
+
+参数：obj LED 句柄；r/g/b 三个颜色通道值。
+
+.. rst-class:: api-entry
+
+void het_led_set_brightness(void \*obj, const uint8_t brightness)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置亮度 0~255。
+
+参数：obj LED 句柄；brightness 亮度值。
+
+.. rst-class:: api-entry
+
+void het_led_on(void \*obj) / void het_led_off(void \*obj) / void het_led_toggle(void \*obj)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+点亮、熄灭、翻转状态。
+
+参数：obj LED 句柄。
+
+.. rst-class:: api-entry
+
+void het_led_set_blink(void \*obj, const uint16_t on_ms, const uint16_t off_ms)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置闪烁节奏，任一参数为 0 则停止闪烁。
+
+参数：obj LED 句柄；on_ms 点亮时长；off_ms 熄灭时长，单位均为 ms。
+
+.. rst-class:: api-entry
+
+void het_led_set_slot(void \*obj, event_cb cb, void \*user_data)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+注册点击回调，事件码为 HET_EVENT_CLICKED。
+
+参数：obj LED 句柄；cb 回调函数；user_data 用户透传指针。
+
+.. rst-class:: api-entry
+
+void het_led_set_visible(void \*obj, const bool visible)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置可见性。
+
+参数：obj LED 句柄；visible 是否可见。
+
+.. rst-class:: api-entry
+
+uint8_t het_led_get_brightness(const void \*obj)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+获取当前亮度。
+
+参数：obj LED 句柄。
+
+返回：uint8_t 当前亮度值。
+
+.. rst-class:: api-entry
+
+bool het_led_is_on(const void \*obj)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+查询是否处于点亮状态。
+
+参数：obj LED 句柄。
+
+返回：bool 为 true 表示当前为点亮状态。
+
+使用示例
+--------
+
+.. code-block:: c
+
+   void *led = het_led_create(frm);
+   het_led_set_geometry(led, HET_GEOMETRY(220, 70, 24, 24));
+   het_led_set_color(led, 0, 185, 90);
+   het_led_on(led);
+   
+   // 心跳闪烁：亮 120ms，灭 880ms
+   het_led_set_blink(led, 120, 880);

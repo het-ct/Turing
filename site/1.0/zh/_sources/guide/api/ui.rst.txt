@@ -1,0 +1,14 @@
+UI API
+======
+
+UI API 分为基础控件、布局/物理参数和产品表单三层：
+
+* 基础控件：``platform/middlewares/gui/components/include``。
+* GUI 运行时、屏幕和触摸：``platform/middlewares/gui``。
+* 页面、菜单和业务表单：``platform/services/UI/form``。
+
+控件清单与示例见 :doc:`../widgets/index`。控件创建后由父对象或页面管理生命周期；事件回调应
+快速返回，动画和页面退出时必须停止异步来源。组件和表单公开头文件已纳入 Doxygen。
+
+表单聚合 API 见 :doc:`services`；各 ``het`` 控件头文件的概述、用法和示例见
+:doc:`../widgets/index`。

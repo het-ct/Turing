@@ -1,0 +1,153 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SPI vs. UART Example &mdash; Het-X1 SDK 1.0</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=bca555e8" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/language-switch.js?v=c94157ab"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Timer, PWM and QDEC Examples" href="timer-pwm-qdec.html" />
+    <link rel="prev" title="IIC Peripheral Example" href="hal-iic.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" ><label class="sdk-language-switch sdk-language-switch-static sdk-language-switch-sidebar" aria-label="切换语言"><span class="fa fa-globe" aria-hidden="true"></span><select title="切换语言" onchange="window.location.href=this.value"><option selected value="../../../en/guide/examples/hal-spi-uart.html">English</option><option value="../../../zh/guide/examples/hal-spi-uart.html">简体中文</option></select></label>
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Het-X1 SDK
+              <img src="../../_static/het_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Document directory</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quick-start/index.html">quick start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/index.html">Get started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer-guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Example</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview.html">How to run the example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal-gpio.html">GPIO Peripheral Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal-iic.html">IIC Peripheral Example</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">SPI vs. UART Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#spi">SPI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#uart">UART</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="timer-pwm-qdec.html">Timer, PWM and QDEC Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lcd-audio-protocol.html">LCD, audio and protocol examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coffee-machine.html">Coffee machine platform solution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multimodal-sensor.html">multimodal sensor</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../demo-projects/index.html">Demonstration project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">Hardware platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">tool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Support and Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Het-X1 SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Example</a></li>
+      <li class="breadcrumb-item active">SPI vs. UART Example</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="spi-uart">
+<h1>SPI vs. UART Example<a class="headerlink" href="#spi-uart" title="Link to this heading"></a></h1>
+<section id="spi">
+<h2>SPI<a class="headerlink" href="#spi" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">platform/examples/hal/example_spi.c</span></code> includes synchronous transmission, DMA asynchronous transmission and W25Q series Flash ID reading. The example defaults to SPI1, 4 MHz, and a fixed PB pin set. When switching the target board, SCK, CS, MOSI, MISO, WP, HOLD and chip select valid levels must be modified simultaneously.</p>
+</section>
+<section id="uart">
+<h2>UART<a class="headerlink" href="#uart" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">platform/examples/hal/example_uart.c</span></code> uses high-speed UART, PB1/PB0, 1.5 Mbps and DMA receive buffer.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">het_uart_handle_t</span><span class="w"> </span><span class="n">uart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">het_uart_def_cfg</span><span class="p">();</span>
+<span class="n">uart</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HET_UART_ID_H0</span><span class="p">;</span>
+<span class="n">uart</span><span class="p">.</span><span class="n">tx_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HET_GPIO_PIN_PB1</span><span class="p">;</span>
+<span class="n">uart</span><span class="p">.</span><span class="n">rx_pin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HET_GPIO_PIN_PB0</span><span class="p">;</span>
+<span class="n">uart</span><span class="p">.</span><span class="n">baud</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1500000</span><span class="p">;</span>
+<span class="n">uart</span><span class="p">.</span><span class="n">rx_buf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rx_buffer</span><span class="p">;</span>
+<span class="n">uart</span><span class="p">.</span><span class="n">rx_buf_len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">rx_buffer</span><span class="p">);</span>
+<span class="k">return</span><span class="w"> </span><span class="n">het_uart_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">uart</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>API see <a class="reference internal" href="../api/peripherals/spi.html"><span class="doc">SPI serial peripheral interface (het_spi.h)</span></a> and <a class="reference internal" href="../api/peripherals/uart.html"><span class="doc">UART asynchronous serial port (het_uart.h)</span></a>。</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="hal-iic.html" class="btn btn-neutral float-left" title="IIC Peripheral Example" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="timer-pwm-qdec.html" class="btn btn-neutral float-right" title="Timer, PWM and QDEC Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

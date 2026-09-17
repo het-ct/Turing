@@ -1,0 +1,331 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Timer 定时器（het_timer.h） &mdash; Het-X1 SDK 2.0</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=bca555e8" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=8ba3eb92"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/translations.js?v=beaddf03"></script>
+      <script src="../../../_static/language-switch.js?v=c94157ab"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="UART 异步串口（het_uart.h）" href="uart.html" />
+    <link rel="prev" title="SPI 串行外设接口（het_spi.h）" href="spi.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" ><label class="sdk-language-switch sdk-language-switch-static sdk-language-switch-sidebar" aria-label="切换语言"><span class="fa fa-globe" aria-hidden="true"></span><select title="切换语言" onchange="window.location.href=this.value"><option selected value="../../../../zh/guide/api/peripherals/timer.html">简体中文</option><option value="../../../../en/guide/api/peripherals/timer.html">English</option></select></label>
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Het-X1 SDK
+              <img src="../../../_static/het_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">文档目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../quick-start/index.html">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started/index.html">开始使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer-guide/index.html">开发者指南</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">API 参考</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#id1">目录</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">外设 HAL（片内外设）</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="index.html#id1">HAL 分层</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="index.html#id2">片内外设</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../middleware.html">中间件 API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cbb.html">CBB API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ui.html">UI API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../services.html">服务 API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo-projects/index.html">演示工程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../platform/index.html">硬件平台</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/index.html">工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">支持与参考</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Het-X1 SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">API 参考</a></li>
+          <li class="breadcrumb-item"><a href="index.html">外设 HAL（片内外设）</a></li>
+      <li class="breadcrumb-item active">Timer 定时器（het_timer.h）</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="timer-het-timer-h">
+<h1>Timer 定时器（het_timer.h）<a class="headerlink" href="#timer-het-timer-h" title="Link to this heading"></a></h1>
+<p>源文件：<code class="docutils literal notranslate"><span class="pre">platform/hal/api/het_timer.h</span></code></p>
+<section id="id1">
+<h2>概述<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<p>Het-X1 提供 6 个 32 位定时器。Timer0~2 支持定时/计数，Timer3~5 还支持捕获和 PWM，并提供多种时钟源与预分频。</p>
+</section>
+<section id="id2">
+<h2>用法<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>选择定时器实例，设置周期并按需注册回调。启动后可读取计数或动态调整周期；停止定时器后再注销回调和反初始化。</p>
+</section>
+<section id="id3">
+<h2>典型流程<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>获取默认配置或准备板级配置。</p></li>
+<li><p>初始化外设并检查返回值。</p></li>
+<li><p>执行读写、控制或回调注册操作。</p></li>
+<li><p>停止异步来源并反初始化外设。</p></li>
+</ol>
+</section>
+<section id="id4">
+<h2>示例<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;het_timer.h&quot;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">timer_start_periodic</span><span class="p">(</span><span class="n">het_timer_id_t</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">period_us</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">het_timer_config_t</span><span class="w"> </span><span class="n">cfg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">het_timer_def_cfg</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">het_timer_init</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">cfg</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ret</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">HET_OK</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">ret</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">het_timer_set_period</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">period_us</span><span class="p">))</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">HET_OK</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">ret</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">het_timer_start</span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="api">
+<h2>API 介绍<a class="headerlink" href="#api" title="Link to this heading"></a></h2>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_timer_def_cfg">
+<span class="target" id="het__timer_8h_1a2021e3df2b0af7303b90e9ffd9cf7826"></span><span class="n"><span class="pre">het_timer_config_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_timer_def_cfg</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_timer_def_cfg" title="Link to this definition"></a><br /></dt>
+<dd><p>获取定时器默认配置。 </p>
+<dl class="field-list simple">
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>默认配置：周期模式、1000us 周期。 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_timer_init">
+<span class="target" id="het__timer_8h_1a91215e3c5fec22a2beaf4d6093471197"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_timer_init</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">het_timer_id_t</span></span><span class="w"> </span><span class="n"><span class="pre">id</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">het_timer_config_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">config</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_timer_init" title="Link to this definition"></a><br /></dt>
+<dd><p>使用配置参数初始化定时器。 </p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>周期或单次模式下可通知定时器事件。 </p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> -- <strong>[in]</strong> TIMER 实例 id，例如 HET_TIMER_ID_0。 </p></li>
+<li><p><strong>config</strong> -- <strong>[in]</strong> 周期、定时器模式。 </p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>ret &gt; 0 成功；ret == 0 失败；ret &lt; 0 为 het_err_t 错误码。 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_timer_deinit">
+<span class="target" id="het__timer_8h_1aa5c1237ee51d5bebb7fe695c55af0de8"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_timer_deinit</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">het_timer_id_t</span></span><span class="w"> </span><span class="n"><span class="pre">id</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_timer_deinit" title="Link to this definition"></a><br /></dt>
+<dd><p>反初始化定时器。 </p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> -- <strong>[in]</strong> TIMER 实例 id。 </p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>ret &gt; 0 成功；ret == 0 失败；ret &lt; 0 为 het_err_t 错误码。 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_timer_start">
+<span class="target" id="het__timer_8h_1a6cf17c185b639792b8a60dde7403656c"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_timer_start</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">het_timer_id_t</span></span><span class="w"> </span><span class="n"><span class="pre">id</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_timer_start" title="Link to this definition"></a><br /></dt>
+<dd><p>启动定时器。 </p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>触发 HET_TIMER_EVENT_PERIOD 或 HET_TIMER_EVENT_ONESHOT。 </p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> -- <strong>[in]</strong> TIMER 实例 id。 </p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>ret &gt; 0 成功；ret == 0 失败；ret &lt; 0 为 het_err_t 错误码。 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_timer_stop">
+<span class="target" id="het__timer_8h_1a3910001c5bba84c7609d45bf8ac5578e"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_timer_stop</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">het_timer_id_t</span></span><span class="w"> </span><span class="n"><span class="pre">id</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_timer_stop" title="Link to this definition"></a><br /></dt>
+<dd><p>停止定时器。 </p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> -- <strong>[in]</strong> TIMER 实例 id。 </p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>ret &gt; 0 成功；ret == 0 失败；ret &lt; 0 为 het_err_t 错误码。 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_timer_set_period">
+<span class="target" id="het__timer_8h_1a210c34bd7a60c019033cb6f7ae847b0d"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_timer_set_period</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">het_timer_id_t</span></span><span class="w"> </span><span class="n"><span class="pre">id</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n"><span class="pre">period_us</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_timer_set_period" title="Link to this definition"></a><br /></dt>
+<dd><p>设置定时器周期，用于运行中调节的场景。 </p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> -- <strong>[in]</strong> TIMER 实例 id。 </p></li>
+<li><p><strong>period_us</strong> -- <strong>[in]</strong> 周期，单位 us。 </p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>ret &gt; 0 成功；ret == 0 失败；ret &lt; 0 为 het_err_t 错误码。 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_timer_get_count">
+<span class="target" id="het__timer_8h_1aa7f80a776a7e2abb4a43c1ea8be6c6ec"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_timer_get_count</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">het_timer_id_t</span></span><span class="w"> </span><span class="n"><span class="pre">id</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">count</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_timer_get_count" title="Link to this definition"></a><br /></dt>
+<dd><p>获取当前计数值。 </p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> -- <strong>[in]</strong> TIMER 实例 id。 </p></li>
+<li><p><strong>count</strong> -- <strong>[out]</strong> 计数值输出指针。 </p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>ret &gt; 0 成功；ret == 0 失败；ret &lt; 0 为 het_err_t 错误码。 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_timer_register_cb">
+<span class="target" id="het__timer_8h_1ae7c460a165acda8311e9e67269e333f8"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_timer_register_cb</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">het_timer_id_t</span></span><span class="w"> </span><span class="n"><span class="pre">id</span></span>, <span class="n"><span class="pre">het_timer_cb_t</span></span><span class="w"> </span><span class="n"><span class="pre">cb</span></span>, <span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">user_ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_timer_register_cb" title="Link to this definition"></a><br /></dt>
+<dd><p>注册定时器事件回调。 </p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>见 TIMER 事件。 </p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> -- <strong>[in]</strong> TIMER 实例 id。 </p></li>
+<li><p><strong>cb</strong> -- <strong>[in]</strong> 回调函数。 </p></li>
+<li><p><strong>user_ctx</strong> -- <strong>[in]</strong> 用户上下文。 </p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>ret &gt; 0 成功；ret == 0 失败；ret &lt; 0 为 het_err_t 错误码。 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_timer_unregister_cb">
+<span class="target" id="het__timer_8h_1a4373d7f5d6a8d847a9b0c1c3b8de59c7"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_timer_unregister_cb</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">het_timer_id_t</span></span><span class="w"> </span><span class="n"><span class="pre">id</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_timer_unregister_cb" title="Link to this definition"></a><br /></dt>
+<dd><p>注销定时器事件回调。 </p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> -- <strong>[in]</strong> TIMER 实例 id。 </p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>ret &gt; 0 成功；ret == 0 失败；ret &lt; 0 为 het_err_t 错误码。 </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="spi.html" class="btn btn-neutral float-left" title="SPI 串行外设接口（het_spi.h）" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="uart.html" class="btn btn-neutral float-right" title="UART 异步串口（het_uart.h）" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
