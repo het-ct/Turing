@@ -1,0 +1,41 @@
+X1 芯片概览
+===========
+
+X1 是面向低功耗 HMI、音频、连接和边缘算法产品的 MCU/SoC 平台。芯片级能力必须通过
+板级电源、时钟、引脚和驱动配置才能在具体产品中使用。
+
+平台能力
+--------
+
+* 32 位 RISC-V CPU，最高 180 MHz，配套中断控制器和 Cache SRAM。
+* NPU/DSP 适合本地信号处理与推理；GPU 提供 2.5D 图形和 JPEG/GIF 编解码能力。
+* 集成 LCD、Camera、Audio、BT/Wi-Fi（按型号选配）、USB、UART、SPI、IIC、Timer、PWM、ADC、QDEC 和 IR 等外设。
+* 片内/外部 Flash、PSRAM、SD 卡和电源管理单元按封装及板型配置选择。
+
+架构与存储
+----------
+
+完整总线图、存储分区、``.com``/``.bank`` 规则和中断放置示例见
+:doc:`architecture-memory`。涉及擦除的区域必须满足 4 KB 对齐；实时中断路径应优先使用常驻 RAM。
+
+电气与封装
+----------
+
+供电、GPIO 驱动、音频/射频、环境温度、ESD 和上电时序见 :doc:`../platform/electrical-characteristics`。
+QFN32/QFN68 封装和核心板选择见 :doc:`../platform/packages-boards`。
+
+能力边界
+--------
+
+* 芯片手册给出的最大频率、驱动电流和分辨率不是整机保证值，必须结合温升、功耗和 PCB 验证。
+* 无线、摄像头、音频和高速显示能力受具体封装、板卡、许可和驱动实现限制。
+* 当前没有公开的通用 RTOS 适配层说明：**待开发**。应用应遵循现有工程的任务/中断模型。
+
+相关页面
+--------
+
+* :doc:`architecture-memory`
+* :doc:`security-architecture`
+* :doc:`../api/index`
+* :doc:`../platform/index`
+

@@ -1,0 +1,45 @@
+Timer 定时器（het_timer.h）
+===========================
+
+源文件：``platform/hal/api/het_timer.h``
+
+概述
+----
+
+AB579X 提供 6 个 32 位定时器。Timer0~2 支持定时/计数，Timer3~5 还支持捕获和 PWM，并提供多种时钟源与预分频。
+
+用法
+----
+
+选择定时器实例，设置周期并按需注册回调。启动后可读取计数或动态调整周期；停止定时器后再注销回调和反初始化。
+
+典型流程
+--------
+
+#. 获取默认配置或准备板级配置。
+#. 初始化外设并检查返回值。
+#. 执行读写、控制或回调注册操作。
+#. 停止异步来源并反初始化外设。
+
+示例
+----
+
+.. code-block:: c
+
+   #include "het_timer.h"
+
+   int timer_start_periodic(het_timer_id_t id, uint32_t period_us)
+   {
+       het_timer_config_t cfg = het_timer_def_cfg();
+       int ret = het_timer_init(id, &cfg);
+       if (ret != HET_OK) return ret;
+       if ((ret = het_timer_set_period(id, period_us)) != HET_OK) return ret;
+       return het_timer_start(id);
+   }
+
+API 介绍
+--------
+
+.. doxygenfile:: het_timer.h
+   :project: bt8790
+   :sections: func

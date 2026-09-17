@@ -1,0 +1,164 @@
+.. Generated from platform/docs/pages/gui\quickstart.js
+
+GUI 快速使用 上手流程与总线原理
+===============================
+
+.. container:: module-summary widget-summary
+
+   **UI 组件**
+
+   面向新接入页面，基于 projects/watch320/functions/common/func_idle.c 的实践抽取
+
+面向新接入页面，基于 projects/watch320/functions/common/func_idle.c 的实践抽取
+
+使用流程
+--------
+
+* 初始化对象系统：het_obj_init()。
+
+* 创建页面容器：compo_form_create(true)。
+
+* 创建控件并设置几何/样式：建议先 set_geometry 再设字体和文案。
+
+* 为交互控件绑定回调：\*_set_slot(obj, cb, user_data)。
+
+* 在主循环中持续分发消息：het_obj_update(&msg, func_message)。
+
+* 如需动画或状态刷新，在 process 中周期调用控件设置接口。
+
+通用接口约定
+------------
+
+运行时序
+--------
+
+总线管理原理
+------------
+
+该 GUI 框架采用“统一消息入口 + 控件树分发”的事件总线方式。触摸消息（MSG_CTP\_\*）由主循环取出后交给对象系统，控件根据命中与状态决定处理策略。
+
+注意事项
+--------
+
+* 字体建议先设置再写文本，避免部分组件出现文本状态异常。
+
+* 大多数组件的 x/y 采用中心坐标语义，布局时不要按左上角坐标理解。
+
+* set_value 与 set_value_notify 要区分：后者会触发业务回调。
+
+* 若接口参数类型是 het_bg_res_t，传色值和传图片资源不是一回事，需使用对应构造宏。
+
+* 回调里尽量只做轻量处理，耗时逻辑放到业务任务。
+
+* 排查事件问题优先看命中条件和过滤规则，不要先怀疑回调注册。
+
+简单演示样例（两段式，参考 func_idle）
+--------------------------------------
+
+推荐按“两段式”组织：第一段负责创建与进入，第二段负责周期处理与消息分发。结构可直接对齐 func_idle_enter / func_idle_process / func_idle_message。
+
+参数与选项
+----------
+
+.. list-table::
+   :header-rows: 1
+
+   * - 类别
+     - 典型接口
+     - 使用建议
+   * - 创建
+     - het_xxx_create(...)
+     - 创建成功返回组件句柄，失败通常返回 NULL；建议创建后立即补齐几何和基础样式。
+   * - 布局
+     - set_geometry / set_pos / set_size
+     - 优先使用 set_geometry 一次性确定位置与尺寸，避免分步设置造成中间态闪动。
+   * - 样式
+     - set_color / set_style / set_radius / set_font
+     - 字体类组件建议先设字体再写文本；背景类组件注意区分纯色值与资源描述类型。
+   * - 事件
+     - set_slot
+     - 回调内通过 e->original 取回事件源句柄，通过 e->user_data 取注册时透传的上下文。
+   * - 状态变更
+     - set_value / set_value_notify
+     - 业务只想同步 UI 时优先用静默接口；需要触发外部逻辑时再使用 notify 版本。
+   * - 查询
+     - get_xxx
+     - getter 一般不带副作用，适合在回调中读取控件当前状态，而不是自己缓存一份重复状态。
+
+参数与选项
+----------
+
+.. list-table::
+   :header-rows: 1
+
+   * - 策略
+     - 语义
+     - 效果
+   * - 消费消息
+     - 当前控件已处理
+     - 终止该链路后续处理
+   * - 透传消息
+     - 当前控件不处理
+     - 继续传递给其他对象
+   * - 广播消息
+     - 并行感知
+     - 多个对象可同时感知
+
+使用示例
+--------
+
+.. code-block:: c
+
+   static void *g_icon;
+   
+     static void on_slider(const het_event_t * const e)
+     {
+       void *slider = e->original;
+       int32_t angle = het_slider_get_value(slider);
+       het_image_set_rotation(g_icon, angle * 10); // 0.1° 单位
+     }
+   
+     /* 第一段：enter/create（一次性） */
+     static compo_form_t *demo_form_create(void)
+     {
+       het_obj_init();
+       compo_form_t *frm = compo_form_create(true);
+   
+       g_icon = het_image_create(frm, HET_BG_MODE_2D);
+       het_image_set_src(g_icon, HET_BG_IMG(UI_BUF_COFFEE_ITALIANBALL_BIN));
+       het_image_set_pos(g_icon, 80, 80);
+   
+       void *slider = het_slider_create(frm);
+       het_slider_set_geometry(slider, HET_GEOMETRY(120, 190, 180, 12));
+       het_slider_set_range(slider, 0, 360);
+       het_slider_set_slot(slider, on_slider, NULL);
+   
+       return frm;
+     }
+   
+     void demo_enter(void)
+     {
+       func_cb.frm_main = demo_form_create();
+     }
+   
+     /* 第二段：process/message（循环内） */
+     void demo_process(void)
+     {
+       // 这里可放动画刷新、轮询状态同步等轻量逻辑
+     }
+   
+     void demo_message(u16 msg)
+     {
+       het_obj_update(&msg, func_message);
+     }
+   
+     void demo_run(void)
+     {
+       demo_enter();
+   
+       while (func_cb.sta == FUNC_IDLE) {
+         demo_process();
+         demo_message(msg_dequeue());
+       }
+     }
+     

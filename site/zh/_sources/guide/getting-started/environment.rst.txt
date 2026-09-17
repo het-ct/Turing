@@ -1,0 +1,98 @@
+环境搭建
+========
+
+所需工具
+--------
+
+.. list-table:: 开发环境组成
+   :header-rows: 1
+   :widths: 22 38 40
+
+   * - 工具
+     - 用途
+     - 验证方式
+   * - Het-X1 编译工具链
+     - 编译 MCU 固件
+     - 运行工具链版本命令
+   * - GNU Make
+     - 执行工程构建
+     - ``make --version``
+   * - Python 3
+     - 生成源码清单和构建文档
+     - ``python --version``
+   * - VS Code
+     - 编辑、搜索和项目管理
+     - 能正常打开仓库目录
+   * - PlatformIO IDE
+     - 串口终端等辅助能力
+     - VS Code 扩展页显示已启用
+   * - HeT Plugin
+     - 项目配置和 API 辅助功能
+     - 从受控离线包安装并检查版本
+   * - USB 转串口驱动
+     - 下载和启动日志
+     - 设备管理器中无异常标记
+
+安装编译工具链
+--------------
+
+解压项目配套工具链到不含空格和中文字符的固定目录，将其 ``bin`` 目录加入系统 ``PATH``，
+重新打开 PowerShell 后验证编译器和 ``make``。工具链名称和版本必须以 SDK 交付说明为准。
+
+.. image:: /_static/img/toolchain-package.png
+   :alt: 编译工具链安装包
+   :align: center
+
+安装串口驱动与助手
+------------------
+
+1. 根据开发板上的 USB 转串口芯片安装匹配驱动。
+2. 在设备管理器记录 COM 口，插拔设备确认端口会同步出现和消失。
+3. 使用 PlatformIO Serial Monitor 或团队指定串口助手打开端口。
+4. 波特率、数据位、停止位和流控以工程 ``config.h`` 及板卡说明为准。
+
+具体驱动型号、默认串口参数和官方下载地址 **待开发**。
+
+安装 VS Code 与插件
+-------------------
+
+从 VS Code 官方网站安装稳定版。个人电脑可使用 User Installer，共享开发机建议使用 System
+Installer。随后安装 PlatformIO IDE；HeT Plugin 使用团队提供的离线 ``.vsix`` 包安装。
+
+.. code-block:: powershell
+
+   code --install-extension .\het-plugin.vsix
+
+.. image:: /_static/img/manual/platformio.png
+   :alt: PlatformIO IDE 插件
+   :class: manual-figure
+
+.. image:: /_static/img/manual/het-plugin.png
+   :alt: HeT Plugin 插件
+   :class: manual-figure
+
+首次构建
+--------
+
+.. code-block:: powershell
+
+   cd .\projects\watch320
+   python gen-srclist.py
+   make
+
+构建成功后检查 ``Output/bin/app.dcf`` 的时间戳。``gen-srclist.py`` 会生成 ``inclist.mk`` 等
+清单，功能开关由工程配置和 X1 工具箱维护。
+
+编译完成后下载和调试
+--------------------
+
+环境安装只负责准备工具；实际编译、固件下载、串口日志、升级和真机验证见
+:doc:`../tools/build-download`。完成本页命令后直接进入该页执行下载，不要把串口助手当成烧录器使用。
+
+常见问题
+--------
+
+* 命令找不到：重新打开终端并检查 ``PATH``，不要只在旧终端中重试。
+* Python 脚本失败：确认 Python 版本和当前目录，保留第一条异常信息。
+* 串口打不开：关闭其他串口工具，重新插拔并核对 COM 口。
+* 构建成功但无固件：检查第一条编译错误以及 ``Output/bin`` 是否被安全软件隔离。

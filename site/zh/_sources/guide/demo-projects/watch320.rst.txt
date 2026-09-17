@@ -1,0 +1,17 @@
+watch320 演示工程
+=================
+
+``projects/watch320`` 是当前主要参考工程，包含板级 ``config.h``、页面、UI 控件演示、资源和
+构建清单。它也是 README 中默认的首次编译目标。
+
+.. code-block:: powershell
+
+   cd .\projects\watch320
+   python gen-srclist.py
+   make
+
+``functions/demos`` 中包含 arc、bar、button、camera、database、filesystem、image、label、layout、
+page、roller、slider 和 textarea 等运行示例。下载前按目标板修改 ``config.h``，固件输出为
+``Output/bin/app.dcf``。
+
+板型、屏幕、触摸和无线功能的完整验收基线 **待开发**。

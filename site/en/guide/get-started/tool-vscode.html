@@ -1,0 +1,196 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VS Code development workflow &mdash; HET x1 SDK 1.0</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=6b036bfd" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/language-switch.js?v=b735fe41"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Fundamentals" href="../overview/index.html" />
+    <link rel="prev" title="GUI Design Tools" href="tool-gui-builder.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            HET x1 SDK
+              <img src="../../_static/het_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Get started</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#id2">Contents</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="environment.html">Environment Installation and Project Compilation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="development-kit.html">The development kit and the first power-on</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ota-upgrade.html">OTA update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tool-gui-builder.html">GUI Design Tools</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">VS Code development workflow</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Installation and Plugins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Project and Source Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">Compilation and Diagnostics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#api">API Help</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">Pre-submission Check</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">Peripheral HAL (on-chip peripherals)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../widgets/index.html">UI widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cbb/index.html">CBB capability components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../middleware/index.html">Middleware and system services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">Hardware platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">HET x1 SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Get started</a></li>
+      <li class="breadcrumb-item active">VS Code development workflow</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="vs-code">
+<h1>VS Code development workflow<a class="headerlink" href="#vs-code" title="Link to this heading"></a></h1>
+<p>VS Code is used to browse the project, select source modules, compile, flash, and locate APIs. The basic environment installation still follows <a class="reference internal" href="environment.html"><span class="doc">Environment Installation and Project Compilation</span></a>. This page supplements the graphical development process and plugin boundaries.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The ‘Turing Platform User Manual’ marks the full HeT IDE capabilities as <strong>to be released by the end of 2026</strong>. Commands, scripts, and configurations that can be used directly in the current repository take precedence over planned screenshots; entrances not appearing in the current plugin should not be considered delivered.</p>
+</div>
+<section id="id1">
+<h2>Installation and Plugins<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Install VS Code and Git, and ensure the command line can run the Python, compiler, and build tools required by the project.</p></li>
+<li><p>Install PlatformIO IDE online for auxiliary capabilities such as the serial terminal; project compilation is still executed according to the repository scripts.</p></li>
+<li><p>If the team has provided the <code class="docutils literal notranslate"><span class="pre">.vsix</span></code> package of the HeT Plugin, import it via ‘Install from VSIX’ and ensure the plugin version matches the SDK.</p></li>
+<li><p>Open the root directory of the repository, not just a single <code class="docutils literal notranslate"><span class="pre">projects</span></code> subdirectory, otherwise the plugin cannot obtain the complete platform index.</p></li>
+</ol>
+<div class="figure-pair docutils container">
+<img alt="PlatformIO plugin in VS Code" class="manual-figure" src="../../_images/platformio.png" />
+<img alt="Offline installation interface for HeT Plugin" class="manual-figure" src="../../_images/het-plugin.png" />
+</div>
+</section>
+<section id="id2">
+<h2>Project and Source Configuration<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>Project configuration is used to select the target project, board-level implementation, HAL, CBB, GUI components, third-party libraries, and functional modules. After modifying the configuration, first check the differences, then regenerate dependency files; do not directly copy pins, screen, or storage configurations from another board to the current project.</p>
+<img alt="HeT project configuration and version management entry" class="manual-figure manual-figure-narrow align-center" src="../../_images/project-config.png" />
+<p>Recommended work sequence:</p>
+<div class="workflow-steps docutils container">
+<ol class="arabic simple">
+<li><p><strong>Select Project</strong>: Ensure <code class="docutils literal notranslate"><span class="pre">projects/&lt;project&gt;</span></code> matches the actual development board.</p></li>
+<li><p><strong>Select Modules</strong>: Enable the required BSP, HAL, GUI, CBB, and libraries, and check dependencies.</p></li>
+<li><p><strong>Regenerate</strong>: Run the configuration generation action and check the generated results like <code class="docutils literal notranslate"><span class="pre">inclist.mk</span></code>.</p></li>
+<li><p><strong>Compile</strong>: Call the project Make target from the task or toolbar, and address the first compile error first.</p></li>
+<li><p><strong>Flash and Observe</strong>: Confirm the download port and target board, and verify the startup stage with serial logs.</p></li>
+</ol>
+</div>
+</section>
+<section id="id3">
+<h2>Compilation and Diagnostics<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<img alt="Project source selection and compilation entry in VS Code" class="manual-figure manual-figure-wide align-center" src="../../_images/build-config.png" />
+<p>When compilation fails, locate issues in the following order:</p>
+<ul class="simple">
+<li><p><strong>Header File Not Found</strong>: Check if the module is enabled, whether the include path is in the project, and the case of the file name.</p></li>
+<li><p><strong>Undefined Reference</strong>: Ensure implementation files are added to the source list, and that library versions and configuration macros match the declarations.</p></li>
+<li><p><strong>Linker Overflow</strong>: Check the map file, reduce resident code or unnecessary resources in <code class="docutils literal notranslate"><span class="pre">.com</span></code>, refer to <a class="reference internal" href="../overview/architecture-memory.html"><span class="doc">Chip architecture and memory</span></a>.</p></li>
+<li><p><strong>No Output After Flashing</strong>: Check power supply, boot pins, serial instance/baud rate, and board-level configuration; do not assume it is an application logic issue first.</p></li>
+</ul>
+</section>
+<section id="api">
+<h2>API Help<a class="headerlink" href="#api" title="Link to this heading"></a></h2>
+<p>The plugin planning supports jumping from symbols to local API help. In the current documentation site, the public intra- and extra-chip interface uniformly starts from <a class="reference internal" href="../api/index.html"><span class="doc">Peripheral HAL (on-chip peripherals)</span></a>; function declarations, parameters, and return values are based on content generated by Doxygen from the current header file.</p>
+<img alt="VS Code API Help and Code Navigation" class="manual-figure align-center" src="../../_images/api-help.png" />
+</section>
+<section id="id4">
+<h2>Pre-submission Check<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Fully compile the target project and save the original log of the first failure.</p></li>
+<li><p>Check whether the configuration, source list, and resources only include changes required for this feature.</p></li>
+<li><p>Verify cold start, reset, low power, and critical peripheral paths on real hardware.</p></li>
+<li><p>When adding new public interfaces, complete the Doxygen comments and rebuild the documentation.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="tool-gui-builder.html" class="btn btn-neutral float-left" title="GUI Design Tools" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../overview/index.html" class="btn btn-neutral float-right" title="Fundamentals" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

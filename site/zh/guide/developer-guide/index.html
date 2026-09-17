@@ -1,0 +1,256 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>开发者指南 &mdash; Het-X1 SDK 1.0</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=bca555e8" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=f115507d"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/translations.js?v=beaddf03"></script>
+      <script src="../../_static/language-switch.js?v=c94157ab"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="软件架构与分层" href="architecture.html" />
+    <link rel="prev" title="环境搭建" href="../getting-started/environment.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" ><label class="sdk-language-switch sdk-language-switch-static sdk-language-switch-sidebar" aria-label="切换语言"><span class="fa fa-globe" aria-hidden="true"></span><select title="切换语言" onchange="window.location.href=this.value"><option selected value="../../../zh/guide/developer-guide/index.html">简体中文</option><option value="../../../en/guide/developer-guide/index.html">English</option></select></label>
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Het-X1 SDK
+              <img src="../../_static/het_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">文档目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quick-start/index.html">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/index.html">开始使用</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">开发者指南</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html">软件架构与分层</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">系统安全</a></li>
+<li class="toctree-l2"><a class="reference internal" href="board-config.html">板级配置 config.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html">内存与存储管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal.html">HAL 外设</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drivers.html">驱动与 BSP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="middleware.html">中间件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cbb.html">CBB 能力组件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ui-widgets.html">UI 控件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ui-effects.html">UI 特效</a></li>
+<li class="toctree-l2"><a class="reference internal" href="os.html">OS 与任务模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="power-management.html">低功耗与电源管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ota.html">OTA 升级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cbb/index.html">CBB 能力组件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../widgets/index.html">UI 组件</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API 参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../demo-projects/index.html">演示工程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">硬件平台</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">支持与参考</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Het-X1 SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">开发者指南</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>开发者指南<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<p>本章说明 Het-X1 固件的分层、配置和模块接入方法。每个专题先说明职责边界，再给出配置流程、
+注意事项、最小示例和主要 API 入口。</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">软件架构与分层</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#id2">概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#id3">分层职责</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#id4">职责边界与原则</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#osal">OSAL 边界</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="security.html">系统安全</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="security.html#id2">安全架构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#id3">信任根与固件保护</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#id4">安全存储与防篡改</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#id5">安全通信与隐私</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#id6">开发与发布检查</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="board-config.html">板级配置 config.h</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="board-config.html#id1">概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="board-config.html#id2">配置流程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="board-config.html#id3">配置依赖顺序</a></li>
+<li class="toctree-l2"><a class="reference internal" href="board-config.html#id4">常用配置项</a></li>
+<li class="toctree-l2"><a class="reference internal" href="board-config.html#id5">注意事项</a></li>
+<li class="toctree-l2"><a class="reference internal" href="board-config.html#id6">示例</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="memory.html">内存与存储管理</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="memory.html#id2">资源概览</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html#flash">Flash 分区与代码段</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html#id3">内存管理方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html#id4">注意事项</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="hal.html">HAL 外设</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="hal.html#id1">概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal.html#id2">外设选择</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal.html#id3">使用方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal.html#id4">示例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal.html#id5">注意事项</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal.html#api">主要 API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal.html#id6">验证示例</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="drivers.html">驱动与 BSP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="drivers.html#id1">概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drivers.html#id2">接入流程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drivers.html#id3">现有驱动</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drivers.html#id4">驱动使用要点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drivers.html#id5">示例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drivers.html#api">主要 API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="middleware.html">中间件</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="middleware.html#id2">概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="middleware.html#id3">主要模块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="middleware.html#id4">使用方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="middleware.html#id5">示例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="middleware.html#api">主要 API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cbb.html">CBB 能力组件</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cbb.html#id1">概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cbb.html#id2">组件目录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cbb.html#id3">使用方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cbb.html#id4">示例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cbb.html#api">主要 API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ui-widgets.html">UI 控件</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ui-widgets.html#id1">概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ui-widgets.html#id2">控件目录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ui-widgets.html#id3">使用方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ui-widgets.html#id4">示例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ui-widgets.html#id5">注意事项</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ui-widgets.html#api">主要 API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ui-effects.html">UI 特效</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ui-effects.html#id1">概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ui-effects.html#id2">特效专题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ui-effects.html#id3">配置流程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ui-effects.html#id4">示例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ui-effects.html#id5">注意事项</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ui-effects.html#api">主要 API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="os.html">OS 与任务模型</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="os.html#id1">概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="os.html#id2">线程管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="os.html#id3">任务通信</a></li>
+<li class="toctree-l2"><a class="reference internal" href="os.html#id4">软件定时器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="os.html#id5">内存管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="os.html#id6">使用示例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="os.html#id7">注意事项</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="power-management.html">低功耗与电源管理</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="power-management.html#id2">概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="power-management.html#id3">配置项</a></li>
+<li class="toctree-l2"><a class="reference internal" href="power-management.html#id4">进入低功耗流程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="power-management.html#id5">示例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="power-management.html#id6">注意事项</a></li>
+<li class="toctree-l2"><a class="reference internal" href="power-management.html#api">主要 API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ota.html">OTA 升级</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ota.html#id1">概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ota.html#id2">使用流程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ota.html#id3">示例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ota.html#id4">注意事项</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ota.html#api">主要 API</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="../getting-started/environment.html" class="btn btn-neutral float-left" title="环境搭建" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="architecture.html" class="btn btn-neutral float-right" title="软件架构与分层" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

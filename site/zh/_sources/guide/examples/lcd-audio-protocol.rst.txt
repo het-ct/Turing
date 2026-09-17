@@ -1,0 +1,21 @@
+LCD、音频与协议示例
+===================
+
+``example_lcd.c`` 用于验证 LCD 初始化和传输。运行前核对显示接口、Driver IC、分辨率、复位、
+背光和 ``GUI_SELECT``。
+
+``platform/examples/driver/example_audio_play.c`` 使用 ``het_audio_play.h`` 初始化 DAC，异步播放
+资源并在循环中调用 ``het_audio_process``。
+
+.. code-block:: c
+
+   if (het_audio_play(HET_AUDIO_ID_0, HET_AUDIO_TYPE_MP3,
+                      audio_data, audio_size, HET_AUDIO_PLAY_ASYNC) == HET_OK) {
+       while (playing) {
+           het_audio_process(HET_AUDIO_ID_0);
+           het_audio_is_playing(HET_AUDIO_ID_0, &playing);
+       }
+   }
+
+``example_ptc_cup_fd.c`` 演示杯体防干烧协议。阈值、采样源、失效安全行为和认证要求必须由具体
+产品定义，不能仅凭演示值量产。

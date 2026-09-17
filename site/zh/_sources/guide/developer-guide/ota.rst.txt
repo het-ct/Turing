@@ -1,0 +1,54 @@
+OTA 升级
+========
+
+概述
+----
+
+说明书定义的 OTA 流程为：无线连接、读取版本、发起升级请求、发送固件包、校验并重启。当前
+接口命名为 ``het_ota_*``，支持固件和资源写入 Flash/SD 卡，并按 A/B 分区或 MCUBOOT SWAP 策略
+完成试运行确认。
+
+使用流程
+--------
+
+1. 读取当前执行分区和设备版本。
+2. 下载到非活动分区，传输过程中记录偏移、长度和校验状态。
+3. 完成镜像摘要/签名校验，拒绝版本、板型或资源不匹配的包。
+4. 设置临时执行分区并重启试运行。
+5. 新固件启动自检通过后确认分区；失败则保持旧分区可启动。
+
+.. image:: /_static/img/manual/ota-flow.png
+   :alt: Het-X1 OTA 升级流程
+   :class: manual-figure
+   :align: center
+
+示例
+----
+
+.. code-block:: c
+
+   int ota_finish(void)
+   {
+       int part = het_ota_get_current_partition();
+       if (part < 0) return part;
+       if (het_ota_double_check_for_execution() < 0) return HET_FAIL;
+       return het_ota_accept_image();
+   }
+
+注意事项
+--------
+
+* 下载中断、断电、空间不足、校验失败和低电量必须可恢复。
+* 当前资料标注不支持版本回滚保护，不能把 A/B 分区确认误认为硬件防回滚。
+* 升级包应绑定芯片/板卡、固件、UI 资源和配置版本。
+* 量产升级器、分区表、签名工具和强制恢复流程 **待开发**。
+
+主要 API
+--------
+
+``het_ota_get_current_partition``、``het_ota_register_temp_partition_callback``、
+``het_ota_confirm_update_partition``、``het_ota_accept_image``、
+``het_ota_start_download``、``het_ota_double_check_for_execution``、
+``het_ota_write_flash`` 和 ``het_ota_temp_execute_partition``。
+
+接口签名、参数和返回值见 :doc:`../api/services`。

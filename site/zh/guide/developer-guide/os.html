@@ -1,0 +1,202 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OS 与任务模型 &mdash; Het-X1 SDK 1.0</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=bca555e8" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=f115507d"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/translations.js?v=beaddf03"></script>
+      <script src="../../_static/language-switch.js?v=c94157ab"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="低功耗与电源管理" href="power-management.html" />
+    <link rel="prev" title="UI 特效" href="ui-effects.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" ><label class="sdk-language-switch sdk-language-switch-static sdk-language-switch-sidebar" aria-label="切换语言"><span class="fa fa-globe" aria-hidden="true"></span><select title="切换语言" onchange="window.location.href=this.value"><option selected value="../../../zh/guide/developer-guide/os.html">简体中文</option><option value="../../../en/guide/developer-guide/os.html">English</option></select></label>
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Het-X1 SDK
+              <img src="../../_static/het_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">文档目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quick-start/index.html">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/index.html">开始使用</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">开发者指南</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="architecture.html">软件架构与分层</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">系统安全</a></li>
+<li class="toctree-l2"><a class="reference internal" href="board-config.html">板级配置 config.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html">内存与存储管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal.html">HAL 外设</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drivers.html">驱动与 BSP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="middleware.html">中间件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cbb.html">CBB 能力组件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ui-widgets.html">UI 控件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ui-effects.html">UI 特效</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">OS 与任务模型</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">概述</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">线程管理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">任务通信</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">软件定时器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">内存管理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">使用示例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">注意事项</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="power-management.html">低功耗与电源管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ota.html">OTA 升级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cbb/index.html">CBB 能力组件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../widgets/index.html">UI 组件</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API 参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../demo-projects/index.html">演示工程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">硬件平台</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">支持与参考</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Het-X1 SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">开发者指南</a></li>
+      <li class="breadcrumb-item active">OS 与任务模型</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="os">
+<h1>OS 与任务模型<a class="headerlink" href="#os" title="Link to this heading"></a></h1>
+<section id="id1">
+<h2>概述<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<p>软件分层图中的 L3 对应 OS/OSAL。它为 L4 中间件、L5 CBB 和产品应用提供统一的并发与系统资源模型，
+让业务只描述任务和消息，不感知具体 RTOS 的线程控制块、调度器和时钟实现。当前工程的完整 OSAL 端口
+仍在建设中，未实现的后端和配置项标记为 <strong>待开发</strong>。</p>
+</section>
+<section id="id2">
+<h2>线程管理<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>一个任务对应一个职责清晰的循环：初始化资源、等待事件、处理有限工作量、释放或休眠。线程优先级、栈大小、
+栈检查和看门狗策略由产品统一配置；禁止在高优先级任务中执行无界循环或大块 Flash/网络操作。</p>
+</section>
+<section id="id3">
+<h2>任务通信<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<p>任务之间使用队列、事件标志或消息邮箱传递数据，明确消息所有权、长度和超时。中断只投递短消息或索引，
+由任务完成解析、绘制和存储。队列后端、事件组和邮箱的统一 API <strong>待开发</strong>。</p>
+</section>
+<section id="id4">
+<h2>软件定时器<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<p>软件定时器适合周期采样、超时重试和 UI 刷新等轻量工作；回调不应阻塞，也不应直接执行大块计算。复杂工作
+应在定时器回调中投递消息，再由专用任务处理。定时器创建、启动、停止和删除接口 <strong>待开发</strong>。</p>
+</section>
+<section id="id5">
+<h2>内存管理<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<p>任务栈、消息队列和动态对象应在配置阶段估算并保留余量。长期对象使用明确的创建/销毁配对，DMA 缓冲区
+遵循对齐和缓存一致性要求；中断上下文禁止动态分配。片上 SRAM、PSRAM 与代码段规划见 <a class="reference internal" href="memory.html"><span class="doc">内存与存储管理</span></a>。</p>
+</section>
+<section id="id6">
+<h2>使用示例<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<p>下面示例表示推荐的“中断投递、任务处理”模型；具体函数名随 OSAL 移植包发布后确定。</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">uart_isr</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">event</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UART_RX_EVENT</span><span class="p">;</span>
+<span class="w">    </span><span class="n">osal_queue_send_from_isr</span><span class="p">(</span><span class="n">uart_queue</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">event</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">event</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">uart_task</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">arg</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">event</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(;;)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">osal_queue_receive</span><span class="p">(</span><span class="n">uart_queue</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">event</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">event</span><span class="p">),</span><span class="w"> </span><span class="n">OSAL_WAIT_FOREVER</span><span class="p">))</span>
+<span class="w">            </span><span class="n">app_handle_uart_event</span><span class="p">(</span><span class="n">event</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id7">
+<h2>注意事项<a class="headerlink" href="#id7" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>ISR 与普通任务使用不同的发送接口，不能在 ISR 中等待资源。</p></li>
+<li><p>任务删除前先停止定时器、释放队列和注销回调。</p></li>
+<li><p>共享数据使用互斥锁或原子操作保护，禁止依赖任务切换时序。</p></li>
+<li><p>OSAL 端口移植、线程 API、队列 API、软件定时器 API 和内存 API：<strong>待开发</strong>。</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="ui-effects.html" class="btn btn-neutral float-left" title="UI 特效" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="power-management.html" class="btn btn-neutral float-right" title="低功耗与电源管理" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

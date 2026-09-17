@@ -1,0 +1,48 @@
+QDEC 正交解码器（het_qdec.h）
+=============================
+
+源文件：``platform/hal/api/het_qdec.h``
+
+概述
+----
+
+AB579X 集成 1 路正交解码器，可读取旋转编码器的计数和方向，适用于旋钮、滚轮和位置检测。
+
+用法
+----
+
+取得默认配置并初始化实例后启动计数，周期读取计数值和方向。使用回调时先注册，停止后再反初始化。
+
+典型流程
+--------
+
+#. 获取默认配置或准备板级配置。
+#. 初始化外设并检查返回值。
+#. 执行读写、控制或回调注册操作。
+#. 停止异步来源并反初始化外设。
+
+示例
+----
+
+.. code-block:: c
+
+   #include "het_qdec.h"
+
+   int qdec_read_count(het_qdec_id_t id, int32_t *count)
+   {
+       het_qdec_config_t cfg = het_qdec_def_cfg();
+       int ret = het_qdec_init(id, &cfg);
+       if (ret != HET_OK) return ret;
+       if ((ret = het_qdec_start(id)) == HET_OK)
+           ret = het_qdec_get_count(id, count);
+       het_qdec_stop(id);
+       het_qdec_deinit(id);
+       return ret;
+   }
+
+API 介绍
+--------
+
+.. doxygenfile:: het_qdec.h
+   :project: bt8790
+   :sections: func

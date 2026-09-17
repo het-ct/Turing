@@ -1,0 +1,232 @@
+.. Generated from platform/docs/pages/gui\checkbox.js
+
+het_checkbox 复选框组件
+=======================
+
+.. container:: module-summary widget-summary
+
+   **UI 组件**
+
+   include/het_checkbox.h · src/het_checkbox.c
+
+include/het_checkbox.h · src/het_checkbox.c
+
+类图
+----
+
+生命周期序列图
+--------------
+
+组件说明
+--------
+
+het_checkbox 是 LVGL 风格的复选框组件，采用双层结构：外层主背景框呈现边框色，内层子背景体现选中态（纯色或图片）。文本自动排布在勾选框右侧。
+
+背景模式
+--------
+
+参数与选项
+----------
+
+.. list-table::
+   :header-rows: 1
+
+   * - 枚举值
+     - 创建参数
+     - 说明
+   * - HET_BG_MODE_SC
+     - mode
+     - 纯色填充，支持选中态渐变动画，样式通过 HET_BG_COLOR 配置
+   * - HET_BG_MODE_2D
+     - mode
+     - 图片（如打勾图标），选中态瞬时切换，样式通过 HET_BG_IMG 配置
+
+API 介绍
+--------
+
+.. rst-class:: api-entry
+
+het_checkbox_create
+^^^^^^^^^^^^^^^^^^^
+
+创建一个 checkbox 组件，双层结构，内部子背景模式由 mode 指定。
+
+参数：frm 所属窗体；mode HET_BG_MODE_SC（纯色）或 HET_BG_MODE_2D（图片）
+
+返回：void \* checkbox 对象指针，失败返回 NULL
+
+.. rst-class:: api-entry
+
+het_checkbox_set_pos
+^^^^^^^^^^^^^^^^^^^^
+
+设置 checkbox 的位置，文本自动排布在勾选框右侧。
+
+参数：obj checkbox 对象指针；x 勾选框中心 X 坐标；y 勾选框中心 Y 坐标
+
+.. rst-class:: api-entry
+
+het_checkbox_set_geometry
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+同时设置位置与尺寸，快速完成 checkbox 几何布局。
+
+参数：obj checkbox 对象指针；rect 几何信息，通常使用 HET_GEOMETRY(x, y, w, h)。
+
+.. rst-class:: api-entry
+
+het_checkbox_set_box_size
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置勾选框（主背景框）的边长与边框宽度。
+
+参数：obj checkbox 对象指针；size 外框边长（像素），默认 16；border 边框宽度（像素），0 表示内层铺满外框
+
+.. rst-class:: api-entry
+
+het_checkbox_set_border_color
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置主背景框（边框）的颜色。
+
+参数：obj checkbox 对象指针；color 边框颜色（uint16_t RGB565）
+
+.. rst-class:: api-entry
+
+het_checkbox_set_pad
+^^^^^^^^^^^^^^^^^^^^
+
+设置勾选框与文本之间的间距。
+
+参数：obj checkbox 对象指针；pad 间距（像素），默认 8
+
+.. rst-class:: api-entry
+
+het_checkbox_set_font
+^^^^^^^^^^^^^^^^^^^^^
+
+设置 checkbox 的字体资源，必须在 set_text 之前调用。
+
+参数：obj checkbox 对象指针；font 字体资源地址
+
+.. rst-class:: api-entry
+
+het_checkbox_set_text
+^^^^^^^^^^^^^^^^^^^^^
+
+设置 checkbox 的文本内容。
+
+参数：obj checkbox 对象指针；text 文本内容
+
+注意：需先调用 set_font，否则文本可能被清空。
+
+.. rst-class:: api-entry
+
+het_checkbox_set_text_color
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置文本颜色。
+
+参数：obj checkbox 对象指针；color 文本颜色（uint16_t RGB565）
+
+.. rst-class:: api-entry
+
+het_checkbox_set_style
+^^^^^^^^^^^^^^^^^^^^^^
+
+设置选中和未选中两种状态的样式资源。
+
+参数：obj checkbox 对象指针；on_style 选中样式（HET_BG_COLOR 或 HET_BG_IMG）；off_style 未选中样式
+
+.. rst-class:: api-entry
+
+het_checkbox_set_radius
+^^^^^^^^^^^^^^^^^^^^^^^
+
+设置勾选框的圆角半径。
+
+参数：obj checkbox 对象指针；radius 圆角半径（像素）
+
+.. rst-class:: api-entry
+
+het_checkbox_set_anim_time
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置样式渐变动画时长，仅对纯色模式（HET_BG_MODE_SC）生效。
+
+参数：obj checkbox 对象指针；ms 动画时长（毫秒），0 表示关闭动画瞬时切换，默认 200
+
+.. rst-class:: api-entry
+
+het_checkbox_set_checked
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置勾选状态，不触发事件回调。
+
+参数：obj checkbox 对象指针；checked 勾选状态
+
+.. rst-class:: api-entry
+
+het_checkbox_set_checked_notify
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置勾选状态并触发 VALUE_CHANGED 事件回调。
+
+参数：obj checkbox 对象指针；checked 勾选状态；param 透传给回调的事件参数
+
+.. rst-class:: api-entry
+
+het_checkbox_set_slot
+^^^^^^^^^^^^^^^^^^^^^
+
+设置事件回调，触摸点击或 set_checked_notify 时触发 VALUE_CHANGED。
+
+参数：obj checkbox 对象指针；cb 回调函数；user_data 用户数据
+
+.. rst-class:: api-entry
+
+het_checkbox_set_visible
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置 checkbox 的可见性。
+
+参数：obj checkbox 对象指针；visible 是否可见
+
+.. rst-class:: api-entry
+
+het_checkbox_get_checked
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+获取当前勾选状态。
+
+参数：obj checkbox 对象指针
+
+返回：bool true=选中 / false=未选中
+
+使用示例
+--------
+
+.. code-block:: c
+
+   /* 纯色模式复选框，带渐变动画 */
+   void *cb = het_checkbox_create(frm, HET_BG_MODE_SC);
+   het_checkbox_set_pos(cb, 60, 120);
+   het_checkbox_set_box_size(cb, 20, 2);
+   het_checkbox_set_border_color(cb, COLOR_GRAY);
+   het_checkbox_set_radius(cb, 4);
+   het_checkbox_set_style(cb,
+       (het_bg_res_t)HET_BG_COLOR(COLOR_BLUE),   /* 选中：蓝色填充 */
+       (het_bg_res_t)HET_BG_COLOR(COLOR_BLACK));  /* 未选中：黑色填充 */
+   het_checkbox_set_anim_time(cb, 200);
+   het_checkbox_set_font(cb, (uint32_t)&my_font_16);
+   het_checkbox_set_text(cb, "同意用户协议");
+   het_checkbox_set_text_color(cb, COLOR_WHITE);
+   het_checkbox_set_pad(cb, 8);
+   het_checkbox_set_slot(cb, my_cb_handler, NULL);
+   
+   /* 回调中读取状态 */
+   void my_cb_handler(void *obj, het_event_t *evt) {
+       if (evt->type == HET_EVENT_VALUE_CHANGED) {
+           bool checked = het_checkbox_get_checked(obj);
+       }
+   }

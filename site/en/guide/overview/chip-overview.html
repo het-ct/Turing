@@ -1,0 +1,177 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Overview of the X1 Chip &mdash; HET x1 SDK 1.0</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=6b036bfd" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/language-switch.js?v=b735fe41"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="GUI Control System" href="gui-controls.html" />
+    <link rel="prev" title="X1 Function Description" href="chip-capabilities.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            HET x1 SDK
+              <img src="../../_static/het_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get-started/index.html">Get started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Fundamentals</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#id2">Contents</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="architecture-memory.html">Chip architecture and memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="security-architecture.html">Security architecture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="chip-capabilities.html">X1 Function Description</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Overview of the X1 Chip</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Platform capability</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Architecture and Storage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">Electrical and package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">能力边界</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">Related pages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="gui-controls.html">GUI Control System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gui-pages.html">GUI Page System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="physics.html">het_physics General Physical Parameter Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html">GUI Quick Start Workflow and Bus Principle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="types.html">het_widgets Common type definition</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">Peripheral HAL (on-chip peripherals)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../widgets/index.html">UI widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cbb/index.html">CBB capability components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../middleware/index.html">Middleware and system services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">Hardware platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">HET x1 SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Fundamentals</a></li>
+      <li class="breadcrumb-item active">Overview of the X1 Chip</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="x1">
+<h1>Overview of the X1 Chip<a class="headerlink" href="#x1" title="Link to this heading"></a></h1>
+<p>The X1 is an MCU/SoC platform designed for low-power HMI, audio, connectivity, and edge algorithm products. Chip-level capabilities must be used in specific products through board-level power, clock, pin, and driver configurations.</p>
+<section id="id1">
+<h2>Platform capability<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>a 32-bit RISC-V CPU, up to 180 MHz, equipped with an interrupt controller and cache SRAM.</p></li>
+<li><p>NPU/DSP is suitable for local signal processing and inference; The GPU provides 2.5D graphics and JPEG/GIF encoding/decoding capabilities.</p></li>
+<li><p>Integrates peripherals such as LCD, Camera, Audio, BT/Wi-Fi (optional by model), USB, UART, SPI, IIC, Timer, PWM, ADC, QDEC, and IR.</p></li>
+<li><p>On-chip/external Flash, PSRAM, SD card, and power management unit are selected according to package and board configuration.</p></li>
+</ul>
+</section>
+<section id="id2">
+<h2>Architecture and Storage<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>Complete Bus Diagram, Storage Partitioning, <code class="docutils literal notranslate"><span class="pre">.com</span></code>/<code class="docutils literal notranslate"><span class="pre">.bank</span></code> Rules, and Interrupt Placement Example See <a class="reference internal" href="architecture-memory.html"><span class="doc">Chip architecture and memory</span></a>. Areas involved in erasure must meet 4 KB alignment; Real-time interrupt paths should prioritize resident RAM.</p>
+</section>
+<section id="id3">
+<h2>Electrical and package<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<p>power supply, GPIO drivers, audio/RF, ambient temperature, ESD, and power-on timing are all <a class="reference internal" href="../platform/electrical-characteristics.html"><span class="doc">Electrical characteristics and design limits</span></a>. QFN32/QFN68 packages and core board options are available in <a class="reference internal" href="../platform/packages-boards.html"><span class="doc">Packages and development boards</span></a>.</p>
+</section>
+<section id="id4">
+<h2>能力边界<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>maximum frequency, drive current, and resolution given in the capability boundary chip manual are not guaranteed values for the entire machine; temperature rise, power consumption, and PCB verification must be combined.</p></li>
+<li><p>Wireless, camera, audio, and high-speed display capabilities are limited by specific packaging, boards, licensing, and driver implementations.</p></li>
+<li><p>There is currently no public statement for a universal RTOS adapter layer: <strong>To be developed</strong>. Applications should follow the task/interrupt model of existing engineering.</p></li>
+</ul>
+</section>
+<section id="id5">
+<h2>Related pages<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="architecture-memory.html"><span class="doc">Chip architecture and memory</span></a></p></li>
+<li><p><a class="reference internal" href="security-architecture.html"><span class="doc">Security architecture</span></a></p></li>
+<li><p><a class="reference internal" href="../api/index.html"><span class="doc">Peripheral HAL (on-chip peripherals)</span></a></p></li>
+<li><p><a class="reference internal" href="../platform/index.html"><span class="doc">Hardware platform</span></a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="chip-capabilities.html" class="btn btn-neutral float-left" title="X1 Function Description" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="gui-controls.html" class="btn btn-neutral float-right" title="GUI Control System" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

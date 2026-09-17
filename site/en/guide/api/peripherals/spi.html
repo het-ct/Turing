@@ -1,0 +1,333 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SPI Serial Peripheral Interface (het_spi.h) &mdash; HET x1 SDK 1.0</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=6b036bfd" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/language-switch.js?v=b735fe41"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Timer (het_timer.h)" href="timer.html" />
+    <link rel="prev" title="QDEC Quadrature Decoder (het_qdec.h)" href="qdec.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            HET x1 SDK
+              <img src="../../../_static/het_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../get-started/index.html">Get started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview/index.html">Fundamentals</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Peripheral HAL (on-chip peripherals)</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#id1">Contents</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Peripheral HAL (on-chip peripherals)</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="index.html#id1">HAL Layering</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="index.html#id2">On-chip Peripherals</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../widgets/index.html">UI widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cbb/index.html">CBB capability components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../middleware/index.html">Middleware and system services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../platform/index.html">Hardware platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">HET x1 SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Peripheral HAL (on-chip peripherals)</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Peripheral HAL (on-chip peripherals)</a></li>
+      <li class="breadcrumb-item active">SPI Serial Peripheral Interface (het_spi.h)</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="spi-het-spi-h">
+<h1>SPI Serial Peripheral Interface (het_spi.h)<a class="headerlink" href="#spi-het-spi-h" title="Link to this heading"></a></h1>
+<p>Source file: <code class="docutils literal notranslate"><span class="pre">platform/hal/api/het_spi.h</span></code></p>
+<section id="id1">
+<h2>Overview<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<p>AB579X provides SPI0/1/2, supporting master/slave mode, GPIO multiplexing, and independent clock control; SPI2 can also serve display and image sensor data transfer.</p>
+</section>
+<section id="id2">
+<h2>Usage<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>Configure frequency, clock polarity/phase, bit order, chip select, and pins, then initialize. Choose write, read, or full-duplex transfer according to device protocol; asynchronous mode requires registering a callback.</p>
+</section>
+<section id="id3">
+<h2>Typical Procedure<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Obtain the default configuration or prepare the board-level configuration.</p></li>
+<li><p>Initialize the peripheral and check the return value.</p></li>
+<li><p>Perform read/write, control, or callback registration operations.</p></li>
+<li><p>Stop asynchronous sources and deinitialize the peripheral.</p></li>
+</ol>
+</section>
+<section id="id4">
+<h2>Examples<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;het_spi.h&quot;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">spi_exchange</span><span class="p">(</span><span class="n">het_spi_id_t</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">tx</span><span class="p">,</span>
+<span class="w">                 </span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">rx</span><span class="p">,</span><span class="w"> </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">len</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">het_spi_config_t</span><span class="w"> </span><span class="n">cfg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">het_spi_def_cfg</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">het_spi_init</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">cfg</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ret</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">HET_OK</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">ret</span><span class="p">;</span>
+<span class="w">    </span><span class="n">het_spi_cs_enable</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">het_spi_transfer</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">tx</span><span class="p">,</span><span class="w"> </span><span class="n">rx</span><span class="p">,</span><span class="w"> </span><span class="n">len</span><span class="p">);</span>
+<span class="w">    </span><span class="n">het_spi_cs_enable</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">het_spi_deinit</span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ret</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="api">
+<h2>API Introduction<a class="headerlink" href="#api" title="Link to this heading"></a></h2>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_spi_def_cfg">
+<span class="target" id="het__spi_8h_1a61dcb1770f7229a614ca4887225c3ffa"></span><span class="n"><span class="pre">het_spi_config_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_spi_def_cfg</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_spi_def_cfg" title="Link to this definition"></a><br /></dt>
+<dd><p>获取 SPI 默认配置。 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>默认配置：同步 DMA、软件片选、单线模式。 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_spi_init">
+<span class="target" id="het__spi_8h_1afa10affb013b57a6b3d620bbcc1d7179"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_spi_init</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">het_spi_id_t</span></span><span class="w"> </span><span class="n"><span class="pre">id</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">het_spi_config_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">config</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_spi_init" title="Link to this definition"></a><br /></dt>
+<dd><p>初始化 SPI 实例。 </p>
+<p>Initialize BT8790 SPI and its GPIO pins.</p>
+<p>
+初始化 SPI 实例。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> – <strong>[in]</strong> SPI 实例 ID。BT8790 目前仅支持 HET_SPI_ID_1。 </p></li>
+<li><p><strong>config</strong> – <strong>[in]</strong> SPI 配置。 </p></li>
+<li><p><strong>spi_id</strong> – <strong>[in]</strong> SPI id. Only HET_SPI_ID_1 is enabled for now. </p></li>
+<li><p><strong>config</strong> – <strong>[in]</strong> SPI configuration. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>HET_OK 表示成功，否则返回 HET_ERR_* 值。</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>HET_OK on success, otherwise a HET_ERR_* value. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_spi_deinit">
+<span class="target" id="het__spi_8h_1aec4fc46fe60834169678b86d2ccd524b"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_spi_deinit</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">het_spi_id_t</span></span><span class="w"> </span><span class="n"><span class="pre">id</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_spi_deinit" title="Link to this definition"></a><br /></dt>
+<dd><p>反初始化 SPI 实例。 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> – <strong>[in]</strong> SPI 实例 ID。 </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>HET_OK 表示成功，否则返回 HET_ERR_* 值。 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_spi_cs_enable">
+<span class="target" id="het__spi_8h_1aaaa08c8410396aa99763a8ea479689a0"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_spi_cs_enable</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">het_spi_id_t</span></span><span class="w"> </span><span class="n"><span class="pre">id</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n"><span class="pre">en</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_spi_cs_enable" title="Link to this definition"></a><br /></dt>
+<dd><p>控制软件片选。 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> – <strong>[in]</strong> SPI 实例 ID。 </p></li>
+<li><p><strong>en</strong> – <strong>[in]</strong> 1 选中设备，0 释放设备。 </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>HET_OK 表示成功，否则返回 HET_ERR_* 值。 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_spi_write">
+<span class="target" id="het__spi_8h_1a8fd7d8edfdbfa0dd41ac6f1febd8ecc2"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_spi_write</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">het_spi_id_t</span></span><span class="w"> </span><span class="n"><span class="pre">id</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">data</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_spi_write" title="Link to this definition"></a><br /></dt>
+<dd><p>通过 DMA 写入数据。 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> – <strong>[in]</strong> SPI 实例 ID。 </p></li>
+<li><p><strong>data</strong> – <strong>[in]</strong> 发送缓冲区。 </p></li>
+<li><p><strong>len</strong> – <strong>[in]</strong> 发送字节数。 </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>HET_OK 表示成功，否则返回 HET_ERR_* 值。 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_spi_read">
+<span class="target" id="het__spi_8h_1ad4438a67bb51d848731dbeb7be9f30d2"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_spi_read</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">het_spi_id_t</span></span><span class="w"> </span><span class="n"><span class="pre">id</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">data</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_spi_read" title="Link to this definition"></a><br /></dt>
+<dd><p>通过 DMA 读取数据。 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> – <strong>[in]</strong> SPI 实例 ID。 </p></li>
+<li><p><strong>data</strong> – <strong>[out]</strong> 接收缓冲区。 </p></li>
+<li><p><strong>len</strong> – <strong>[in]</strong> 接收字节数。 </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>HET_OK 表示成功，否则返回 HET_ERR_* 值。 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_spi_transfer">
+<span class="target" id="het__spi_8h_1af2d16420efef3c93a17e31ec555fc089"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_spi_transfer</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">het_spi_id_t</span></span><span class="w"> </span><span class="n"><span class="pre">id</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">tx_data</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">rx_data</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_spi_transfer" title="Link to this definition"></a><br /></dt>
+<dd><p>执行 SPI 传输。完整的发送+接收传输实现为先写后读。 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> – <strong>[in]</strong> SPI 实例 ID。 </p></li>
+<li><p><strong>tx_data</strong> – <strong>[in]</strong> 发送缓冲区，或仅读时传 NULL。 </p></li>
+<li><p><strong>rx_data</strong> – <strong>[out]</strong> 接收缓冲区，或仅写时传 NULL。 </p></li>
+<li><p><strong>len</strong> – <strong>[in]</strong> 字节数。 </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>HET_OK 表示成功，否则返回 HET_ERR_* 值。 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_spi_register_cb">
+<span class="target" id="het__spi_8h_1ace4084795c90185b5c855f34f68436b1"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_spi_register_cb</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">het_spi_id_t</span></span><span class="w"> </span><span class="n"><span class="pre">id</span></span>, <span class="n"><span class="pre">het_spi_cb_t</span></span><span class="w"> </span><span class="n"><span class="pre">cb</span></span>, <span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">user_ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_spi_register_cb" title="Link to this definition"></a><br /></dt>
+<dd><p>注册异步传输回调。 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> – <strong>[in]</strong> SPI 实例 ID。 </p></li>
+<li><p><strong>cb</strong> – <strong>[in]</strong> 从 SPI ISR 调用的回调。 </p></li>
+<li><p><strong>user_ctx</strong> – <strong>[in]</strong> 回传给 cb 的用户上下文。 </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>HET_OK 表示成功，否则返回 HET_ERR_* 值。 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_spi_unregister_cb">
+<span class="target" id="het__spi_8h_1aca8da1db9ef680d3ecc09b77817b2e68"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_spi_unregister_cb</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">het_spi_id_t</span></span><span class="w"> </span><span class="n"><span class="pre">id</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_spi_unregister_cb" title="Link to this definition"></a><br /></dt>
+<dd><p>注销异步传输回调。 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> – <strong>[in]</strong> SPI 实例 ID。 </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>HET_OK 表示成功，否则返回 HET_ERR_* 值。 </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="qdec.html" class="btn btn-neutral float-left" title="QDEC Quadrature Decoder (het_qdec.h)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="timer.html" class="btn btn-neutral float-right" title="Timer (het_timer.h)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

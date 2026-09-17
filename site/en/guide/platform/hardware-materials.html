@@ -1,0 +1,178 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Critical components and AVL &mdash; HET x1 SDK 1.0</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=6b036bfd" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/language-switch.js?v=b735fe41"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Examples" href="../examples/index.html" />
+    <link rel="prev" title="Reference circuits and review checklist" href="hardware-circuits.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            HET x1 SDK
+              <img src="../../_static/het_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get-started/index.html">Get started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">Peripheral HAL (on-chip peripherals)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../widgets/index.html">UI widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cbb/index.html">CBB capability components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../middleware/index.html">Middleware and system services</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Hardware platform</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#id2">Contents</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="electrical-characteristics.html">Electrical characteristics and design limits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="packages-boards.html">Packages and development boards</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hardware-circuits.html">Reference circuits and review checklist</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Critical components and AVL</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Display and Touch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Images and Sensors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">Audio and actuators</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">Alternative Material Approval</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">HET x1 SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Hardware platform</a></li>
+      <li class="breadcrumb-item active">Critical components and AVL</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="avl">
+<h1>Critical components and AVL<a class="headerlink" href="#avl" title="Link to this heading"></a></h1>
+<p>AVL (Approved Vendor List) is used to restrict key components that have completed electrical, drive, and supply verification. Component selection should not only look at the interface name, but also match voltage, timing, bandwidth, structural dimensions, software drivers, and lifecycle.</p>
+<div class="module-summary manual-summary docutils container">
+<p><strong>Priority-Verified Device Family</strong></p>
+<p>Display and touch, camera, IMU, microphone and speaker, motor and encoder, flash/SD, wireless modules, and power devices.</p>
+</div>
+<section id="id1">
+<h2>Display and Touch<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>TFT/OLED</strong>: Confirm resolution, pixel format, SPI/QSPI/8080/RGB interface, refresh rate, TE, backlight power, and initialization sequence.</p></li>
+<li><p><strong>Touch Controller</strong>: Confirm I2C/SPI address, reset/interrupt levels, coordinate orientation, edge linearity, and cover thickness.</p></li>
+<li><p><strong>Structural Materials</strong>: The color film, PEDOT, and cover plate need to be jointly verified with brightness, touch sensitivity, and lamination process.</p></li>
+</ul>
+</section>
+<section id="id2">
+<h2>Images and Sensors<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Camera</strong>: Distinguish between SPI-CSI and DVP, and check the pixel clock, output format, frame rate, lens field of view, and low-light performance.</p></li>
+<li><p><strong>IMU</strong>: Confirm the measurement range, output data rate, FIFO/interrupts, power consumption, and coordinate systems supported by the algorithm library.</p></li>
+<li><p><strong>Environmental Sensor</strong>: Check I2C address conflicts, pull-ups, power sequencing, measurement cycles, and calibration data storage methods.</p></li>
+</ul>
+</section>
+<section id="id3">
+<h2>Audio and actuators<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>MIC/Speaker</strong>: Select components according to single-ended/differential/PDM interface, and evaluate sensitivity, impedance, cavity, echo path, and amplifier headroom.</p></li>
+<li><p><strong>Motors</strong>: The drive, power supply, stall current, back EMF, and heat dissipation solutions differ for polarized motors, brushed motors, and BLDC motors.</p></li>
+<li><p><strong>Encoder</strong>: Confirm the phase, pulses per revolution, debounce, and QDEC input levels, covering forward/reverse and rapid rotation tests.</p></li>
+</ul>
+</section>
+<section id="id4">
+<h2>Alternative Material Approval<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Compare key electrical parameters and packaging, rather than just the device function names.</p></li>
+<li><p>Complete driver initialization, full temperature, low voltage, EMC, and long-term stress testing on the target PCB.</p></li>
+<li><p>Update BOM, driver selection, initialization parameters, calibration data, and regression test records.</p></li>
+<li><p>Record the supplier, version, applicable boards, and known limitations for each approved part number.</p></li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The manual only provides material categories and does not form a complete list of part numbers that can be directly used for procurement. Devices that have not been jointly verified by hardware and software should not be added to the mass production AVL just because of interface compatibility.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="hardware-circuits.html" class="btn btn-neutral float-left" title="Reference circuits and review checklist" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../examples/index.html" class="btn btn-neutral float-right" title="Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

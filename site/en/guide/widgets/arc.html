@@ -1,0 +1,305 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>het_arc Arc Component &mdash; HET x1 SDK 1.0</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=6b036bfd" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/language-switch.js?v=b735fe41"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="het_bar progress bar component" href="bar.html" />
+    <link rel="prev" title="UI widgets" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            HET x1 SDK
+              <img src="../../_static/het_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get-started/index.html">Get started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">Peripheral HAL (on-chip peripherals)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">UI widgets</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#id1">Contents</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">het_arc Arc Component</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Class Diagram</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Lifecycle Sequence Diagram</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">Component Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">Growth Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">Parameters and Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#api">API Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="bar.html">het_bar progress bar component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="button.html">het_button button component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checkbox.html">het_checkbox Checkbox Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flex.html">het_flex Elastic Layout Container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="grid.html">het_grid Grid layout container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="image.html">het_image Image component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="label.html">het_label Text label component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="led.html">het_led LED Indicator Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="roller.html">het_roller Roller Selector Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slider.html">het_slider Slider Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="switch.html">het_switch toggle switch component.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="textarea.html">het_textarea text input box component.</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../cbb/index.html">CBB capability components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../middleware/index.html">Middleware and system services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">Hardware platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">HET x1 SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">UI widgets</a></li>
+      <li class="breadcrumb-item active">het_arc Arc Component</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="het-arc">
+<h1>het_arc Arc Component<a class="headerlink" href="#het-arc" title="Link to this heading"></a></h1>
+<div class="module-summary widget-summary docutils container">
+<p><strong>UI Components</strong></p>
+<p>include/het_arc.h · src/het_arc.c</p>
+</div>
+<p>include/het_arc.h · src/het_arc.c</p>
+<section id="id1">
+<h2>Class Diagram<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+</section>
+<section id="id2">
+<h2>Lifecycle Sequence Diagram<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+</section>
+<section id="id3">
+<h2>Component Description<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<p>het_arc is an LVGL-style arc (gauge) component, consisting of three layers: background track arc, indicator arc, and knob. It supports three growth modes and touch drag interaction, suitable for volume knobs, gauges, battery rings, and other scenarios.</p>
+</section>
+<section id="id4">
+<h2>Growth Modes<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+</section>
+<section id="id5">
+<h2>Parameters and Options<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Enumeration value</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>HET_ARC_MODE_NORMAL</p></td>
+<td><p>Grow forward from the start of the background arc (default)</p></td>
+</tr>
+<tr class="row-odd"><td><p>HET_ARC_MODE_REVERSE</p></td>
+<td><p>Grow backward from the end of the background arc</p></td>
+</tr>
+<tr class="row-even"><td><p>HET_ARC_MODE_SYMMETRICAL</p></td>
+<td><p>Expand outward from the midpoint of the background arc</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="api">
+<h2>API Introduction<a class="headerlink" href="#api" title="Link to this heading"></a></h2>
+<section class="api-entry" id="het-arc-create">
+<h3>het_arc_create<a class="headerlink" href="#het-arc-create" title="Link to this heading"></a></h3>
+<p>Create an arc component.</p>
+<p>Parameters: frm Parent form; enable_anim Whether to enable value animation</p>
+<p>Returns: void* arc object pointer, returns NULL on failure</p>
+</section>
+<section class="api-entry" id="het-arc-set-geometry">
+<h3>het_arc_set_geometry<a class="headerlink" href="#het-arc-set-geometry" title="Link to this heading"></a></h3>
+<p>Set the geometry of the arc.</p>
+<p>Parameters: obj Arc object pointer; rect Area (x/y as center point, it is recommended that width and height be equal)</p>
+</section>
+<section class="api-entry" id="het-arc-set-width">
+<h3>het_arc_set_width<a class="headerlink" href="#het-arc-set-width" title="Link to this heading"></a></h3>
+<p>Set the arc width (difference between inner and outer radius).</p>
+<p>Parameters: obj Arc object pointer; width Arc width (pixels), default 10</p>
+</section>
+<section class="api-entry" id="het-arc-set-knob-size">
+<h3>het_arc_set_knob_size<a class="headerlink" href="#het-arc-set-knob-size" title="Link to this heading"></a></h3>
+<p>Set the knob diameter, 0 means hide the knob.</p>
+<p>Parameters: obj Arc object pointer; size Diameter (pixels), default 20</p>
+</section>
+<section class="api-entry" id="het-arc-set-bg-angles">
+<h3>het_arc_set_bg_angles<a class="headerlink" href="#het-arc-set-bg-angles" title="Link to this heading"></a></h3>
+<p>Set the start and end angles of the background arc, unit 0.1°, 0° is to the right horizontally, clockwise growth.</p>
+<p>Parameters: obj Arc object pointer; start Start angle (0.1°); end End angle (0.1°)</p>
+<p>Example: 270° gauge → start=1350, end=450</p>
+</section>
+<section class="api-entry" id="het-arc-set-range">
+<h3>het_arc_set_range<a class="headerlink" href="#het-arc-set-range" title="Link to this heading"></a></h3>
+<p>Set the value range.</p>
+<p>Parameters: obj Arc object pointer; min Minimum; max Maximum</p>
+</section>
+<section class="api-entry" id="het-arc-set-value">
+<h3>het_arc_set_value<a class="headerlink" href="#het-arc-set-value" title="Link to this heading"></a></h3>
+<p>Set the current value without triggering event callbacks. Value is automatically clamped to the min~max range.</p>
+<p>Parameters: obj Arc object pointer; value Target value</p>
+<p>Note: if enable_anim was enabled during creation, it will smooth transition, otherwise instant refresh.</p>
+</section>
+<section class="api-entry" id="het-arc-set-value-notify">
+<h3>het_arc_set_value_notify<a class="headerlink" href="#het-arc-set-value-notify" title="Link to this heading"></a></h3>
+<p>Set the current value and trigger VALUE_CHANGED event callback.</p>
+<p>Parameters: obj arc object pointer; value target value; param event parameter passed through to the callback</p>
+</section>
+<section class="api-entry" id="het-arc-set-mode">
+<h3>het_arc_set_mode<a class="headerlink" href="#het-arc-set-mode" title="Link to this heading"></a></h3>
+<p>Set the indicator arc growth mode.</p>
+<p>Parameters: obj arc object pointer; mode HET_ARC_MODE_NORMAL / REVERSE / SYMMETRICAL</p>
+</section>
+<section class="api-entry" id="het-arc-set-adjustable">
+<h3>het_arc_set_adjustable<a class="headerlink" href="#het-arc-set-adjustable" title="Link to this heading"></a></h3>
+<p>Set whether touch dragging to adjust the value is allowed.</p>
+<p>Parameters: obj arc object pointer; adjustable true=draggable (default), false=display only</p>
+</section>
+<section class="api-entry" id="het-arc-set-anim-time">
+<h3>het_arc_set_anim_time<a class="headerlink" href="#het-arc-set-anim-time" title="Link to this heading"></a></h3>
+<p>Set the duration of the value gradient animation. If animation is not enabled at creation, this interface is invalid.</p>
+<p>Parameters: obj arc object pointer; ms animation duration (milliseconds), default 300</p>
+</section>
+<section class="api-entry" id="het-arc-set-color">
+<h3>het_arc_set_color<a class="headerlink" href="#het-arc-set-color" title="Link to this heading"></a></h3>
+<p>Set the colors of the indicator arc, background track, and knob.</p>
+<p>Parameters: obj arc object pointer; indic_color indicator arc color; track_color background track color; knob_color knob color</p>
+</section>
+<section class="api-entry" id="het-arc-set-slot">
+<h3>het_arc_set_slot<a class="headerlink" href="#het-arc-set-slot" title="Link to this heading"></a></h3>
+<p>Set event callback, triggered by touch dragging or set_value_notify when VALUE_CHANGED occurs.</p>
+<p>Parameters: obj arc object pointer; cb callback function; user_data user data</p>
+</section>
+<section class="api-entry" id="het-arc-set-visible">
+<h3>het_arc_set_visible<a class="headerlink" href="#het-arc-set-visible" title="Link to this heading"></a></h3>
+<p>Set the visibility of the arc.</p>
+<p>Parameters: obj arc object pointer; visible whether visible</p>
+</section>
+<section class="api-entry" id="het-arc-get-value">
+<h3>het_arc_get_value<a class="headerlink" href="#het-arc-get-value" title="Link to this heading"></a></h3>
+<p>Get the current value.</p>
+<p>Parameters: obj arc object pointer</p>
+<p>Returns: int16_t current value</p>
+</section>
+<section class="api-entry" id="het-arc-get-min">
+<h3>het_arc_get_min<a class="headerlink" href="#het-arc-get-min" title="Link to this heading"></a></h3>
+<p>Get the minimum value.</p>
+<p>Parameters: obj arc object pointer</p>
+<p>Returns: int16_t minimum value</p>
+</section>
+<section class="api-entry" id="het-arc-get-max">
+<h3>het_arc_get_max<a class="headerlink" href="#het-arc-get-max" title="Link to this heading"></a></h3>
+<p>Get the maximum value.</p>
+<p>Parameters: obj arc object pointer</p>
+<p>Returns: int16_t maximum value</p>
+</section>
+</section>
+<section id="id6">
+<h2>Example<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* 创建 270° 仪表盘，带动画 */</span>
+<span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">arc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">het_arc_create</span><span class="p">(</span><span class="n">frm</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span>
+<span class="n">het_arc_set_geometry</span><span class="p">(</span><span class="n">arc</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">rect_t</span><span class="p">){</span><span class="mi">120</span><span class="p">,</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p">});</span>
+<span class="n">het_arc_set_bg_angles</span><span class="p">(</span><span class="n">arc</span><span class="p">,</span><span class="w"> </span><span class="mi">1350</span><span class="p">,</span><span class="w"> </span><span class="mi">450</span><span class="p">);</span><span class="w">   </span><span class="cm">/* 135°~45°，单位 0.1° */</span>
+<span class="n">het_arc_set_range</span><span class="p">(</span><span class="n">arc</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">);</span>
+<span class="n">het_arc_set_width</span><span class="p">(</span><span class="n">arc</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span><span class="p">);</span>
+<span class="n">het_arc_set_knob_size</span><span class="p">(</span><span class="n">arc</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">);</span>
+<span class="n">het_arc_set_color</span><span class="p">(</span><span class="n">arc</span><span class="p">,</span><span class="w"> </span><span class="n">COLOR_BLUE</span><span class="p">,</span><span class="w"> </span><span class="n">COLOR_GRAY</span><span class="p">,</span><span class="w"> </span><span class="n">COLOR_WHITE</span><span class="p">);</span>
+<span class="n">het_arc_set_slot</span><span class="p">(</span><span class="n">arc</span><span class="p">,</span><span class="w"> </span><span class="n">my_arc_cb</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+
+<span class="cm">/* 设值并触发回调 */</span>
+<span class="n">het_arc_set_value_notify</span><span class="p">(</span><span class="n">arc</span><span class="p">,</span><span class="w"> </span><span class="mi">75</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+
+<span class="cm">/* 回调中读取当前值 */</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">my_arc_cb</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">obj</span><span class="p">,</span><span class="w"> </span><span class="n">het_event_t</span><span class="w"> </span><span class="o">*</span><span class="n">evt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">evt</span><span class="o">-&gt;</span><span class="n">type</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">HET_EVENT_VALUE_CHANGED</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">int16_t</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">het_arc_get_value</span><span class="p">(</span><span class="n">obj</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="UI widgets" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="bar.html" class="btn btn-neutral float-right" title="het_bar progress bar component" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

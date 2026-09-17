@@ -1,0 +1,49 @@
+SPI 串行外设接口（het_spi.h）
+=============================
+
+源文件：``platform/hal/api/het_spi.h``
+
+概述
+----
+
+Het-X1 提供 SPI0/1/2，支持主机/从机模式、GPIO 复用和独立时钟控制；SPI2 还可服务于显示和图像传感器数据传输。
+
+用法
+----
+
+配置频率、时钟极性/相位、位序、片选和引脚后初始化。根据设备协议选择写、读或全双工传输，异步模式需注册回调。
+
+典型流程
+--------
+
+#. 获取默认配置或准备板级配置。
+#. 初始化外设并检查返回值。
+#. 执行读写、控制或回调注册操作。
+#. 停止异步来源并反初始化外设。
+
+示例
+----
+
+.. code-block:: c
+
+   #include "het_spi.h"
+
+   int spi_exchange(het_spi_id_t id, const uint8_t *tx,
+                    uint8_t *rx, uint16_t len)
+   {
+       het_spi_config_t cfg = het_spi_def_cfg();
+       int ret = het_spi_init(id, &cfg);
+       if (ret != HET_OK) return ret;
+       het_spi_cs_enable(id, 1);
+       ret = het_spi_transfer(id, tx, rx, len);
+       het_spi_cs_enable(id, 0);
+       het_spi_deinit(id);
+       return ret;
+   }
+
+API 介绍
+--------
+
+.. doxygenfile:: het_spi.h
+   :project: bt8790
+   :sections: func

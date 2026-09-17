@@ -1,0 +1,110 @@
+.. Generated from platform/docs/pages/gui\physics.js
+
+het_physics 通用物理参数说明
+============================
+
+.. container:: module-summary widget-summary
+
+   **UI 组件**
+
+   include/het_physics.h
+
+include/het_physics.h
+
+类图
+----
+
+使用时序
+--------
+
+用途
+----
+
+het_physics 提供可复用的拖动/松手物理语义，供滚轮、列表、页面切换等交互组件共享一致手感。
+
+物理模式
+--------
+
+参数结构
+--------
+
+默认宏：
+
+展开结果：默认使用 HET_PHYSICS_SNAP，吸附时长 180ms，减速度 3600 px/s^2，边界阻尼 96。
+
+配置示例
+--------
+
+宏参数：HET_PHYSICS_CONFIG(mode, snap_ms, decel, edge_resist) 按顺序传入模式、吸附时长、减速度和边界阻尼。
+
+使用建议：若只想轻微调整手感，优先在默认值基础上小幅修改 snap_ms 与 decel，避免一次性把所有参数都改掉。
+
+参数与选项
+----------
+
+.. list-table::
+   :header-rows: 1
+
+   * - 枚举
+     - 说明
+   * - HET_PHYSICS_SNAP
+     - 无惯性，松手后直接吸附/停靠
+   * - HET_PHYSICS_INERTIA
+     - 按松手速度继续滑动一段距离
+   * - HET_PHYSICS_ELASTIC
+     - 惯性基础上增加边界阻尼/回弹语义
+
+参数与选项
+----------
+
+.. list-table::
+   :header-rows: 1
+
+   * - 字段
+     - 类型
+     - 说明
+   * - mode
+     - het_physics_mode
+     - 物理模式，决定采用吸附、惯性还是带回弹的交互语义。
+   * - snap_ms
+     - uint16_t
+     - 最终吸附到目标位置的动画时长，单位 ms；为 0 时通常回落到组件默认值。
+   * - decel
+     - uint16_t
+     - 惯性阶段减速度，数值越大停止越快，常用于 INERTIA / ELASTIC 模式。
+   * - edge_resist
+     - uint8_t
+     - 边界阻尼强度，值越大越不容易越界拖动，主要用于 ELASTIC 模式。
+
+使用示例
+--------
+
+.. code-block:: c
+
+   typedef struct {
+       het_physics_mode mode; // SNAP / INERTIA / ELASTIC
+       uint16_t snap_ms;      // 吸附动画时长（ms）
+       uint16_t decel;        // 惯性减速度（px/s^2）
+       uint8_t edge_resist;   // 边界阻尼 1..255
+   } het_physics_t;
+
+.. code-block:: c
+
+   #define HET_PHYSICS_DEFAULT  { HET_PHYSICS_SNAP, 180U, 3600U, 96U }
+
+.. code-block:: c
+
+   // 通用配置宏
+   het_physics_t p = HET_PHYSICS_CONFIG(
+       HET_PHYSICS_INERTIA,
+       180,   // snap_ms
+       3600,  // decel
+       96     // edge_resist
+   );
+   
+   // 在具体组件里使用（例如 roller）
+   het_roller_physics_t rp = {
+       .base = p,
+       .max_throw_rows = 5,
+   };
+   het_roller_set_physics(roller, &rp);

@@ -1,0 +1,162 @@
+.. Generated from platform/docs/pages/gui\image.js
+
+het_image 图片组件
+==================
+
+.. container:: module-summary widget-summary
+
+   **UI 组件**
+
+   include/het_image.h · src/het_image.c
+
+include/het_image.h · src/het_image.c
+
+类图
+----
+
+生命周期序列图
+--------------
+
+事件拦截过滤
+------------
+
+het_image 本身不注册对象事件回调，不主动拦截触摸消息。
+
+模式说明
+--------
+
+完整示例
+--------
+
+参数与选项
+----------
+
+.. list-table::
+   :header-rows: 1
+
+   * - 模式
+     - 说明
+     - 典型接口
+   * - HET_BG_MODE_2D
+     - 图片模式，支持旋转、旋转中心、缩放
+     - set_rotation / set_pivot / set_scale
+   * - HET_BG_MODE_SC
+     - 纯色矩形模式，适合作为通用底图层
+     - set_src(HET_BG_COLOR)、set_radius
+
+API 介绍
+--------
+
+.. rst-class:: api-entry
+
+void \* het_image_create(compo_form_t \*frm, const het_bg_mode mode)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+创建图片组件。
+
+参数：frm 目标表单；mode 资源模式，决定底层使用图片控件还是矩形控件。
+
+返回：void\* 图片组件句柄，失败返回 NULL。
+
+.. rst-class:: api-entry
+
+void het_image_set_geometry(void \* obj, const rect_t rect)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置位置与大小。
+
+参数：obj 图片组件句柄；rect 几何信息。
+
+.. rst-class:: api-entry
+
+void het_image_set_pos(void \* obj, const int32_t x, const int32_t y)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置位置。
+
+参数：obj 图片组件句柄；x/y 中心坐标。
+
+.. rst-class:: api-entry
+
+void het_image_set_size(void \* obj, const int32_t w, const int32_t h)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置大小。
+
+参数：obj 图片组件句柄；w/h 宽高。
+
+.. rst-class:: api-entry
+
+void het_image_set_src(void \* obj, const het_bg_res_t res)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置资源（图片地址 / RAM 数据 / 纯色）。
+
+参数：obj 图片组件句柄；res 背景资源描述。
+
+.. rst-class:: api-entry
+
+void het_image_set_rotation(void \* obj, const int32_t angle)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+仅 2D 模式有效，角度单位 0.1°。
+
+参数：obj 图片组件句柄；angle 旋转角度，例如 900 表示 90.0°。
+
+.. rst-class:: api-entry
+
+void het_image_set_pivot(void \* obj, const int32_t x, const int32_t y)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+仅 2D 模式有效，设置旋转中心。
+
+参数：obj 图片组件句柄；x/y 旋转中心坐标。
+
+.. rst-class:: api-entry
+
+void het_image_set_scale(void \* obj, const int32_t scale_x, const int32_t scale_y)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Q8 缩放，推荐 HET_SCALE(f) 宏。
+
+参数：obj 图片组件句柄；scale_x/scale_y X/Y 方向缩放值。
+
+.. rst-class:: api-entry
+
+void het_image_set_alpha(void \* obj, const uint8_t alpha)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置透明度。
+
+参数：obj 图片组件句柄；alpha 透明度，通常范围 0~255。
+
+.. rst-class:: api-entry
+
+void het_image_set_radius(void \* obj, const uint8_t radius, const het_radius_pos corner)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+仅 SC 模式有效，设置矩形圆角。
+
+参数：obj 图片组件句柄；radius 圆角半径；corner 生效角位置。
+
+.. rst-class:: api-entry
+
+rect_t het_image_get_geometry(const void \* const obj)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+获取当前几何属性。
+
+参数：obj 图片组件句柄。
+
+返回：rect_t 当前几何信息。
+
+使用示例
+--------
+
+.. code-block:: c
+
+   void *img = het_image_create(frm, HET_BG_MODE_2D);
+   het_image_set_geometry(img, HET_GEOMETRY(160, 120, 80, 80));
+   het_image_set_src(img, HET_BG_IMG(UI_BUF_LOGO_BIN));
+   het_image_set_rotation(img, 900);
+   het_image_set_scale(img, HET_SCALE(0.8f), HET_SCALE(0.8f));

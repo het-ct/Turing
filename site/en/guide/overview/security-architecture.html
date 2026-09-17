@@ -1,0 +1,194 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Security architecture &mdash; HET x1 SDK 1.0</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=6b036bfd" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/language-switch.js?v=b735fe41"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="X1 Function Description" href="chip-capabilities.html" />
+    <link rel="prev" title="Chip architecture and memory" href="architecture-memory.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            HET x1 SDK
+              <img src="../../_static/het_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get-started/index.html">Get started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Fundamentals</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#id2">Contents</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="architecture-memory.html">Chip architecture and memory</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Security architecture</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">secure trust chain</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">Secure Boot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">Data and Device Protection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">production checklist</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="chip-capabilities.html">X1 Function Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="chip-overview.html">Overview of the X1 Chip</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gui-controls.html">GUI Control System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gui-pages.html">GUI Page System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="physics.html">het_physics General Physical Parameter Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html">GUI Quick Start Workflow and Bus Principle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="types.html">het_widgets Common type definition</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">Peripheral HAL (on-chip peripherals)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../widgets/index.html">UI widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cbb/index.html">CBB capability components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../middleware/index.html">Middleware and system services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">Hardware platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">HET x1 SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Fundamentals</a></li>
+      <li class="breadcrumb-item active">Security architecture</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>Security architecture<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<p>X1 security design starts with the hardware root of trust, covering boot verification, firmware and data protection, device identity, secure communication, and software material governance. The goals outlined in the manual are targeted at IEC 60730 functional safety and IEC 62443 network security requirements; whether a specific product meets certification still depends on hardware design, mass production process, key management, and complete implementation of application software.</p>
+<div class="module-summary security-summary docutils container">
+<p><strong>Defense-in-Depth Path</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">eFuse</span> <span class="pre">信任根</span></code> → <code class="docutils literal notranslate"><span class="pre">BootROM</span></code> → <code class="docutils literal notranslate"><span class="pre">一级/二级</span> <span class="pre">BootLoader</span></code> → <code class="docutils literal notranslate"><span class="pre">内核与根文件系统</span></code> → <code class="docutils literal notranslate"><span class="pre">应用</span></code></p>
+<p>Each level only loads the next level of images verified by signatures; firmware keys and device secrets are stored in restricted hardware areas.</p>
+</div>
+<section id="id2">
+<h2>secure trust chain<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>eFuse plan includes the chip’s unique ID, root public key hash <code class="docutils literal notranslate"><span class="pre">ROT_PK_HASH</span></code>, firmware decryption key <code class="docutils literal notranslate"><span class="pre">SPI_ENC_KEY</span></code>, device secret <code class="docutils literal notranslate"><span class="pre">DEVICE_SECRET</span></code>, and lock bit. During mass production, data should be programmed and verified first, and finally read/write protection should be set; The locked bit is usually irreversible and must be verified through the sample flow to verify the programming script.</p>
+<img alt="Chip development, mass production, and retirement lifecycle" class="manual-figure manual-figure-wide align-center" src="../../_images/security-lifecycle.png" />
+</section>
+<section id="id3">
+<h2>Secure Boot<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<img alt="X1 Secure Boot Verification Chain" class="manual-figure manual-figure-narrow align-center" src="../../_images/secure-boot.png" />
+<p>: The key responsibilities of the BootROM</p>
+<ul class="simple">
+<li><p>BootROM: uses root information in eFuse to verify and decrypt the first-level BootLoader.</p></li>
+<li><p>Level 1 and Level 2 BootLoader verify system images step by step; if verification fails, no jump execution is allowed.</p></li>
+<li><p>During the kernel phase, it continues to protect key modules and file system integrity before launching application services.</p></li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The current manual clearly states <strong>Rollback protection is not supported at this time</strong>. The upgrade process does not prevent downgrades based on version numbers, so version policies, cloud authorization, and release approvals cannot replace chip-level rollback protection.</p>
+</div>
+</section>
+<section id="id4">
+<h2>Data and Device Protection<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<div class="capability-list docutils container">
+<ul class="simple">
+<li><p><strong>Anti-Copy Board</strong>: Firmware is encrypted and stored in Flash, using each device’s secret derived identity and data key.</p></li>
+<li><p><strong>Read Protection</strong>: Lock the debugging entry point during mass production, and sensitive keys are only allowed for use by secure hardware.</p></li>
+<li><p><strong>Anti-tampering</strong>: Verification of key images and configurations during startup and runtime, with sensitive data written to encrypted partitions.</p></li>
+<li><p><strong>Privacy Protection</strong>: Uses derived device identification externally, clears user data partitions during factory reset.</p></li>
+<li><p><strong>Secure Transmission</strong>: The business link uses TLS/DTLS and device certificates for server-side or two-way authentication.</p></li>
+</ul>
+</div>
+</section>
+<section id="id5">
+<h2>production checklist<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>establishes isolated root keys and signature permissions for development, trial production, and mass production.</p></li>
+<li><p>back and verify the public key hash, device secret, and encryption key status before burning <code class="docutils literal notranslate"><span class="pre">LOCK_BITS</span></code>.</p></li>
+<li><p>Exporting keys, tokens, and full device identities in logs, crash dumps, or test interfaces is prohibited.</p></li>
+<li><p>Verification paths such as signature failure, power outage upgrades, partition damage, certificate expiration, and factory resets.</p></li>
+<li><p>Generate CycloneDX SBOMs for firmware releases and continuously track third-party library licenses and known vulnerabilities.</p></li>
+</ol>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-text">Example of generating CycloneDX SBOM</span><a class="headerlink" href="#id6" title="Link to this code"></a></div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">syft dir:output/target -o cyclonedx-json &gt; sbom_cyclonedx.json</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="architecture-memory.html" class="btn btn-neutral float-left" title="Chip architecture and memory" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="chip-capabilities.html" class="btn btn-neutral float-right" title="X1 Function Description" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

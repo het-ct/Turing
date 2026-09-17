@@ -1,0 +1,19 @@
+HET x1 SDK 开发手册
+===================
+
+本手册采用与 LVGL 文档相同的渐进式阅读路径：先完成工程准备，再了解架构和基础概念，最后进入 API、控件、中间件、示例和参考资料。
+
+.. toctree::
+   :maxdepth: 2
+   :caption: 文档目录
+
+   guide/introduction/index
+   guide/get-started/index
+   guide/overview/index
+   guide/api/index
+   guide/widgets/index
+   guide/cbb/index
+   guide/middleware/index
+   guide/platform/index
+   guide/examples/index
+   guide/reference/index

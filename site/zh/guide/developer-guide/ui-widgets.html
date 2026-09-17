@@ -1,0 +1,187 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UI 控件 &mdash; Het-X1 SDK 1.0</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=bca555e8" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=f115507d"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/translations.js?v=beaddf03"></script>
+      <script src="../../_static/language-switch.js?v=c94157ab"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="UI 特效" href="ui-effects.html" />
+    <link rel="prev" title="CBB 能力组件" href="cbb.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" ><label class="sdk-language-switch sdk-language-switch-static sdk-language-switch-sidebar" aria-label="切换语言"><span class="fa fa-globe" aria-hidden="true"></span><select title="切换语言" onchange="window.location.href=this.value"><option selected value="../../../zh/guide/developer-guide/ui-widgets.html">简体中文</option><option value="../../../en/guide/developer-guide/ui-widgets.html">English</option></select></label>
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Het-X1 SDK
+              <img src="../../_static/het_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">文档目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quick-start/index.html">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/index.html">开始使用</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">开发者指南</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="architecture.html">软件架构与分层</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">系统安全</a></li>
+<li class="toctree-l2"><a class="reference internal" href="board-config.html">板级配置 config.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html">内存与存储管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal.html">HAL 外设</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drivers.html">驱动与 BSP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="middleware.html">中间件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cbb.html">CBB 能力组件</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">UI 控件</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">概述</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">控件目录</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">示例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">注意事项</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#api">主要 API</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ui-effects.html">UI 特效</a></li>
+<li class="toctree-l2"><a class="reference internal" href="os.html">OS 与任务模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="power-management.html">低功耗与电源管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ota.html">OTA 升级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cbb/index.html">CBB 能力组件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../widgets/index.html">UI 组件</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API 参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../demo-projects/index.html">演示工程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">硬件平台</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">支持与参考</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Het-X1 SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">开发者指南</a></li>
+      <li class="breadcrumb-item active">UI 控件</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ui">
+<h1>UI 控件<a class="headerlink" href="#ui" title="Link to this heading"></a></h1>
+<section id="id1">
+<h2>概述<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<p>Het-X1 UI 组件位于 <code class="docutils literal notranslate"><span class="pre">platform/middlewares/gui/components</span></code>，产品页面和菜单位于
+<code class="docutils literal notranslate"><span class="pre">platform/services/UI/form</span></code>。控件文档包含创建、布局、样式、事件和销毁流程。</p>
+</section>
+<section id="id2">
+<h2>控件目录<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>Label、Button、Slider、Bar、Arc、Image、Checkbox、Switch、Roller、Textarea、Flex 和 Grid
+均已有页面，入口见 <a class="reference internal" href="../widgets/index.html"><span class="doc">UI 组件</span></a>。页面内容直接依据 <code class="docutils literal notranslate"><span class="pre">platform/docs/pages/gui/*.js</span></code>
+中对应控件的创建、参数、事件和示例整理；RadioBox、Video、二维码等说明书规划控件尚缺稳定
+实现的完整页面，<strong>待开发</strong>。</p>
+</section>
+<section id="id3">
+<h2>使用方法<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<p>创建父对象后初始化控件，设置尺寸和样式，注册事件回调，再加入页面生命周期。页面退出时先停止
+动画和定时器，再销毁子对象和资源。</p>
+</section>
+<section id="id4">
+<h2>示例<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">het_button_t</span><span class="w"> </span><span class="o">*</span><span class="n">button</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">het_button_create</span><span class="p">(</span><span class="n">parent</span><span class="p">);</span>
+<span class="n">het_button_set_text</span><span class="p">(</span><span class="n">button</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Start&quot;</span><span class="p">);</span>
+<span class="n">het_button_set_event_cb</span><span class="p">(</span><span class="n">button</span><span class="p">,</span><span class="w"> </span><span class="n">on_start_clicked</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+
+<span class="cm">/* 页面销毁前停止回调来源，再释放对象。 */</span>
+<span class="n">het_button_destroy</span><span class="p">(</span><span class="n">button</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="id5">
+<h2>注意事项<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>事件回调不得长期阻塞刷新任务。</p></li>
+<li><p>图片和字体资源应校验地址、大小和生命周期。</p></li>
+<li><p>控件尺寸、触摸坐标和屏幕旋转必须同步配置。</p></li>
+</ul>
+</section>
+<section id="api">
+<h2>主要 API<a class="headerlink" href="#api" title="Link to this heading"></a></h2>
+<p>控件 API 见 <a class="reference internal" href="../api/ui.html"><span class="doc">UI API</span></a>；各控件的参数、返回值、事件过滤和代码示例见
+<a class="reference internal" href="../widgets/index.html"><span class="doc">UI 组件</span></a> 下对应页面。</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="cbb.html" class="btn btn-neutral float-left" title="CBB 能力组件" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="ui-effects.html" class="btn btn-neutral float-right" title="UI 特效" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 。</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

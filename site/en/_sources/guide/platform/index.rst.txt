@@ -1,0 +1,15 @@
+硬件平台
+========
+
+了解硬件能力、物料和板级设计约束。
+
+目录
+----
+
+.. toctree::
+   :maxdepth: 2
+
+   electrical-characteristics
+   packages-boards
+   hardware-circuits
+   hardware-materials

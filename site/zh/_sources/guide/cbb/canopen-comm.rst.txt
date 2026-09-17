@@ -1,0 +1,100 @@
+.. Generated from platform/docs/pages/cbb\canopen-comm.js
+
+CANOpen 通讯库
+==============
+
+.. container:: module-summary cbb-summary
+
+   **CBB 能力组件**
+
+   对应 CANOpen 主站与从站能力。
+
+概述
+----
+
+本模块面向 **CANopen 节点通信**。该页面建议补充对象字典、PDO / SDO、网络管理和设备状态机等内容。
+
+核心能力
+--------
+
+.. container:: capability-list
+
+   * **主站**：说明网络管理、设备发现和周期数据调度。
+   * **从站**：说明对象字典、状态切换和事件上报。
+   * **协议细节**：说明 PDO / SDO / NMT 等核心概念和接口。
+
+使用方法
+--------
+
+初始化 CAN 总线，加载节点 ID 与对象字典，周期处理 NMT、PDO、SDO 和心跳事件。
+
+#. 准备依赖的 HAL、板级资源和任务/中断上下文。
+#. 创建配置并注册状态、数据或错误回调。
+#. 启动组件，将输入数据或系统事件送入处理接口。
+#. 在业务循环中消费输出，并处理超时、断连和资源不足。
+#. 停止数据源，等待异步操作结束，再释放组件资源。
+
+使用示例
+--------
+
+以下代码展示应用适配层的接入骨架。函数名用于说明职责，应替换为项目中实际提供的 CBB 接口。
+
+.. code-block:: c
+
+   static void app_canopen_event(const void *event)
+   {
+       /* 将状态或处理结果投递到产品业务层。 */
+       (void)event;
+   }
+
+   int app_canopen_start(void)
+   {
+       int ret = board_canopen_prepare();
+       if (ret != 0) return ret;
+
+       ret = product_canopen_init(app_canopen_event);
+       if (ret != 0) return ret;
+       return product_canopen_start();
+   }
+
+   int app_canopen_process(const void *can_frame)
+   {
+       if (can_frame == NULL) return -1;
+       return product_canopen_process(can_frame);
+   }
+
+API 说明
+--------
+
+当前 CBB 页面尚未关联稳定的公开头文件。建议由具体实现提供以下适配层职责，并在公开头文件落地后改为 Doxygen 自动接口说明。
+
+.. list-table:: 建议适配层接口
+   :header-rows: 1
+   :widths: 28 45 27
+
+   * - 接口职责
+     - 说明
+     - 调用约束
+   * - ``init(config, callback)``
+     - 校验配置、创建上下文并注册事件回调。
+     - 每个实例只初始化一次。
+   * - ``start()``
+     - 启动数据源、协议状态机或算法任务。
+     - 必须在初始化成功后调用。
+   * - ``process(input)``
+     - 输入数据帧或系统事件并产生结果。
+     - 明确线程、中断和缓冲区所有权。
+   * - ``set_callback(callback)``
+     - 注册状态、数据和错误通知。
+     - 回调中避免阻塞操作。
+   * - ``stop() / deinit()``
+     - 停止异步来源并释放资源。
+     - 先停止，再销毁上下文。
+
+注意事项
+--------
+
+* 对实时数据链路明确采样周期、最大延迟和缓冲深度。
+* 错误码应保留底层原因，并由产品层决定重试、降级或复位策略。
+* 回调、DMA 和任务仍在运行时，不得释放配置、缓冲区或用户上下文。
+* CBB 与 HAL 的依赖关系应集中在适配层，避免业务代码直接访问芯片实现。

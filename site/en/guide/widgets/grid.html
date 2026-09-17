@@ -1,0 +1,255 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>het_grid Grid layout container &mdash; HET x1 SDK 1.0</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=6b036bfd" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/language-switch.js?v=b735fe41"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="het_image Image component" href="image.html" />
+    <link rel="prev" title="het_flex Elastic Layout Container" href="flex.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            HET x1 SDK
+              <img src="../../_static/het_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get-started/index.html">Get started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">Peripheral HAL (on-chip peripherals)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">UI widgets</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#id1">Contents</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="arc.html">het_arc Arc Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bar.html">het_bar progress bar component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="button.html">het_button button component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="checkbox.html">het_checkbox Checkbox Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flex.html">het_flex Elastic Layout Container</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">het_grid Grid layout container</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Component Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Macro Definition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">Parameters and Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#api">API Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="image.html">het_image Image component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="label.html">het_label Text label component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="led.html">het_led LED Indicator Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="roller.html">het_roller Roller Selector Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slider.html">het_slider Slider Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="switch.html">het_switch toggle switch component.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="textarea.html">het_textarea text input box component.</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../cbb/index.html">CBB capability components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../middleware/index.html">Middleware and system services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">Hardware platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">HET x1 SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">UI widgets</a></li>
+      <li class="breadcrumb-item active">het_grid Grid layout container</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="het-grid">
+<h1>het_grid Grid layout container<a class="headerlink" href="#het-grid" title="Link to this heading"></a></h1>
+<div class="module-summary widget-summary docutils container">
+<p><strong>UI Components</strong></p>
+<p>include/het_grid.h</p>
+</div>
+<p>include/het_grid.h</p>
+<section id="id1">
+<h2>Component Description<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<p>het_grid is a two-dimensional grid layout container that places items into specified cells via column and row templates, supporting column/row spanning.</p>
+<ul class="simple">
+<li><p>It is suitable for dashboards, menu matrices, information panels, and other regular grid scenarios.</p></li>
+<li><p>First define the template (number of columns/rows), then bind controls to cell coordinates.</p></li>
+<li><p>Inequal-sized areas can be created through row and column spanning.</p></li>
+</ul>
+</section>
+<section id="id2">
+<h2>Macro Definition<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+</section>
+<section id="id3">
+<h2>Parameters and Options<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>the maximum</p></th>
+<th class="head"><p>值</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>HET_GRID_MAX_ITEMS</p></td>
+<td><p>4 (redefinable)</p></td>
+<td><p>container can accommodate.</p></td>
+</tr>
+<tr class="row-odd"><td><p>HET_GRID_MAX_TRACKS</p></td>
+<td><p>15</p></td>
+<td><p>Maximum number of rows/columns.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="api">
+<h2>API Introduction<a class="headerlink" href="#api" title="Link to this heading"></a></h2>
+<section class="api-entry" id="void-het-grid-create-compo-form-t-frm">
+<h3>void *het_grid_create(compo_form_t *frm)<a class="headerlink" href="#void-het-grid-create-compo-form-t-frm" title="Link to this heading"></a></h3>
+<p>Create a grid container object.</p>
+<p>Parameter: frm Target form.</p>
+<p>Return: void* Container handle, returns NULL on failure.</p>
+</section>
+<section class="api-entry" id="void-het-grid-clear-void-obj">
+<h3>void het_grid_clear(void *obj)<a class="headerlink" href="#void-het-grid-clear-void-obj" title="Link to this heading"></a></h3>
+<p>Clear all items in the grid.</p>
+<p>Parameter: obj Grid container handle.</p>
+</section>
+<section class="api-entry" id="bool-het-grid-add-void-obj-void-child-uint8-t-col-uint8-t-row-uint8-t-col-span-uint8-t-row-span">
+<h3>bool het_grid_add(void *obj, void *child, uint8_t col, uint8_t row, uint8_t col_span, uint8_t row_span)<a class="headerlink" href="#bool-het-grid-add-void-obj-void-child-uint8-t-col-uint8-t-row-uint8-t-col-span-uint8-t-row-span" title="Link to this heading"></a></h3>
+<p>Add an item to the specified cell and set column/row spanning.</p>
+<p>Parameter: obj container handle; child sub-item object; col/row starting column index; col_span/row_span span.</p>
+<p>Return: true on success; false on failure.</p>
+</section>
+<section class="api-entry" id="bool-het-grid-add-cell-void-obj-void-child-uint8-t-col-uint8-t-row">
+<h3>bool het_grid_add_cell(void *obj, void *child, uint8_t col, uint8_t row)<a class="headerlink" href="#bool-het-grid-add-cell-void-obj-void-child-uint8-t-col-uint8-t-row" title="Link to this heading"></a></h3>
+<p>Add subterms to a single mesh cell (with a fixed span of 1x1).</p>
+<p>Parameter: obj container handle; child sub-item object; col/row target column index.</p>
+<p>Return: true on success; false on failure.</p>
+</section>
+<section class="api-entry" id="void-het-grid-update-void-obj">
+<h3>void het_grid_update(void *obj)<a class="headerlink" href="#void-het-grid-update-void-obj" title="Link to this heading"></a></h3>
+<p>Triggers layout updates and recalculates all sub-geometry.</p>
+<p>Parameter: obj Container handle.</p>
+</section>
+<section class="api-entry" id="void-het-grid-set-geometry-void-obj-const-rect-t-rect">
+<h3>void het_grid_set_geometry(void *obj, const rect_t rect)<a class="headerlink" href="#void-het-grid-set-geometry-void-obj-const-rect-t-rect" title="Link to this heading"></a></h3>
+<p>Set the container geometry.</p>
+<p>Parameters: obj Container handle; rect Geometry information.</p>
+</section>
+<section class="api-entry" id="void-het-grid-set-padding-void-obj-const-het-pad-t-padding">
+<h3>void het_grid_set_padding(void *obj, const het_pad_t padding)<a class="headerlink" href="#void-het-grid-set-padding-void-obj-const-het-pad-t-padding" title="Link to this heading"></a></h3>
+<p>Set container padding.</p>
+<p>Parameters: obj Container handle; padding Padding values.</p>
+</section>
+<section class="api-entry" id="void-het-grid-set-gap-void-obj-int16-t-col-gap-int16-t-row-gap">
+<h3>void het_grid_set_gap(void *obj, int16_t col_gap, int16_t row_gap)<a class="headerlink" href="#void-het-grid-set-gap-void-obj-int16-t-col-gap-int16-t-row-gap" title="Link to this heading"></a></h3>
+<p>Set column spacing and row spacing.</p>
+<p>Parameter: obj container handle; col_gap Column spacing; row_gap Line spacing.</p>
+</section>
+<section class="api-entry" id="void-het-grid-set-template-void-obj-uint8-t-cols-uint8-t-rows">
+<h3>void het_grid_set_template(void *obj, uint8_t cols, uint8_t rows)<a class="headerlink" href="#void-het-grid-set-template-void-obj-uint8-t-cols-uint8-t-rows" title="Link to this heading"></a></h3>
+<p>Set the grid template (number of columns and rows).</p>
+<p>Parameter: obj container handle; cols: Number of columns; rows (row count).</p>
+</section>
+</section>
+<section id="id4">
+<h2>Example<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">grid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">het_grid_create</span><span class="p">(</span><span class="n">frm</span><span class="p">);</span>
+<span class="n">het_grid_set_geometry</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="w"> </span><span class="n">HET_GEOMETRY</span><span class="p">(</span><span class="mi">160</span><span class="p">,</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w"> </span><span class="mi">220</span><span class="p">,</span><span class="w"> </span><span class="mi">160</span><span class="p">));</span>
+<span class="n">het_grid_set_padding</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="w"> </span><span class="n">HET_PADDING</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">));</span>
+<span class="n">het_grid_set_gap</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">);</span>
+<span class="n">het_grid_set_template</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">icon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">het_image_create</span><span class="p">(</span><span class="n">frm</span><span class="p">,</span><span class="w"> </span><span class="n">HET_BG_MODE_2D</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">het_label_create</span><span class="p">(</span><span class="n">frm</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="mi">32</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">het_label_create</span><span class="p">(</span><span class="n">frm</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="mi">16</span><span class="p">);</span>
+
+<span class="n">het_grid_add</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="w"> </span><span class="n">icon</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w">      </span><span class="c1">// 左侧图标跨两行</span>
+<span class="n">het_grid_add_cell</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w">       </span><span class="c1">// 标题</span>
+<span class="n">het_grid_add</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w">     </span><span class="c1">// 数值横跨两列</span>
+
+<span class="n">het_grid_update</span><span class="p">(</span><span class="n">grid</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="flex.html" class="btn btn-neutral float-left" title="het_flex Elastic Layout Container" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="image.html" class="btn btn-neutral float-right" title="het_image Image component" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

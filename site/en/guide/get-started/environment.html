@@ -1,0 +1,193 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Environment Installation and Project Compilation &mdash; HET x1 SDK 1.0</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=6b036bfd" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/language-switch.js?v=b735fe41"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="The development kit and the first power-on" href="development-kit.html" />
+    <link rel="prev" title="Get started" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            HET x1 SDK
+              <img src="../../_static/het_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Get started</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#id2">Contents</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Environment Installation and Project Compilation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Install the compilation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">validation tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#python">Install Python</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">After compiling the sample project</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">Generate source code configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">First Build Check</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="development-kit.html">The development kit and the first power-on</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ota-upgrade.html">OTA update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tool-gui-builder.html">GUI Design Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tool-vscode.html">VS Code development workflow</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">Peripheral HAL (on-chip peripherals)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../widgets/index.html">UI widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cbb/index.html">CBB capability components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../middleware/index.html">Middleware and system services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">Hardware platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">HET x1 SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Get started</a></li>
+      <li class="breadcrumb-item active">Environment Installation and Project Compilation</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>Environment Installation and Project Compilation<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<p>This section is compiled from <code class="docutils literal notranslate"><span class="pre">platform/README.md</span></code> and used for initial builds of local toolchains, Python environments, and sample projects.</p>
+<section id="id2">
+<h2>Install the compilation<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>toolkit that comes with the compilation toolchain extraction project, and it is recommended to place it in a fixed directory without spaces or Chinese characters.</p></li>
+<li><p>Add the compiler’s executable directory to the System <code class="docutils literal notranslate"><span class="pre">PATH</span></code> environment variable.</p></li>
+<li><p>Reopen the terminal and run the version command of the toolchain, confirming that the system can find the compiler and <code class="docutils literal notranslate"><span class="pre">make</span></code>.</p></li>
+</ol>
+<img alt="Compilation Chain toolkit" class="align-center" src="../../_images/toolchain-package.png" />
+</section>
+<section id="id3">
+<h2>validation tool<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<p>verifies that key commands can be executed in PowerShell. The actual compiler command names refer to the toolkit.</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="p">-</span><span class="n">-version</span>
+<span class="n">python</span> <span class="p">-</span><span class="n">-version</span>
+</pre></div>
+</div>
+<img alt="Verify the toolchain results" class="align-center" src="../../_images/toolchain-check.png" />
+</section>
+<section id="python">
+<h2>Install Python<a class="headerlink" href="#python" title="Link to this heading"></a></h2>
+<p>Project supported by Python 3 version, and ensure the <code class="docutils literal notranslate"><span class="pre">python</span></code> command is added to the <code class="docutils literal notranslate"><span class="pre">PATH</span></code>. Python is used to generate source code lists, build documentation, and execute engineering assistance scripts.</p>
+</section>
+<section id="id4">
+<h2>After compiling the sample project<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<p>into the target project directory and executing <code class="docutils literal notranslate"><span class="pre">make</span></code>:</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd </span><span class="p">.\</span><span class="n">projects</span><span class="p">\</span><span class="n">watch320</span>
+<span class="n">make</span>
+</pre></div>
+</div>
+<p>After successful build, the firmware output is located at:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>projects\watch320\Output\bin\app.dcf
+</pre></div>
+</div>
+</section>
+<section id="id5">
+<h2>Generate source code configuration<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<p>Project source code and header file list are generated by the configuration script:</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd </span><span class="p">.\</span><span class="n">projects</span><span class="p">\</span><span class="n">watch320</span>
+<span class="n">python</span> <span class="n">gen-srclist</span><span class="p">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>The generated results include build lists such as <code class="docutils literal notranslate"><span class="pre">inclist.mk</span></code>. Source code switches are configured through the project’s X1 toolbox and read by the build script.</p>
+<img alt="Project Source Code Configuration" class="align-center" src="../../_images/source-list-config.png" />
+</section>
+<section id="id6">
+<h2>First Build Check<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>The terminal can find <code class="docutils literal notranslate"><span class="pre">make</span></code>, the compiler, and <code class="docutils literal notranslate"><span class="pre">python</span></code>.</p></li>
+<li><p>The project path does not contain special characters that would interfere with script parsing.</p></li>
+<li><p>After executing <code class="docutils literal notranslate"><span class="pre">gen-srclist.py</span></code>, the project list is consistent with the current feature configuration.</p></li>
+<li><p>After <code class="docutils literal notranslate"><span class="pre">make</span></code> is completed, confirm that the update time of <code class="docutils literal notranslate"><span class="pre">app.dcf</span></code> matches this build.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Get started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="development-kit.html" class="btn btn-neutral float-right" title="The development kit and the first power-on" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

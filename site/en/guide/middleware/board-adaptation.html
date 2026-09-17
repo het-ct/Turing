@@ -1,0 +1,198 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Board-level Adaptation: &mdash; HET x1 SDK 1.0</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=6b036bfd" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/language-switch.js?v=b735fe41"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Storage, Logs, and" href="storage-and-ota.html" />
+    <link rel="prev" title="Startup Architecture" href="startup-architecture.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            HET x1 SDK
+              <img src="../../_static/het_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get-started/index.html">Get started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">Peripheral HAL (on-chip peripherals)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../widgets/index.html">UI widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cbb/index.html">CBB capability components</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Middleware and system services</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#id2">Contents</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="startup-architecture.html">Startup Architecture</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Board-level Adaptation:</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Compatible with sequential</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">Resource Allocation Table</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">cache-level authentication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">Pixso</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="storage-and-ota.html">Storage, Logs, and</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rtos-integration.html">RTOS and task model</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">Hardware platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">HET x1 SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Middleware and system services</a></li>
+      <li class="breadcrumb-item active">Board-level Adaptation:</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>Board-level Adaptation:<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<p>Board-level adaptation maps chip capabilities to actual power supplies, pins, devices, and product peripherals. The HAL page describes the unified API; this page explains how to connect them to the target board.</p>
+<section id="id2">
+<h2>Compatible with sequential<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>recording board versions, chip packaging, power rails, crystal oscillators, boot pins, and debugging serial ports.</p></li>
+<li><p>Establish a single allocation source for resources such as GPIO, UART, IIC, SPI, LCD, ADC, PWM, QDEC, and more.</p></li>
+<li><p>Initialize in the order of power, clock, GPIO multiplexing, bus, device driver, and UI/CBB.</p></li>
+<li><p>Provides deinitialization, error return, and low-power recovery paths for each resource.</p></li>
+<li><p>Cold start, reset, peripheral read/write, and long-term operation verification are completed on the target board.</p></li>
+</ol>
+</section>
+<section id="id3">
+<h2>Resource Allocation Table<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<table class="docutils align-default" id="id6">
+<caption><span class="caption-text">Recommended Board Resource Records</span><a class="headerlink" href="#id6" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 22.0%" />
+<col style="width: 30.0%" />
+<col style="width: 48.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Required Resource</p></th>
+<th class="head"><p>Information</p></th>
+<th class="head"><p>Current Document Input</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Power/Clock</p></td>
+<td><p>Input Range, Crystal Oscillator, Power-On Timing, Power Consumption Mode</p></td>
+<td><p><a class="reference internal" href="../platform/electrical-characteristics.html"><span class="doc">Electrical characteristics and design limits</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Display/Touch</p></td>
+<td><p>Bus, Reset, Backlight, TE, Interrupt pixel format</p></td>
+<td><p><a class="reference internal" href="../platform/hardware-circuits.html"><span class="doc">Reference circuits and review checklist</span></a>、<a class="reference internal" href="../widgets/index.html"><span class="doc">UI widgets</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>sensor/audio</p></td>
+<td><p>address, sampling rate, DMA, gain,</p></td>
+<td><p><a class="reference internal" href="../api/index.html"><span class="doc">Peripheral HAL (on-chip peripherals)</span></a>、<a class="reference internal" href="../cbb/index.html"><span class="doc">CBB capability components</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>calibration communication</p></td>
+<td><p>: UART/SPI/IIC/USB/wireless instance, rate,</p></td>
+<td><p><a class="reference internal" href="../cbb/index.html"><span class="doc">CBB capability components</span></a></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id4">
+<h2>cache-level authentication<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>multiplexing conflicts should be exposed at compile time or in the boot log, and cannot be determined solely by whether the UI displays the initialization results.</p></li>
+<li><p>Bus errors should record instances, addresses, registers, timeouts, and retries counts.</p></li>
+<li><p>When resources are used by multiple CBBs, ownership and lifecycle are managed uniformly by the adaptation layer.</p></li>
+</ul>
+<p>For detailed packaging and core board selection, see <a class="reference internal" href="../platform/packages-boards.html"><span class="doc">Packages and development boards</span></a> and <a class="reference internal" href="../platform/hardware-materials.html"><span class="doc">Critical components and AVL</span></a>.</p>
+</section>
+<section id="id5">
+<h2>Pixso<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Compilable board-level configuration templates and version compatibility matrices for S1, S2, and S3 core boards: <strong>To be developed</strong>.</p></li>
+<li><p>Standard Port Checklist for Display, Touch, Audio, and Wireless Devices: <strong>To be developed</strong>.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="startup-architecture.html" class="btn btn-neutral float-left" title="Startup Architecture" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="storage-and-ota.html" class="btn btn-neutral float-right" title="Storage, Logs, and" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

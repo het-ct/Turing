@@ -1,0 +1,61 @@
+统一错误码
+==========
+
+文件位置：``platform/common/het_err.h``。
+
+错误模型
+--------
+
+统一错误类型为 ``het_err_t``（``int32_t``）。返回值必须结合具体接口语义解释：负值表示错误，零可能表示
+成功、无数据或无进展，正值通常表示成功或传输长度。不能把事件消费结果、状态枚举或长度值直接当作错误码。
+
+编码布局
+--------
+
+错误码为带符号的结构化值，包含严重级别、软件层级、模块和明细字段：
+
+.. list-table:: 错误码字段
+   :header-rows: 1
+
+   * - 字段
+     - 位域
+     - 说明
+   * - Severity
+     - bit30..28
+     - 信息、警告、错误、致命
+   * - Layer
+     - bit27..24
+     - Common、HAL、BSP、Driver、OS、App
+   * - Module
+     - bit23..16
+     - 外设或软件模块编号
+   * - Detail
+     - bit15..0
+     - 模块内具体原因
+
+常用错误
+--------
+
+``HET_ERR_FAIL``、``HET_ERR_NULL_PTR``、``HET_ERR_INVALID_PARAM``、``HET_ERR_NO_MEMORY``、
+``HET_ERR_TIMEOUT``、``HET_ERR_BUSY``、``HET_ERR_NOT_INIT``、``HET_ERR_NOT_SUPPORT``、
+``HET_ERR_IO``、``HET_ERR_CRC`` 和 ``HET_ERR_STATE`` 是常见基础错误。外设模块还会定义实例、配置、总线、
+收发和回调相关的细分错误，最终含义以对应头文件中的枚举和宏定义为准。
+
+使用示例
+--------
+
+.. code-block:: c
+
+   het_err_t ret = het_gpio_init(&cfg);
+   if (ret < 0) {
+       /* 记录错误并执行降级或重试，不能继续使用未初始化的 GPIO */
+       log_error("gpio init failed: %ld", (long)ret);
+   }
+
+调用约束
+--------
+
+* 调用者必须检查返回值，不能用一个固定的零值或负值判断所有接口。
+* 跨层转发时保留原始错误；需要补充上下文时记录模块、实例和操作阶段。
+* 中断上下文只返回无阻塞、可在 ISR 使用的错误，不执行重试、日志格式化或动态分配。
+* 新增错误项应同步更新头文件、测试和本页；当前尚未覆盖的模块错误说明 **待开发**。

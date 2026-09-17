@@ -1,0 +1,18 @@
+Timer、PWM 与 QDEC 示例
+========================
+
+* ``example_hw_timer.c``：周期定时器、动态修改周期和计数值读取。
+* ``example_pwm.c``：TMR3 CH0 PE12 输出 1 kHz、50% 占空比 PWM。
+* ``example_qdec.c``：增量编码器计数和方向验证。
+
+.. code-block:: c
+
+   het_pwm_handle_t pwm = het_pwm_def_cfg();
+   pwm.id = HET_PWM_TMR3_CH0_PE12;
+   pwm.freq_hz = 1000;
+   int ret = het_pwm_init(&pwm);
+   if (ret < 0) return ret;
+   return het_pwm_set_duty(pwm.id, 500);
+
+定时器回调运行在中断上下文。API 见 :doc:`../api/peripherals/timer`、
+:doc:`../api/peripherals/pwm` 和 :doc:`../api/peripherals/qdec`。
