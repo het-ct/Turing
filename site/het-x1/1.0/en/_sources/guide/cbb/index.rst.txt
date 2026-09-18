@@ -1,0 +1,25 @@
+CBB 能力组件
+============
+
+复用通信协议、算法和系统服务。
+
+目录
+----
+
+.. toctree::
+   :maxdepth: 2
+
+   audio-algo
+   bt-comm
+   canopen-comm
+   imu-algo
+   ir-comm
+   li-charger
+   log-mgmt
+   modbus-comm
+   motor-algo
+   rgb-light
+   secure-storage
+   usb-comm
+   vision-algo
+   wifi-comm

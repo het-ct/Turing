@@ -1,0 +1,153 @@
+.. Generated from platform/docs/pages/gui\grid.js
+
+het_grid 网格布局容器
+=====================
+
+.. container:: module-summary widget-summary
+
+   **UI 组件**
+
+   include/het_grid.h
+
+include/het_grid.h
+
+组件说明
+--------
+
+het_grid 是二维网格布局容器，通过列行模板将子项放置在指定单元，并支持跨列/跨行。
+
+* 适用于仪表盘、菜单矩阵、信息面板等规则网格场景。
+
+* 先定义模板（列数/行数），再将控件绑定到单元坐标。
+
+* 可通过跨行跨列构建不等尺寸区域。
+
+宏定义
+------
+
+参数与选项
+----------
+
+.. list-table::
+   :header-rows: 1
+
+   * - 宏
+     - 值
+     - 说明
+   * - HET_GRID_MAX_ITEMS
+     - 4（可重定义）
+     - 容器可容纳的最大子项数量。
+   * - HET_GRID_MAX_TRACKS
+     - 15
+     - 行/列轨道最大数量上限。
+
+API 介绍
+--------
+
+.. rst-class:: api-entry
+
+void \*het_grid_create(compo_form_t \*frm)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+创建 grid 容器对象。
+
+参数：frm 目标表单。
+
+返回：void\* 容器句柄，失败返回 NULL。
+
+.. rst-class:: api-entry
+
+void het_grid_clear(void \*obj)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+清空网格中的所有子项。
+
+参数：obj grid 容器句柄。
+
+.. rst-class:: api-entry
+
+bool het_grid_add(void \*obj, void \*child, uint8_t col, uint8_t row, uint8_t col_span, uint8_t row_span)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+将子项添加到指定单元，并设置跨列/跨行。
+
+参数：obj 容器句柄；child 子项对象；col/row 起始列行索引；col_span/row_span 跨度。
+
+返回：true 成功；false 失败。
+
+.. rst-class:: api-entry
+
+bool het_grid_add_cell(void \*obj, void \*child, uint8_t col, uint8_t row)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+将子项添加到单个网格单元（跨度固定为 1x1）。
+
+参数：obj 容器句柄；child 子项对象；col/row 目标列行索引。
+
+返回：true 成功；false 失败。
+
+.. rst-class:: api-entry
+
+void het_grid_update(void \*obj)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+触发布局更新并重新计算所有子项几何。
+
+参数：obj 容器句柄。
+
+.. rst-class:: api-entry
+
+void het_grid_set_geometry(void \*obj, const rect_t rect)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置容器几何区域。
+
+参数：obj 容器句柄；rect 几何信息。
+
+.. rst-class:: api-entry
+
+void het_grid_set_padding(void \*obj, const het_pad_t padding)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置容器内边距。
+
+参数：obj 容器句柄；padding 内边距。
+
+.. rst-class:: api-entry
+
+void het_grid_set_gap(void \*obj, int16_t col_gap, int16_t row_gap)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置列间距和行间距。
+
+参数：obj 容器句柄；col_gap 列间距；row_gap 行间距。
+
+.. rst-class:: api-entry
+
+void het_grid_set_template(void \*obj, uint8_t cols, uint8_t rows)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置网格模板（列数与行数）。
+
+参数：obj 容器句柄；cols 列数；rows 行数。
+
+使用示例
+--------
+
+.. code-block:: c
+
+   void *grid = het_grid_create(frm);
+   het_grid_set_geometry(grid, HET_GEOMETRY(160, 120, 220, 160));
+   het_grid_set_padding(grid, HET_PADDING(8, 8, 8, 8));
+   het_grid_set_gap(grid, 6, 6);
+   het_grid_set_template(grid, 3, 2);
+   
+   void *icon = het_image_create(frm, HET_BG_MODE_2D);
+   void *name = het_label_create(frm, NULL, 32);
+   void *value = het_label_create(frm, NULL, 16);
+   
+   het_grid_add(grid, icon, 0, 0, 1, 2);      // 左侧图标跨两行
+   het_grid_add_cell(grid, name, 1, 0);       // 标题
+   het_grid_add(grid, value, 1, 1, 2, 1);     // 数值横跨两列
+   
+   het_grid_update(grid);

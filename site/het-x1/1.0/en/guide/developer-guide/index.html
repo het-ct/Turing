@@ -1,0 +1,255 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Developer Guide &mdash; Turing SDK Development Manual 1.0</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=e891653f" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/language-switch.js?v=a682b188"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Software architecture and layering" href="architecture.html" />
+    <link rel="prev" title="Environment setup" href="../getting-started/environment.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Turing SDK Development Manual
+              <img src="../../_static/het_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div class="sdk-doc-selectors"><label class="sdk-chip-switch sdk-navigation-select"><span class="fa fa-cube" aria-hidden="true"></span><span class="sr-only">Select chip</span><select aria-label="Select chip"><option value="../../../../../het-x1/1.0/en/guide/developer-guide/index.html" selected>HET-X1</option></select></label><label class="sdk-version-switch sdk-navigation-select"><span class="fa fa-code-fork" aria-hidden="true"></span><span class="sr-only">Select version</span><select aria-label="Select version"><option value="../../../../2.0/en/guide/developer-guide/index.html">v2.0</option><option value="../../../../1.0/en/guide/developer-guide/index.html" selected>v1.0</option></select></label></div><div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Document directory</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quick-start/index.html">quick start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/index.html">Get started</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Developer Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html">Software architecture and layering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">System security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="board-config.html">Board level configuration config.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html">Memory and storage management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal.html">HAL peripherals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drivers.html">Drivers and BSP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="middleware.html">middleware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cbb.html">CBB capability components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ui-widgets.html">UI controls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ui-effects.html">UI special effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="os.html">OS and task model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="power-management.html">Low power consumption and power management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ota.html">OTA upgrade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cbb/index.html">CBB capability components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../widgets/index.html">UI components</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../demo-projects/index.html">Demonstration project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">Hardware platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">tool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Support and Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Turing SDK Development Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Developer Guide</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  <li class="sdk-toolbar-actions"><label class="sdk-language-switch sdk-navigation-select"><span class="fa fa-globe" aria-hidden="true"></span><span class="sr-only">Switch language</span><select aria-label="Switch language"><option value="../../../en/guide/developer-guide/index.html" selected>English</option><option value="../../../zh/guide/developer-guide/index.html">简体中文</option></select></label></li></ul>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>Developer Guide<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<p>This chapter explains the layering, configuration and module access methods of Het-X1 firmware. Each topic first explains the boundaries of responsibilities, and then gives the configuration process, precautions, minimum examples, and main API entries.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Software architecture and layering</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#id2">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#id3">Hierarchical responsibilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#id4">Boundaries and principles of responsibilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#osal">OSAL boundaries</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="security.html">System security</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="security.html#id2">security architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#id3">Root of trust and firmware protection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#id4">Secure storage and tamper-proof</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#id5">Secure communications and privacy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#id6">Development and Release Check</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="board-config.html">Board level configuration config.h</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="board-config.html#id1">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="board-config.html#id2">Configuration process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="board-config.html#id3">Configure dependency order</a></li>
+<li class="toctree-l2"><a class="reference internal" href="board-config.html#id4">Common configuration items</a></li>
+<li class="toctree-l2"><a class="reference internal" href="board-config.html#id5">Things to note</a></li>
+<li class="toctree-l2"><a class="reference internal" href="board-config.html#id6">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="memory.html">Memory and storage management</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="memory.html#id2">Resource overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html#flash">Flash partitions and code snippets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html#id3">Memory management methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html#id4">Things to note</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="hal.html">HAL peripherals</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="hal.html#id1">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal.html#id2">Peripheral selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal.html#id3">How to use</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal.html#id4">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal.html#id5">Things to note</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal.html#api">Main API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal.html#id6">Verification example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="drivers.html">Drivers and BSP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="drivers.html#id1">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drivers.html#id2">Access process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drivers.html#id3">Existing driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drivers.html#id4">Key points for using the driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drivers.html#id5">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drivers.html#api">Main API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="middleware.html">middleware</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="middleware.html#id2">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="middleware.html#id3">Main modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="middleware.html#id4">How to use</a></li>
+<li class="toctree-l2"><a class="reference internal" href="middleware.html#id5">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="middleware.html#api">Main API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cbb.html">CBB capability components</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cbb.html#id1">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cbb.html#id2">Component Catalog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cbb.html#id3">How to use</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cbb.html#id4">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cbb.html#api">Main API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ui-widgets.html">UI controls</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ui-widgets.html#id1">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ui-widgets.html#id2">Control directory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ui-widgets.html#id3">How to use</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ui-widgets.html#id4">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ui-widgets.html#id5">Things to note</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ui-widgets.html#api">Main API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ui-effects.html">UI special effects</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ui-effects.html#id1">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ui-effects.html#id2">Special effects topic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ui-effects.html#id3">Configuration process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ui-effects.html#id4">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ui-effects.html#id5">Things to note</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ui-effects.html#api">Main API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="os.html">OS and task model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="os.html#id1">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="os.html#id2">Thread management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="os.html#id3">mission communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="os.html#id4">Software timer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="os.html#id5">Memory management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="os.html#id6">Usage example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="os.html#id7">Things to note</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="power-management.html">Low power consumption and power management</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="power-management.html#id2">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="power-management.html#id3">Configuration items</a></li>
+<li class="toctree-l2"><a class="reference internal" href="power-management.html#id4">Enter the low power consumption process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="power-management.html#id5">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="power-management.html#id6">Things to note</a></li>
+<li class="toctree-l2"><a class="reference internal" href="power-management.html#api">Main API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ota.html">OTA upgrade</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ota.html#id1">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ota.html#id2">Usage process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ota.html#id3">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ota.html#id4">Things to note</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ota.html#api">Main API</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../getting-started/environment.html" class="btn btn-neutral float-left" title="Environment setup" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="architecture.html" class="btn btn-neutral float-right" title="Software architecture and layering" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .
+      <span class="lastupdated">Last updated on 2026-09-18.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

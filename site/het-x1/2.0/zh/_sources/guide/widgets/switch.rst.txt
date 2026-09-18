@@ -1,0 +1,147 @@
+.. Generated from platform/docs/pages/gui\switch.js
+
+het_switch 拨动开关组件
+=======================
+
+.. container:: module-summary widget-summary
+
+   **UI 组件**
+
+   include/het_switch.h · src/het_switch.c
+
+include/het_switch.h · src/het_switch.c
+
+类图
+----
+
+生命周期序列图
+--------------
+
+事件拦截过滤
+------------
+
+组件说明
+--------
+
+het_switch 提供 ON/OFF 二态切换交互，适合 Wi-Fi、蓝牙、通知、节能模式等布尔开关配置。
+
+参数与选项
+----------
+
+.. list-table::
+   :header-rows: 1
+
+   * - 监听消息
+     - 过滤条件
+     - 结果
+   * - MSG_CTP_CLICK
+     - 触点命中开关轨道区域（中心命中检测）
+     - 命中：切换状态并消费消息；未命中：透传消息
+
+API 介绍
+--------
+
+.. rst-class:: api-entry
+
+void \* het_switch_create(compo_form_t \*frm)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+创建 switch 组件。
+
+参数：frm 目标表单。
+
+返回：void\* switch 组件句柄，失败返回 NULL。
+
+.. rst-class:: api-entry
+
+void het_switch_set_geometry(void \*obj, const rect_t rect)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置位置和大小（x/y 为中心坐标）。
+
+参数：obj switch 句柄；rect 几何信息。
+
+.. rst-class:: api-entry
+
+void het_switch_set_checked(void \*obj, const bool checked)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置 ON/OFF 状态（带滑动动画，不触发事件）。
+
+参数：obj switch 句柄；checked 目标状态。
+
+.. rst-class:: api-entry
+
+void het_switch_set_checked_notify(void \*obj, const bool checked, void \*param)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置状态并触发事件，param 透传给回调。
+
+参数：obj switch 句柄；checked 目标状态；param 回调透传参数。
+
+.. rst-class:: api-entry
+
+void het_switch_set_knob_size(void \*obj, const uint8_t size)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置旋钮直径。
+
+参数：obj switch 句柄；size 旋钮尺寸。
+
+.. rst-class:: api-entry
+
+void het_switch_set_color(void \*obj, const het_bg_res_t on_style, const het_bg_res_t off_style, const uint16_t knob_color)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置 ON 轨道、OFF 轨道和旋钮颜色。
+
+参数：obj switch 句柄；on_style ON 态轨道样式；off_style OFF 态轨道样式；knob_color 旋钮颜色。
+
+.. rst-class:: api-entry
+
+void het_switch_set_slot(void \*obj, event_cb cb, void \*user_data)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+注册回调，事件码为 HET_EVENT_VALUE_CHANGED。
+
+参数：obj switch 句柄；cb 回调函数；user_data 用户透传指针。
+
+.. rst-class:: api-entry
+
+void het_switch_set_visible(void \*obj, const bool visible)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置可见性。
+
+参数：obj switch 句柄；visible 是否显示。
+
+.. rst-class:: api-entry
+
+bool het_switch_get_checked(const void \*obj)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+获取当前选中状态，true 表示 ON。
+
+参数：obj switch 句柄。
+
+返回：bool 当前开关状态。
+
+使用示例
+--------
+
+.. code-block:: c
+
+   static void on_switch_changed(const het_event_t * const e)
+   {
+       bool on = het_switch_get_checked(e->original);
+       (void)on;
+   }
+   
+   void *sw = het_switch_create(frm);
+   het_switch_set_geometry(sw, HET_GEOMETRY(160, 120, 64, 34));
+   het_switch_set_color(sw,
+       HET_BG_COLOR(44, 188, 110),
+       HET_BG_COLOR(95, 104, 122),
+       COLOR_WHITE);
+   het_switch_set_checked(sw, true);
+   het_switch_set_slot(sw, on_switch_changed, NULL);

@@ -1,0 +1,47 @@
+IIC 总线（het_iic.h）
+=====================
+
+源文件：``platform/hal/api/het_iic.h``
+
+概述
+----
+
+Het-X1 提供 3 组 IIC 控制器，支持主机/从机模式，SCL/SDA 可映射到多组 GPIO，适合连接传感器、EEPROM 和触摸控制器。
+
+用法
+----
+
+通过板级配置确定控制器、引脚和速率。初始化后按设备地址、寄存器地址和地址宽度执行读写，结束时反初始化。
+
+典型流程
+--------
+
+#. 获取默认配置或准备板级配置。
+#. 初始化外设并检查返回值。
+#. 执行读写、控制或回调注册操作。
+#. 停止异步来源并反初始化外设。
+
+示例
+----
+
+.. code-block:: c
+
+   #include "het_iic.h"
+
+   int iic_read_register(het_iic_id_t id, uint8_t addr,
+                         uint16_t reg, uint8_t *data, uint16_t len)
+   {
+       het_iic_handle_t iic = het_iic_def_cfg();
+       int ret = het_iic_init(&iic);
+       if (ret != HET_OK) return ret;
+       ret = het_iic_read(id, addr, reg, 1, data, len);
+       het_iic_deinit(id);
+       return ret;
+   }
+
+API 介绍
+--------
+
+.. doxygenfile:: het_iic.h
+   :project: bt8790
+   :sections: func

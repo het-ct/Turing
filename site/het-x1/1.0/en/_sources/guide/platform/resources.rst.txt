@@ -1,0 +1,43 @@
+硬件资源说明
+============
+
+.. list-table:: Het-X1 主要资源
+   :header-rows: 1
+   :widths: 22 36 42
+
+   * - 资源
+     - 能力
+     - 使用边界
+   * - SRAM/PSRAM
+     - 片上 SRAM 共 768 KB，支持外置 SPI PSRAM
+     - QFN68 片上 PSRAM 配置以具体料号为准
+   * - Flash/ROM
+     - 支持外置 SPI NAND、SD NAND
+     - QFN32 片上 ROM 配置以具体料号为准
+   * - Timer
+     - 3 路 32 位基础定时器、3 路多功能定时器、RTC、WDT
+     - 实例和复用以头文件为准
+   * - LCD
+     - 8080、QSPI/DSPI/SPI、RGB565
+     - 8080/RGB 等接口受封装限制
+   * - Camera
+     - SPI-CSI、DVP
+     - DVP 仅部分封装可用
+   * - Audio
+     - 双 DAC、双 MIC ADC
+     - 模拟性能依赖前端和 PCB
+   * - UART
+     - 普通 UART 与最高 2 Mbps 的 HSUART
+     - 流控和管脚组需查复用表
+   * - SPI/IIC
+     - 各两路控制器
+     - 显示和传感器可能共享复用资源
+   * - QDEC/ADC
+     - 增量编码器、10 位 ADC
+     - 通道和引脚以封装为准
+   * - USB/IR/1-Wire
+     - Host/Device、红外收发、单线灯效
+     - 协议栈能力需结合目标工程确认
+
+驱动和 API 入口见 :doc:`../api/index`。说明书中列出的部分协议、算法或器件属于方案能力，
+如果仓库没有对应稳定实现，文档按“待开发”处理。

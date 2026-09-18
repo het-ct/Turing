@@ -1,0 +1,58 @@
+中间件
+======
+
+概述
+----
+
+``platform/middlewares`` 提供与具体产品解耦的 GUI、LittleFS、FlashDB/FAL、协议、传感器和
+通用容器。中间件负责可复用机制，产品策略仍由服务或应用层决定。
+
+主要模块
+--------
+
+.. list-table:: 中间件目录
+   :header-rows: 1
+   :widths: 24 36 40
+
+   * - 模块
+     - 目录
+     - 用途
+   * - GUI
+     - ``middlewares/gui``
+     - 显示、触摸、控件、布局和页面运行时
+   * - 文件系统
+     - ``middlewares/fs``
+     - LittleFS 与统一文件访问
+   * - 数据库
+     - ``middlewares/db``
+     - FlashDB、FAL 分区和 KV/TS 数据
+   * - 协议
+     - ``middlewares/protocol``
+     - 设备通信协议与解析
+   * - 传感器
+     - ``middlewares/sensor``
+     - 摄像头等设备抽象
+
+使用方法
+--------
+
+先配置底层存储、总线或显示资源，再初始化中间件并由单一任务驱动其周期处理。文件系统和数据库
+必须定义掉电一致性、磨损和迁移策略；GUI 必须明确刷新线程和对象生命周期。
+
+示例
+----
+
+.. code-block:: c
+
+   int storage_service_init(void)
+   {
+       int ret = het_fs_init();
+       if (ret < 0) return ret;
+       return app_database_init();
+   }
+
+主要 API
+--------
+
+中间件公开头文件分散在各模块目录，API 总览见 :doc:`../api/middleware`。统一初始化顺序和
+线程安全矩阵 **待开发**。

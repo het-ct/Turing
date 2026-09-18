@@ -1,0 +1,13 @@
+文档工具链
+==========
+
+本项目使用 Doxygen 提取代码 API，使用 Sphinx 编排手册和发布 HTML。RST 页面均在
+``docs/sphinx/source`` 手工维护，构建过程不会覆盖源文件。
+
+.. code-block:: powershell
+
+   python -m pip install -r docs\requirements.txt
+   python docs\build.py --language zh --version 2.0
+
+输出入口为 ``docs/_build/site/index.html``。API 注释应包含清晰的 ``@brief``、参数、返回值和
+线程上下文；文档源修改后先构建单一中文版本，再执行完整发布构建。

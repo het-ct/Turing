@@ -1,0 +1,27 @@
+SPI 与 UART 示例
+================
+
+SPI
+---
+
+``platform/examples/hal/example_spi.c`` 包含同步发送、DMA 异步发送以及 W25Q 系列 Flash ID
+读取。示例默认使用 SPI1、4 MHz 和固定 PB 管脚组。切换目标板时必须同步修改 SCK、CS、MOSI、
+MISO、WP、HOLD 和片选有效电平。
+
+UART
+----
+
+``platform/examples/hal/example_uart.c`` 使用高速 UART、PB1/PB0、1.5 Mbps 和 DMA 接收缓冲区。
+
+.. code-block:: c
+
+   het_uart_handle_t uart = het_uart_def_cfg();
+   uart.id = HET_UART_ID_H0;
+   uart.tx_pin = HET_GPIO_PIN_PB1;
+   uart.rx_pin = HET_GPIO_PIN_PB0;
+   uart.baud = 1500000;
+   uart.rx_buf = rx_buffer;
+   uart.rx_buf_len = sizeof(rx_buffer);
+   return het_uart_init(&uart);
+
+API 见 :doc:`../api/peripherals/spi` 和 :doc:`../api/peripherals/uart`。

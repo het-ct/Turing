@@ -1,0 +1,353 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>het_flex 弹性布局容器 &mdash; Turing SDK开发手册 2.0</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=e891653f" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=8ba3eb92"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/translations.js?v=beaddf03"></script>
+      <script src="../../_static/language-switch.js?v=a682b188"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="het_grid 网格布局容器" href="grid.html" />
+    <link rel="prev" title="het_checkbox 复选框组件" href="checkbox.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Turing SDK开发手册
+              <img src="../../_static/het_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div class="sdk-doc-selectors"><label class="sdk-chip-switch sdk-navigation-select"><span class="fa fa-cube" aria-hidden="true"></span><span class="sr-only">选择芯片</span><select aria-label="选择芯片"><option value="../../../../../het-x1/2.0/zh/guide/widgets/flex.html" selected>HET-X1</option></select></label><label class="sdk-version-switch sdk-navigation-select"><span class="fa fa-code-fork" aria-hidden="true"></span><span class="sr-only">选择版本</span><select aria-label="选择版本"><option value="../../../../2.0/zh/guide/widgets/flex.html" selected>v2.0</option><option value="../../../../1.0/zh/guide/widgets/flex.html">v1.0</option></select></label></div><div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">文档目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quick-start/index.html">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/index.html">开始使用</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../developer-guide/index.html">开发者指南</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/architecture.html">软件架构与分层</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/security.html">系统安全</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/board-config.html">板级配置 config.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/memory.html">内存与存储管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/hal.html">HAL 外设</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/drivers.html">驱动与 BSP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/middleware.html">中间件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/cbb.html">CBB 能力组件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/ui-widgets.html">UI 控件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/ui-effects.html">UI 特效</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/os.html">OS 与任务模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/power-management.html">低功耗与电源管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/ota.html">OTA 升级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cbb/index.html">CBB 能力组件</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">UI 组件</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#id1">目录</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="arc.html">het_arc 圆弧组件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bar.html">het_bar 进度条组件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="button.html">het_button 按钮组件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="checkbox.html">het_checkbox 复选框组件</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">het_flex 弹性布局容器</a></li>
+<li class="toctree-l4"><a class="reference internal" href="grid.html">het_grid 网格布局容器</a></li>
+<li class="toctree-l4"><a class="reference internal" href="image.html">het_image 图片组件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="label.html">het_label 文本标签组件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="led.html">het_led LED 指示灯组件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="roller.html">het_roller 滚轮选择器组件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="slider.html">het_slider 滑动条组件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="switch.html">het_switch 拨动开关组件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="textarea.html">het_textarea 文本输入框组件</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API 参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../demo-projects/index.html">演示工程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">硬件平台</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">支持与参考</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Turing SDK开发手册</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../developer-guide/index.html">开发者指南</a></li>
+          <li class="breadcrumb-item"><a href="index.html">UI 组件</a></li>
+      <li class="breadcrumb-item active">het_flex 弹性布局容器</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  <li class="sdk-toolbar-actions"><label class="sdk-language-switch sdk-navigation-select"><span class="fa fa-globe" aria-hidden="true"></span><span class="sr-only">切换语言</span><select aria-label="切换语言"><option value="../../../en/guide/widgets/flex.html">English</option><option value="../../../zh/guide/widgets/flex.html" selected>简体中文</option></select></label></li></ul>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="het-flex">
+<h1>het_flex 弹性布局容器<a class="headerlink" href="#het-flex" title="Link to this heading"></a></h1>
+<div class="module-summary widget-summary docutils container">
+<p><strong>UI 组件</strong></p>
+<p>include/het_flex.h</p>
+</div>
+<p>include/het_flex.h</p>
+<section id="id1">
+<h2>组件说明<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<p>het_flex 是轻量级线性布局容器，用于在主轴方向（行/列）上排列子项，并支持主轴分配与交叉轴对齐。</p>
+<ul class="simple">
+<li><p>适用于同类型控件的规则排列，如按钮组、信息条、状态块。</p></li>
+<li><p>每个子项可设置固定尺寸、百分比尺寸或自动尺寸。</p></li>
+<li><p>通过 grow 可在剩余空间内进行弹性扩展。</p></li>
+</ul>
+</section>
+<section id="id2">
+<h2>宏定义<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+</section>
+<section id="id3">
+<h2>枚举定义<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<section id="het-flex-dir">
+<h3>het_flex_dir<a class="headerlink" href="#het-flex-dir" title="Link to this heading"></a></h3>
+</section>
+<section id="het-flex-justify">
+<h3>het_flex_justify<a class="headerlink" href="#het-flex-justify" title="Link to this heading"></a></h3>
+</section>
+<section id="het-flex-align">
+<h3>het_flex_align<a class="headerlink" href="#het-flex-align" title="Link to this heading"></a></h3>
+</section>
+</section>
+<section id="id4">
+<h2>参数与选项<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>宏</p></th>
+<th class="head"><p>值/原型</p></th>
+<th class="head"><p>说明</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>HET_FLEX_MAX_ITEMS</p></td>
+<td><p>4（可重定义）</p></td>
+<td><p>容器可容纳的最大子项数量。</p></td>
+</tr>
+<tr class="row-odd"><td><p>HET_FLEX_SIZE_AUTO</p></td>
+<td><p>-1</p></td>
+<td><p>自动尺寸标记。</p></td>
+</tr>
+<tr class="row-even"><td><p>HET_FLEX_PCT_BASE</p></td>
+<td><p>1000</p></td>
+<td><p>百分比基数。</p></td>
+</tr>
+<tr class="row-odd"><td><p>HET_FLEX_PCT(pct)</p></td>
+<td><p>((int16_t)(-1000 - (pct)))</p></td>
+<td><p>将百分比尺寸编码为内部尺寸值。</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id5">
+<h2>参数与选项<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>枚举值</p></th>
+<th class="head"><p>说明</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>HET_FLEX_DIR_ROW</p></td>
+<td><p>主轴为水平方向（从左到右）。</p></td>
+</tr>
+<tr class="row-odd"><td><p>HET_FLEX_DIR_COLUMN</p></td>
+<td><p>主轴为垂直方向（从上到下）。</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id6">
+<h2>参数与选项<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>枚举值</p></th>
+<th class="head"><p>说明</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>HET_FLEX_JUSTIFY_START</p></td>
+<td><p>子项从主轴起点开始排列。</p></td>
+</tr>
+<tr class="row-odd"><td><p>HET_FLEX_JUSTIFY_CENTER</p></td>
+<td><p>子项在主轴方向居中排列。</p></td>
+</tr>
+<tr class="row-even"><td><p>HET_FLEX_JUSTIFY_END</p></td>
+<td><p>子项靠主轴终点排列。</p></td>
+</tr>
+<tr class="row-odd"><td><p>HET_FLEX_JUSTIFY_SPACE_BETWEEN</p></td>
+<td><p>首尾贴边，剩余空间均分到相邻子项间隙。</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id7">
+<h2>参数与选项<a class="headerlink" href="#id7" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>枚举值</p></th>
+<th class="head"><p>说明</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>HET_FLEX_ALIGN_START</p></td>
+<td><p>子项在交叉轴起点对齐。</p></td>
+</tr>
+<tr class="row-odd"><td><p>HET_FLEX_ALIGN_CENTER</p></td>
+<td><p>子项在交叉轴居中对齐。</p></td>
+</tr>
+<tr class="row-even"><td><p>HET_FLEX_ALIGN_END</p></td>
+<td><p>子项在交叉轴终点对齐。</p></td>
+</tr>
+<tr class="row-odd"><td><p>HET_FLEX_ALIGN_STRETCH</p></td>
+<td><p>子项在交叉轴方向拉伸填充。</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="api">
+<h2>API 介绍<a class="headerlink" href="#api" title="Link to this heading"></a></h2>
+<section class="api-entry" id="void-het-flex-create-compo-form-t-frm">
+<h3>void *het_flex_create(compo_form_t *frm)<a class="headerlink" href="#void-het-flex-create-compo-form-t-frm" title="Link to this heading"></a></h3>
+<p>创建 flex 容器对象。</p>
+<p>参数：frm 目标表单。</p>
+<p>返回：void* 容器句柄，失败返回 NULL。</p>
+</section>
+<section class="api-entry" id="void-het-flex-clear-void-obj">
+<h3>void het_flex_clear(void *obj)<a class="headerlink" href="#void-het-flex-clear-void-obj" title="Link to this heading"></a></h3>
+<p>清空容器中的所有子项。</p>
+<p>参数：obj flex 容器句柄。</p>
+</section>
+<section class="api-entry" id="bool-het-flex-add-void-obj-void-child-int16-t-width-int16-t-height-uint8-t-grow">
+<h3>bool het_flex_add(void *obj, void *child, int16_t width, int16_t height, uint8_t grow)<a class="headerlink" href="#bool-het-flex-add-void-obj-void-child-int16-t-width-int16-t-height-uint8-t-grow" title="Link to this heading"></a></h3>
+<p>添加子项并指定尺寸和扩展因子。</p>
+<p>参数：obj 容器句柄；child 子项对象；width/height 子项尺寸；grow 扩展因子。</p>
+<p>返回：true 成功；false 失败。</p>
+</section>
+<section class="api-entry" id="bool-het-flex-add-pct-void-obj-void-child-uint8-t-width-pct-uint8-t-height-pct-uint8-t-grow">
+<h3>bool het_flex_add_pct(void *obj, void *child, uint8_t width_pct, uint8_t height_pct, uint8_t grow)<a class="headerlink" href="#bool-het-flex-add-pct-void-obj-void-child-uint8-t-width-pct-uint8-t-height-pct-uint8-t-grow" title="Link to this heading"></a></h3>
+<p>按百分比尺寸添加子项。</p>
+<p>参数：obj 容器句柄；child 子项对象；width_pct/height_pct 百分比尺寸（建议 0~100）；grow 扩展因子。</p>
+<p>返回：true 成功；false 失败。</p>
+</section>
+<section class="api-entry" id="void-het-flex-update-void-obj">
+<h3>void het_flex_update(void *obj)<a class="headerlink" href="#void-het-flex-update-void-obj" title="Link to this heading"></a></h3>
+<p>触发布局更新并重新计算子项几何。</p>
+<p>参数：obj 容器句柄。</p>
+</section>
+<section class="api-entry" id="void-het-flex-set-geometry-void-obj-const-rect-t-rect">
+<h3>void het_flex_set_geometry(void *obj, const rect_t rect)<a class="headerlink" href="#void-het-flex-set-geometry-void-obj-const-rect-t-rect" title="Link to this heading"></a></h3>
+<p>设置容器几何区域。</p>
+<p>参数：obj 容器句柄；rect 几何信息。</p>
+</section>
+<section class="api-entry" id="void-het-flex-set-padding-void-obj-const-het-pad-t-padding">
+<h3>void het_flex_set_padding(void *obj, const het_pad_t padding)<a class="headerlink" href="#void-het-flex-set-padding-void-obj-const-het-pad-t-padding" title="Link to this heading"></a></h3>
+<p>设置容器内边距。</p>
+<p>参数：obj 容器句柄；padding 内边距。</p>
+</section>
+<section class="api-entry" id="void-het-flex-set-gap-void-obj-int16-t-gap">
+<h3>void het_flex_set_gap(void *obj, int16_t gap)<a class="headerlink" href="#void-het-flex-set-gap-void-obj-int16-t-gap" title="Link to this heading"></a></h3>
+<p>设置子项间距。</p>
+<p>参数：obj 容器句柄；gap 间距像素值。</p>
+</section>
+<section class="api-entry" id="void-het-flex-set-flow-void-obj-het-flex-dir-dir-het-flex-justify-justify-het-flex-align-align">
+<h3>void het_flex_set_flow(void *obj, het_flex_dir dir, het_flex_justify justify, het_flex_align align)<a class="headerlink" href="#void-het-flex-set-flow-void-obj-het-flex-dir-dir-het-flex-justify-justify-het-flex-align-align" title="Link to this heading"></a></h3>
+<p>设置主轴方向、主轴分配和交叉轴对齐方式。</p>
+<p>参数：obj 容器句柄；dir 方向；justify 主轴分配；align 交叉轴对齐。</p>
+</section>
+</section>
+<section id="id8">
+<h2>使用示例<a class="headerlink" href="#id8" title="Link to this heading"></a></h2>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">flex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">het_flex_create</span><span class="p">(</span><span class="n">frm</span><span class="p">);</span>
+<span class="n">het_flex_set_geometry</span><span class="p">(</span><span class="n">flex</span><span class="p">,</span><span class="w"> </span><span class="n">HET_GEOMETRY</span><span class="p">(</span><span class="mi">160</span><span class="p">,</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w"> </span><span class="mi">220</span><span class="p">,</span><span class="w"> </span><span class="mi">72</span><span class="p">));</span>
+<span class="n">het_flex_set_padding</span><span class="p">(</span><span class="n">flex</span><span class="p">,</span><span class="w"> </span><span class="n">HET_PADDING</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">));</span>
+<span class="n">het_flex_set_gap</span><span class="p">(</span><span class="n">flex</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">);</span>
+<span class="n">het_flex_set_flow</span><span class="p">(</span><span class="n">flex</span><span class="p">,</span>
+<span class="w">                  </span><span class="n">HET_FLEX_DIR_ROW</span><span class="p">,</span>
+<span class="w">                  </span><span class="n">HET_FLEX_JUSTIFY_SPACE_BETWEEN</span><span class="p">,</span>
+<span class="w">                  </span><span class="n">HET_FLEX_ALIGN_CENTER</span><span class="p">);</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">btn_ok</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">het_button_create</span><span class="p">(</span><span class="n">frm</span><span class="o">-&gt;</span><span class="n">page</span><span class="p">,</span><span class="w"> </span><span class="n">HET_BG_MODE_SC</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">btn_cancel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">het_button_create</span><span class="p">(</span><span class="n">frm</span><span class="o">-&gt;</span><span class="n">page</span><span class="p">,</span><span class="w"> </span><span class="n">HET_BG_MODE_SC</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">);</span>
+
+<span class="n">het_flex_add_pct</span><span class="p">(</span><span class="n">flex</span><span class="p">,</span><span class="w"> </span><span class="n">btn_ok</span><span class="p">,</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="n">het_flex_add_pct</span><span class="p">(</span><span class="n">flex</span><span class="p">,</span><span class="w"> </span><span class="n">btn_cancel</span><span class="p">,</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="n">het_flex_update</span><span class="p">(</span><span class="n">flex</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="checkbox.html" class="btn btn-neutral float-left" title="het_checkbox 复选框组件" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="grid.html" class="btn btn-neutral float-right" title="het_grid 网格布局容器" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 。
+      <span class="lastupdated">最后更新于 2026-09-18.
+      </span></p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+UI 特效
+=======
+
+概述
+----
+
+UI 特效包括惯性/回弹、页面切换、旋转、立方体、蜂窝布局、透明度和模糊等视觉行为。它们依赖
+GPU、PSRAM、刷新带宽和触摸采样，必须根据目标分辨率控制资源预算。
+
+特效专题
+--------
+
+说明书 2.3.1.10 至 2.3.1.17 对应以下高级视图：
+
+* ListView：横向/纵向列表、触摸和点击事件消费。
+* DiskView：圆盘列表和旋转选择。
+* RotaryView：环形菜单和旋转导航。
+* HoneycombView：蜂窝排列和选中事件。
+* BallView：球形视图，当前示例视频和稳定 API **待开发**。
+* CubeView：立方体旋转动效，依赖 GPU/缓冲资源，**待开发**。
+* MapsView：地图视图，数据源和缩放策略 **待开发**。
+* CurveView：曲线视图，采样、缩放和刷新接口 **待开发**。
+
+ListView、DiskView、RotaryView、HoneycombView 的主要事件接口分别为
+``het_menu_hori/vert_event``、``het_form_disk_menu_event``、
+``het_form_rotary_menu_event`` 和 ``het_form_honeycomb_menu_event``；参数以对应表单头文件为准。
+
+配置流程
+--------
+
+1. 在 ``config.h`` 确认 ``GUI_SELECT``、分辨率、刷新行数和 PSRAM 配置。
+2. 先用静态页面验证显示和触摸，再启用单一特效。
+3. 调整动画时间、减速度和边界阻尼，记录最差帧耗时。
+4. 在页面切换、弹窗和低功耗唤醒后检查对象与缓冲区是否泄漏。
+
+示例
+----
+
+.. code-block:: c
+
+   het_physics_t physics = HET_PHYSICS_CONFIG(
+       HET_PHYSICS_INERTIA, 180, 3600, 96);
+   het_roller_set_physics(roller, &physics);
+
+注意事项
+--------
+
+高斯模糊、全屏旋转和高分辨率双缓冲可能需要 PSRAM。不要同时开启所有效果后再定位卡顿，应逐项
+测量 CPU/GPU、内存和刷新周期。惯性、减速、边界回弹等物理参数应从小范围开始调节，并记录目标分辨率下的最坏帧耗时。
+
+主要 API
+--------
+
+物理、旋转和组件特效头文件位于 ``platform/middlewares/gui``；完整稳定 API 清单 **待开发**。

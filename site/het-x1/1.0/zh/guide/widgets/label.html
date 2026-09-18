@@ -1,0 +1,263 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>het_label 文本标签组件 &mdash; Turing SDK开发手册 1.0</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=e891653f" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=f115507d"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/translations.js?v=beaddf03"></script>
+      <script src="../../_static/language-switch.js?v=a682b188"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="het_led LED 指示灯组件" href="led.html" />
+    <link rel="prev" title="het_image 图片组件" href="image.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Turing SDK开发手册
+              <img src="../../_static/het_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div class="sdk-doc-selectors"><label class="sdk-chip-switch sdk-navigation-select"><span class="fa fa-cube" aria-hidden="true"></span><span class="sr-only">选择芯片</span><select aria-label="选择芯片"><option value="../../../../../het-x1/1.0/zh/guide/widgets/label.html" selected>HET-X1</option></select></label><label class="sdk-version-switch sdk-navigation-select"><span class="fa fa-code-fork" aria-hidden="true"></span><span class="sr-only">选择版本</span><select aria-label="选择版本"><option value="../../../../2.0/zh/guide/widgets/label.html">v2.0</option><option value="../../../../1.0/zh/guide/widgets/label.html" selected>v1.0</option></select></label></div><div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">文档目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quick-start/index.html">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/index.html">开始使用</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../developer-guide/index.html">开发者指南</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/architecture.html">软件架构与分层</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/security.html">系统安全</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/board-config.html">板级配置 config.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/memory.html">内存与存储管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/hal.html">HAL 外设</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/drivers.html">驱动与 BSP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/middleware.html">中间件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/cbb.html">CBB 能力组件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/ui-widgets.html">UI 控件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/ui-effects.html">UI 特效</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/os.html">OS 与任务模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/power-management.html">低功耗与电源管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/ota.html">OTA 升级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cbb/index.html">CBB 能力组件</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">UI 组件</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#id1">目录</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="arc.html">het_arc 圆弧组件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bar.html">het_bar 进度条组件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="button.html">het_button 按钮组件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="checkbox.html">het_checkbox 复选框组件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="flex.html">het_flex 弹性布局容器</a></li>
+<li class="toctree-l4"><a class="reference internal" href="grid.html">het_grid 网格布局容器</a></li>
+<li class="toctree-l4"><a class="reference internal" href="image.html">het_image 图片组件</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">het_label 文本标签组件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="led.html">het_led LED 指示灯组件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="roller.html">het_roller 滚轮选择器组件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="slider.html">het_slider 滑动条组件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="switch.html">het_switch 拨动开关组件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="textarea.html">het_textarea 文本输入框组件</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API 参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../demo-projects/index.html">演示工程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">硬件平台</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">支持与参考</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Turing SDK开发手册</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../developer-guide/index.html">开发者指南</a></li>
+          <li class="breadcrumb-item"><a href="index.html">UI 组件</a></li>
+      <li class="breadcrumb-item active">het_label 文本标签组件</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  <li class="sdk-toolbar-actions"><label class="sdk-language-switch sdk-navigation-select"><span class="fa fa-globe" aria-hidden="true"></span><span class="sr-only">切换语言</span><select aria-label="切换语言"><option value="../../../en/guide/widgets/label.html">English</option><option value="../../../zh/guide/widgets/label.html" selected>简体中文</option></select></label></li></ul>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="het-label">
+<h1>het_label 文本标签组件<a class="headerlink" href="#het-label" title="Link to this heading"></a></h1>
+<div class="module-summary widget-summary docutils container">
+<p><strong>UI 组件</strong></p>
+<p>include/het_label.h · src/het_label.c</p>
+</div>
+<p>include/het_label.h · src/het_label.c</p>
+<section id="id1">
+<h2>结构图<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+</section>
+<section id="id2">
+<h2>生命周期<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+</section>
+<section id="id3">
+<h2>事件拦截过滤<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<p>het_label 不注册对象事件回调，不主动拦截或消费 MSG_CTP_* 消息。</p>
+</section>
+<section id="id4">
+<h2>对齐与内边距<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<p>het_label_set_align 的内边距参数类型为 het_pad_t，字段顺序是 {top, left, right, bottom}。</p>
+</section>
+<section id="id5">
+<h2>完整示例<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+</section>
+<section id="api">
+<h2>API 介绍<a class="headerlink" href="#api" title="Link to this heading"></a></h2>
+<section class="api-entry" id="void-het-label-create-compo-form-t-frm-widget-page-t-page-const-u16-max-word-cnt">
+<h3>void * het_label_create(compo_form_t *frm, widget_page_t *page, const u16 max_word_cnt)<a class="headerlink" href="#void-het-label-create-compo-form-t-frm-widget-page-t-page-const-u16-max-word-cnt" title="Link to this heading"></a></h3>
+<p>创建 label。page 传 NULL 时自动挂到 frm-&gt;page_body。</p>
+<p>参数：frm 目标表单；page 指定挂载页，为 NULL 时使用默认页面；max_word_cnt 文本缓存容量。</p>
+<p>返回：void* label 句柄，失败返回 NULL。</p>
+</section>
+<section class="api-entry" id="void-het-label-set-geometry-void-obj-const-rect-t-geometry">
+<h3>void het_label_set_geometry(void *obj, const rect_t geometry)<a class="headerlink" href="#void-het-label-set-geometry-void-obj-const-rect-t-geometry" title="Link to this heading"></a></h3>
+<p>设置位置和大小。</p>
+<p>参数：obj label 句柄；geometry 几何信息。</p>
+</section>
+<section class="api-entry" id="void-het-label-set-pos-void-obj-int16-t-x-int16-t-y">
+<h3>void het_label_set_pos(void *obj, int16_t x, int16_t y)<a class="headerlink" href="#void-het-label-set-pos-void-obj-int16-t-x-int16-t-y" title="Link to this heading"></a></h3>
+<p>仅设置位置。</p>
+<p>参数：obj label 句柄；x/y 中心坐标。</p>
+</section>
+<section class="api-entry" id="void-het-label-set-size-void-obj-int16-t-width-int16-t-height">
+<h3>void het_label_set_size(void *obj, int16_t width, int16_t height)<a class="headerlink" href="#void-het-label-set-size-void-obj-int16-t-width-int16-t-height" title="Link to this heading"></a></h3>
+<p>仅设置大小。</p>
+<p>参数：obj label 句柄；width/height 宽高。</p>
+</section>
+<section class="api-entry" id="void-het-label-set-text-void-obj-const-char-text">
+<h3>void het_label_set_text(void *obj, const char *text)<a class="headerlink" href="#void-het-label-set-text-void-obj-const-char-text" title="Link to this heading"></a></h3>
+<p>设置文本内容（UTF-8）。</p>
+<p>参数：obj label 句柄；text 文本内容。</p>
+</section>
+<section class="api-entry" id="void-het-label-set-text-fmt-void-obj-const-char-fmt">
+<h3>void het_label_set_text_fmt(void *obj, const char *fmt, ...)<a class="headerlink" href="#void-het-label-set-text-fmt-void-obj-const-char-fmt" title="Link to this heading"></a></h3>
+<p>格式化设置文本，内部缓冲区最大 256 字节。</p>
+<p>参数：obj label 句柄；fmt 格式化模板；可变参数按模板展开。</p>
+</section>
+<section class="api-entry" id="void-het-label-set-align-void-obj-const-uint8-t-align-const-het-pad-t-padding">
+<h3>void het_label_set_align(void *obj, const uint8_t align, const het_pad_t padding)<a class="headerlink" href="#void-het-label-set-align-void-obj-const-uint8-t-align-const-het-pad-t-padding" title="Link to this heading"></a></h3>
+<p>设置对齐和内边距。</p>
+<p>参数：obj label 句柄；align 对齐方式；padding 内边距。</p>
+</section>
+<section class="api-entry" id="void-het-label-set-font-void-obj-const-uint32-t-font">
+<h3>void het_label_set_font(void *obj, const uint32_t font)<a class="headerlink" href="#void-het-label-set-font-void-obj-const-uint32-t-font" title="Link to this heading"></a></h3>
+<p>设置字体。建议先设字体再设文本。</p>
+<p>参数：obj label 句柄；font 字体资源 ID。</p>
+</section>
+<section class="api-entry" id="void-het-label-set-autosize-void-obj-const-bool-autosize">
+<h3>void het_label_set_autosize(void *obj, const bool autosize)<a class="headerlink" href="#void-het-label-set-autosize-void-obj-const-bool-autosize" title="Link to this heading"></a></h3>
+<p>设置是否自动尺寸。</p>
+<p>参数：obj label 句柄；autosize 是否自动根据文本调整尺寸。</p>
+</section>
+<section class="api-entry" id="void-het-label-set-color-void-obj-const-u16-color">
+<h3>void het_label_set_color(void *obj, const u16 color)<a class="headerlink" href="#void-het-label-set-color-void-obj-const-u16-color" title="Link to this heading"></a></h3>
+<p>设置文字颜色（RGB565）。</p>
+<p>参数：obj label 句柄；color 文字颜色。</p>
+</section>
+<section class="api-entry" id="void-het-label-set-alpha-void-obj-const-u8-alpha">
+<h3>void het_label_set_alpha(void *obj, const u8 alpha)<a class="headerlink" href="#void-het-label-set-alpha-void-obj-const-u8-alpha" title="Link to this heading"></a></h3>
+<p>设置透明度。</p>
+<p>参数：obj label 句柄；alpha 透明度，通常范围 0~255。</p>
+</section>
+<section class="api-entry" id="void-het-label-set-visible-void-obj-const-bool-visible">
+<h3>void het_label_set_visible(void *obj, const bool visible)<a class="headerlink" href="#void-het-label-set-visible-void-obj-const-bool-visible" title="Link to this heading"></a></h3>
+<p>设置可见性。</p>
+<p>参数：obj label 句柄；visible 是否显示。</p>
+</section>
+</section>
+<section id="id6">
+<h2>使用示例<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int8_t</span><span class="w"> </span><span class="n">top</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int8_t</span><span class="w"> </span><span class="n">left</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int8_t</span><span class="w"> </span><span class="n">right</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int8_t</span><span class="w"> </span><span class="n">bottom</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="n">het_pad_t</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">het_label_create</span><span class="p">(</span><span class="n">frm</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="mi">64</span><span class="p">);</span>
+<span class="n">het_label_set_geometry</span><span class="p">(</span><span class="n">label</span><span class="p">,</span><span class="w"> </span><span class="n">HET_GEOMETRY</span><span class="p">(</span><span class="mi">160</span><span class="p">,</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w"> </span><span class="mi">24</span><span class="p">));</span>
+<span class="n">het_label_set_font</span><span class="p">(</span><span class="n">label</span><span class="p">,</span><span class="w"> </span><span class="n">UI_BUF_COFFEE_FONT_ARIAL_11_BIN</span><span class="p">);</span>
+<span class="n">het_label_set_color</span><span class="p">(</span><span class="n">label</span><span class="p">,</span><span class="w"> </span><span class="n">COLOR_WHITE</span><span class="p">);</span>
+<span class="n">het_label_set_align</span><span class="p">(</span><span class="n">label</span><span class="p">,</span><span class="w"> </span><span class="n">HET_TEXT_ALIGN_CENTER</span><span class="p">,</span><span class="w"> </span><span class="n">HET_PADDING</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">));</span>
+<span class="n">het_label_set_text_fmt</span><span class="p">(</span><span class="n">label</span><span class="p">,</span><span class="w"> </span><span class="s">"电量: %d%%"</span><span class="p">,</span><span class="w"> </span><span class="mi">87</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="image.html" class="btn btn-neutral float-left" title="het_image 图片组件" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="led.html" class="btn btn-neutral float-right" title="het_led LED 指示灯组件" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 。
+      <span class="lastupdated">最后更新于 2026-09-18.
+      </span></p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

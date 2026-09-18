@@ -1,0 +1,20 @@
+Het-X1 SDK 开发手册
+====================
+
+本手册面向 Het-X1 MCU 产品开发，从开发套件上手、环境安装和工程构建，逐步进入软件架构、
+板级适配、外设 API、UI/CBB、硬件设计与量产交付。内容以当前仓库代码和《图灵平台使用说明书》
+为依据；尚无稳定实现或资料的章节明确标记为“待开发”。
+
+.. toctree::
+   :maxdepth: 2
+   :caption: 文档目录
+
+   guide/quick-start/index
+   guide/getting-started/index
+   guide/developer-guide/index
+   guide/api/index
+   guide/examples/index
+   guide/demo-projects/index
+   guide/platform/index
+   guide/tools/index
+   guide/reference/index

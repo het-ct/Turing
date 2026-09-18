@@ -1,0 +1,16 @@
+许可与第三方软件
+================
+
+当前仓库根目录未发现统一的项目 LICENSE 文件，因此 Het-X1 SDK 源码、文档、固件和工具的总体
+授权范围 **待项目所有者确认**。在许可明确前，不应假设可以公开分发、修改或商用。
+
+仓库包含带独立许可的第三方组件，例如：
+
+* lwIP：``platform/libs/net/modules/lwip/COPYING``。
+* LittleFS：``platform/middlewares/fs/LICENSE.md``。
+* FAL：``platform/middlewares/db/fal/LICENSE``。
+* FlashDB：``platform/middlewares/db/flashdb/LICENSE``。
+* TinyML SMT：对应目录中的 ``LICENSE`` 与 ``NOTICE``。
+
+发布前应生成第三方软件清单，保留版权、许可证和 NOTICE，检查静态库、模型、字体、图片和工具的
+再分发限制。统一 SDK LICENSE、SBOM 和合规审批流程 **待开发**。

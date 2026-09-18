@@ -1,0 +1,750 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Middleware API &mdash; Turing SDK Development Manual 2.0</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=e891653f" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=60dbed4a"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/language-switch.js?v=a682b188"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="CBB API" href="cbb.html" />
+    <link rel="prev" title="UART asynchronous serial port (het_uart.h)" href="peripherals/uart.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Turing SDK Development Manual
+              <img src="../../_static/het_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div class="sdk-doc-selectors"><label class="sdk-chip-switch sdk-navigation-select"><span class="fa fa-cube" aria-hidden="true"></span><span class="sr-only">Select chip</span><select aria-label="Select chip"><option value="../../../../../het-x1/2.0/en/guide/api/middleware.html" selected>HET-X1</option></select></label><label class="sdk-version-switch sdk-navigation-select"><span class="fa fa-code-fork" aria-hidden="true"></span><span class="sr-only">Select version</span><select aria-label="Select version"><option value="../../../../2.0/en/guide/api/middleware.html" selected>v2.0</option><option value="../../../../1.0/en/guide/api/middleware.html">v1.0</option></select></label></div><div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Document directory</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quick-start/index.html">quick start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/index.html">Get started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer-guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#id1">Table of contents</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="peripherals/index.html">Peripheral HAL (on-chip and on-chip peripherals)</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Middleware API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">file system declaration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Camera Statement</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cbb.html">CBB API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ui.html">UI API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="services.html">Service API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../demo-projects/index.html">Demonstration project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">Hardware platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">tool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Support and Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Turing SDK Development Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">API reference</a></li>
+      <li class="breadcrumb-item active">Middleware API</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  <li class="sdk-toolbar-actions"><label class="sdk-language-switch sdk-navigation-select"><span class="fa fa-globe" aria-hidden="true"></span><span class="sr-only">Switch language</span><select aria-label="Switch language"><option value="../../../en/guide/api/middleware.html" selected>English</option><option value="../../../zh/guide/api/middleware.html">简体中文</option></select></label></li></ul>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="api">
+<h1>Middleware API<a class="headerlink" href="#api" title="Link to this heading"></a></h1>
+<p>This section only lists the <code class="docutils literal notranslate"><span class="pre">het</span></code> prefixed public interfaces in the middleware:</p>
+<table class="docutils align-default" id="id3">
+<caption><span class="caption-text">Middleware API entrance</span><a class="headerlink" href="#id3" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 32.0%" />
+<col style="width: 68.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>header file</p></th>
+<th class="head"><p>use</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">platform/middlewares/fs/het_fs.h</span></code></p></td>
+<td><p>Het file system unified interface</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">platform/middlewares/sensor/include/het_camera.h</span></code></p></td>
+<td><p>Camera configuration, control and frame processing</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">platform/middlewares/het_list.h</span></code></p></td>
+<td><p>Het linked list container</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">platform/middlewares/het_ringbuf.h</span></code></p></td>
+<td><p>Het ring buffer</p></td>
+</tr>
+</tbody>
+</table>
+<p>FlashDB, FAL, LittleFS native interfaces and device manufacturer drivers do not belong to the Het public API and are not generated here.</p>
+<section id="id1">
+<h2>file system declaration<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_fs_init">
+<span class="target" id="het__fs_8h_1ab3c969b1972d5c4ba5a56e2f23710e4b"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_fs_init</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">fs</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_fs_init" title="Link to this definition"></a><br /></dt>
+<dd><p>注册底层 lfs_t 实例（必须在调用任何 het_fs_* 前执行一次） </p>
+<p><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">BSP</span> <span class="n">侧</span>
+<span class="n">het_fs_init</span><span class="p">(</span><span class="n">bsp_lfs_get</span><span class="p">());</span>  <span class="o">//</span> <span class="n">bsp_lfs_get</span><span class="p">()</span> <span class="n">返回</span> <span class="n">lfs_t</span><span class="o">*</span>
+</pre></div>
+</div>
+ </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fs</strong> – 已挂载的 lfs_t 指针，以 void* 传入，避免暴露 lfs.h 依赖</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_fs_stat">
+<span class="target" id="het__fs_8h_1a3f71e026dfe5304dc060c9a6a5eff5db"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_fs_stat</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">het_fs_stat_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">stat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_fs_stat" title="Link to this definition"></a><br /></dt>
+<dd><p>查询文件系统空间使用情况 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>stat</strong> – 接收统计信息的结构体指针 </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>HET_FS_OK / HET_FS_ERR </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_fs_write">
+<span class="target" id="het__fs_8h_1a0ab1daa163a42481d4f2f2667c27c557"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_fs_write</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">path</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">data</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n"><span class="pre">size</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_fs_write" title="Link to this definition"></a><br /></dt>
+<dd><p>全量写入文件（不存在则创建，已存在则覆盖） </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> – 绝对路径，如 “/data/record.bin” </p></li>
+<li><p><strong>data</strong> – 待写数据；size==0 时可为 NULL（写入空文件） </p></li>
+<li><p><strong>size</strong> – 数据字节数 </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>HET_FS_OK / HET_FS_ERR_NOSPC / HET_FS_ERR </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_fs_read">
+<span class="target" id="het__fs_8h_1a11d3f7d0dccb096b8a84bf3f708d8640"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_fs_read</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">path</span></span>, <span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">buf</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n"><span class="pre">size</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">out_len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_fs_read" title="Link to this definition"></a><br /></dt>
+<dd><p>全量读取文件 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> – 文件绝对路径 </p></li>
+<li><p><strong>buf</strong> – 接收缓冲区 </p></li>
+<li><p><strong>size</strong> – 缓冲区大小（字节） </p></li>
+<li><p><strong>out_len</strong> – 实际读取字节数（可为 NULL） </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>HET_FS_OK / HET_FS_ERR_NOENT / HET_FS_ERR </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_fs_exists">
+<span class="target" id="het__fs_8h_1a44b1fe7d97e5f7befdacef73fd1c25c1"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_fs_exists</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">path</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_fs_exists" title="Link to this definition"></a><br /></dt>
+<dd><p>判断文件（或目录）是否存在 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>true 存在，false 不存在或路径非法 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_fs_remove">
+<span class="target" id="het__fs_8h_1af9666b102badd8e5817164f033dfd82b"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_fs_remove</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">path</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_fs_remove" title="Link to this definition"></a><br /></dt>
+<dd><p>删除文件 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>HET_FS_OK / HET_FS_ERR_NOENT / HET_FS_ERR </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_fs_size">
+<span class="target" id="het__fs_8h_1abb3ae9356b175aaa0d94315085d08ded"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_fs_size</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">path</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_fs_size" title="Link to this definition"></a><br /></dt>
+<dd><p>获取文件大小（字节） </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>&gt;=0 文件字节数；&lt;0 失败（HET_FS_ERR_NOENT 等） </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_fs_cfg_set">
+<span class="target" id="het__fs_8h_1abe77988762697e37ea405d9de773b2d0"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_fs_cfg_set</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">key</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_fs_cfg_set" title="Link to this definition"></a><br /></dt>
+<dd><p>写入字符串型配置值 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> – 键名，如 “wifi_ssid”、”volume” </p></li>
+<li><p><strong>value</strong> – 字符串值（存储 strlen(value) 字节，不含终止符） </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>HET_FS_OK / HET_FS_ERR_INVAL / HET_FS_ERR </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_fs_cfg_get">
+<span class="target" id="het__fs_8h_1aef168b035b03afb0738d94bdf0423814"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_fs_cfg_get</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">key</span></span>, <span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">buf</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n"><span class="pre">size</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_fs_cfg_get" title="Link to this definition"></a><br /></dt>
+<dd><p>读取字符串型配置值 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> – 键名 </p></li>
+<li><p><strong>buf</strong> – 接收缓冲区（读取后自动在末尾追加 ‘\0’） </p></li>
+<li><p><strong>size</strong> – 缓冲区大小（字节），需 &gt;= 值长度 + 1 </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>HET_FS_OK / HET_FS_ERR_NOENT / HET_FS_ERR </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_fs_cfg_set_int">
+<span class="target" id="het__fs_8h_1a24686f5928e7a73c1993d491c8d78998"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_fs_cfg_set_int</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">key</span></span>, <span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_fs_cfg_set_int" title="Link to this definition"></a><br /></dt>
+<dd><p>写入整数型配置值（以十进制字符串存储，便于调试查看） </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> – 有符号 32 位整数 </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_fs_cfg_get_int">
+<span class="target" id="het__fs_8h_1a4a5abbd62ad448cbd938ef55a2a87972"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_fs_cfg_get_int</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">key</span></span>, <span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">out</span></span>, <span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n"><span class="pre">default_val</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_fs_cfg_get_int" title="Link to this definition"></a><br /></dt>
+<dd><p>读取整数型配置值 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>out</strong> – 接收整数（可为 NULL 仅做存在性检测） </p></li>
+<li><p><strong>default_val</strong> – 键不存在时写入 *out 的默认值 </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>HET_FS_OK 成功；HET_FS_ERR_NOENT 键不存在（*out 已填入默认值） </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_fs_cfg_set_buf">
+<span class="target" id="het__fs_8h_1a216a304f06f557c0a5368918fa57d82f"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_fs_cfg_set_buf</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">key</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">data</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n"><span class="pre">size</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_fs_cfg_set_buf" title="Link to this definition"></a><br /></dt>
+<dd><p>写入二进制配置值（适用于结构体、字节数组等） </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> – 数据指针 </p></li>
+<li><p><strong>size</strong> – 数据字节数 </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_fs_cfg_get_buf">
+<span class="target" id="het__fs_8h_1a050124c160e8c93a353eafee07af7b5d"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_fs_cfg_get_buf</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">key</span></span>, <span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">data</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n"><span class="pre">size</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">out_len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_fs_cfg_get_buf" title="Link to this definition"></a><br /></dt>
+<dd><p>读取二进制配置值 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> – 接收缓冲区 </p></li>
+<li><p><strong>size</strong> – 缓冲区大小 </p></li>
+<li><p><strong>out_len</strong> – 实际读取字节数（可为 NULL） </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_fs_cfg_remove">
+<span class="target" id="het__fs_8h_1a68f34c0e06e475ebd94ba70bad325d41"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_fs_cfg_remove</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">key</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_fs_cfg_remove" title="Link to this definition"></a><br /></dt>
+<dd><p>删除配置键对应的文件 </p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_fs_cfg_exists">
+<span class="target" id="het__fs_8h_1a4ceb47bd8bc6854881e3e48eecc29e7f"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_fs_cfg_exists</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">key</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_fs_cfg_exists" title="Link to this definition"></a><br /></dt>
+<dd><p>检测配置键是否存在 </p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_fs_log_append">
+<span class="target" id="het__fs_8h_1a7d5e73ad2ea4c21c7cf54c54583edd6d"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_fs_log_append</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">tag</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">msg</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_fs_log_append" title="Link to this definition"></a><br /></dt>
+<dd><p>追加一条日志记录 </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><p>单条写入格式示例：[BLE] connect ok</p>
+<p>msg 超过 110 字符时将被截断（内部行缓冲区 128 字节）</p>
+</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tag</strong> – 标签字符串，如 “SYS”、”BLE”、”ERR”（可为 NULL，显示为 “-”） </p></li>
+<li><p><strong>msg</strong> – <p>日志正文（不含换行符，函数自动追加 ‘</p>
+<p>’）</p>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>HET_FS_OK / HET_FS_ERR</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_fs_log_read">
+<span class="target" id="het__fs_8h_1a28cb2e174713f3d76017b2e6f79521d7"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_fs_log_read</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">buf</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n"><span class="pre">size</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_fs_log_read" title="Link to this definition"></a><br /></dt>
+<dd><p>读取当前日志全文 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>buf</strong> – 接收缓冲区（读完后自动追加 ‘\0’） </p></li>
+<li><p><strong>size</strong> – 缓冲区大小（字节） </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>HET_FS_OK / HET_FS_ERR_NOENT（日志文件不存在）/ HET_FS_ERR </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_fs_log_clear">
+<span class="target" id="het__fs_8h_1acf62baeab275565b04e9c58731da5766"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_fs_log_clear</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_fs_log_clear" title="Link to this definition"></a><br /></dt>
+<dd><p>清空日志（删除 app.log 和 app.bak） </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>HET_FS_OK </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</section>
+<section id="id2">
+<h2>Camera Statement<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_camera_register">
+<span class="target" id="het__camera_8h_1ab26b4d918d73a4edb8a1a0466a30c5fd"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">het_camera_dev_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">het_camera_register</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">het_camera_dev_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">dev</span></span>, <span class="n"><span class="pre">het_interface_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">bus_if</span></span>, <span class="n"><span class="pre">het_interface_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">dvp_if</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">het_device_model</span></span><span class="w"> </span><span class="n"><span class="pre">model</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_camera_register" title="Link to this definition"></a><br /></dt>
+<dd><p>注册一路摄像头的总线接口与 DVP 硬件接口。 </p>
+<p>每调用一次，在内部设备池（最多 HET_CAMERA_MAX_DEV 路）中分配一个 het_camera_dev_t 并与接口绑定，同时探测并注册匹配的传感器驱动。</p>
+<p>幂等性：若用相同 bus_if 再次调用，会覆盖同一设备槽（重新探测驱动）。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>多路摄像头共享同一 DVP 控制器时，dvp_if 可传入同一实例。 </p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dev</strong> – 设备描述符指针，若为 NULL 则从设备池分配新的描述符 </p></li>
+<li><p><strong>bus_if</strong> – 传感器寄存器总线（I²C/SPI），BSP 实现 </p></li>
+<li><p><strong>dvp_if</strong> – DVP 硬件接口，BSP 实现，命令语义见 het_type.h HET_DVP_CMD_* </p></li>
+<li><p><strong>model</strong> – 传感器型号（由传感器驱动定义），用于探测时验证 ID </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>成功：指向已分配设备描述符的指针；失败（池满或参数非法）：NULL</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_camera_init">
+<span class="target" id="het__camera_8h_1ad6d47d722f403b6b134f163f263b8bfd"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_camera_init</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">het_camera_dev_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">dev</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_camera_init" title="Link to this definition"></a><br /></dt>
+<dd><p>通过传感器驱动的 init 回调初始化传感器寄存器。 </p>
+<p>调用 dev-&gt;sensor_drv.interface.init(dev)，该回调由传感器驱动 （如 het_sensor_gc032a_register）注入，负责向传感器写入全套寄存器序列。 通常由 BSP 的旧系统 image_sensor_drv_register 代替，两者二选一。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dev</strong> – 由 <a class="reference internal" href="#het__camera_8h_1ab26b4d918d73a4edb8a1a0466a30c5fd"><span class="std std-ref">het_camera_register()</span></a> 返回的设备描述符 </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>0 成功；负值：驱动返回的错误码 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_camera_get_sensor_id">
+<span class="target" id="het__camera_8h_1ad1dbfd985d445cc9705fdb010ca31af9"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_camera_get_sensor_id</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">het_camera_dev_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">dev</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_camera_get_sensor_id" title="Link to this definition"></a><br /></dt>
+<dd><p>读取传感器 ID（用于自动识别/验证）。 </p>
+<p>
+通过 sensor_drv.interface.ctrl(HET_DEV_CMD_GET_SENSOR_ID) 读取芯片 ID。 需先完成 bus_if 初始化（DVP 时钟已使能、I²C 已拉起）。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>因为头插关系，总线设备编号与注册时的顺序是相反的。 </p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dev</strong> – 设备描述符指针 </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>≥0：传感器 ID；负值：读取失败（总线未就绪或传感器未响应）</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_camera_get_counter">
+<span class="target" id="het__camera_8h_1af6ebc86118dd016d20402e34bf048d83"></span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_camera_get_counter</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_camera_get_counter" title="Link to this definition"></a><br /></dt>
+<dd><p>获取当前已注册的摄像头设备数量。 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>uint32_t : 已注册的摄像头设备数量 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_camera_get_dev">
+<span class="target" id="het__camera_8h_1ae47952bdb32aa484fab42d021fca1233"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">het_camera_dev_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">het_camera_get_dev</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n"><span class="pre">device_id</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_camera_get_dev" title="Link to this definition"></a><br /></dt>
+<dd><p>从设备总线上获取指定 ID 的设备描述符 </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>因为头插关系，总线设备编号与注册时的顺序是相反的 </p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>device_id</strong> – 访问的设备编号 </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>非 NULL：第一个设备描述符指针；NULL：尚未注册任何设备</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_camera_open">
+<span class="target" id="het__camera_8h_1a046d3f35a0cb871681a7d74c566fadc0"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_camera_open</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">het_camera_dev_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">dev</span></span>, <span class="n"><span class="pre">het_camera_ctx_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">ctx</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">het_camera_cfg_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">cfg</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_camera_open" title="Link to this definition"></a><br /></dt>
+<dd><p>初始化 DVP 流水线，建立缓冲区映射，启动 DMA 采集。 </p>
+<p>内部完成以下操作（无需调用方关心细节）：<ol class="loweralpha simple">
+<li><p>计算显示缩放比例（image_size → disp_size）</p></li>
+<li><p>建立显示缓冲区：若 cfg-&gt;disp_buf 非 NULL，通过 dvp_if BUF_MAP_CPU 转换为 CPU 可访问地址；否则通过 dvp_if BUF_ALLOC 动态分配。</p></li>
+<li><p>写入 magic 头（0x24150 + w + h），并 cache flush。</p></li>
+<li><p>建立 DMA 缓冲区映射（CPU 地址）。</p></li>
+<li><p>发送 HET_DVP_CMD_START，配置 stride/lines 并启动采集。</p></li>
+<li><p>若 cfg-&gt;full_buf 非 NULL，建立全帧缓冲区和变焦缓冲区。</p></li>
+<li><p>初始化 zoom_div = 1，关联 dev_ref，置 is_drv_ready/is_pipeline_init。</p></li>
+</ol>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dev</strong> – 由 <a class="reference internal" href="#het__camera_8h_1ab26b4d918d73a4edb8a1a0466a30c5fd"><span class="std std-ref">het_camera_register()</span></a> 返回的设备描述符，决定使用哪路 dvp_if </p></li>
+<li><p><strong>ctx</strong> – BSP 声明的共享上下文（需带正确的链接器节属性） </p></li>
+<li><p><strong>cfg</strong> – 流水线运行时参数（代替编译期宏） </p></li>
+</ul>
+</dd>
+<dt class="field-even">Pre<span class="colon">:</span></dt>
+<dd class="field-even"><p>调用前须已：<ul class="simple">
+<li><p><a class="reference internal" href="#het__camera_8h_1ab26b4d918d73a4edb8a1a0466a30c5fd"><span class="std std-ref">het_camera_register()</span></a> 返回有效 dev</p></li>
+<li><p>dev-&gt;dvp_if-&gt;init(dev) 使能 DVP 时钟</p></li>
+<li><p>传感器寄存器已初始化（image_sensor_drv_register 或 het_camera_init）</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>0 成功；-1 参数非法或缓冲区分配失败 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_camera_close">
+<span class="target" id="het__camera_8h_1aeea178ae9622db080246e92370fea2b2"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_camera_close</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">het_camera_ctx_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_camera_close" title="Link to this definition"></a><br /></dt>
+<dd><p>停止 DVP 流水线，释放动态分配的缓冲区，关闭 DVP 时钟。 </p>
+<p>内部操作顺序：<ol class="loweralpha simple">
+<li><p>清除 is_drv_ready / is_pipeline_init（立即阻止 GPU 继续产生帧）</p></li>
+<li><p>发送 HET_DVP_CMD_STOP（BSP 内含延时，等待 DMA 排空）</p></li>
+<li><p>清除 disp_is_ready / frame_ready</p></li>
+<li><p>若 disp_alloc == true，通过 dvp_if BUF_FREE 释放显示缓冲区</p></li>
+<li><p>清空 disp_buff / dvp_full_buff</p></li>
+<li><p>发送 HET_DVP_CMD_CLK_DISABLE 关闭 DVP 时钟</p></li>
+</ol>
+</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>应在 image_sensor_drv_unregister()「之后」调用，确保传感器先停止 输出数据，再停止 DMA，避免出现帧撕裂写入。</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctx</strong> – 已通过 <a class="reference internal" href="#het__camera_8h_1a046d3f35a0cb871681a7d74c566fadc0"><span class="std std-ref">het_camera_open()</span></a> 初始化的上下文 </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_camera_set_mode">
+<span class="target" id="het__camera_8h_1a8ca9c5ac6b9626744f1c7c52f1357e2e"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_camera_set_mode</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">het_camera_ctx_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">ctx</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n"><span class="pre">is_photo</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_camera_set_mode" title="Link to this definition"></a><br /></dt>
+<dd><p>切换拍照 / 录像模式。 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctx</strong> – 目标摄像头上下文 </p></li>
+<li><p><strong>is_photo</strong> – false = 录像模式，true = 拍照模式 </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_camera_zoom_add">
+<span class="target" id="het__camera_8h_1adf9dd06ee1509bea36533a0a7281245c"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_camera_zoom_add</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">het_camera_ctx_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_camera_zoom_add" title="Link to this definition"></a><br /></dt>
+<dd><p>数码变焦：缩小视场角（拉近）。 </p>
+<p>zoom_div 加 1（上限 16），并重新计算 zoom_x0/y0/width/height。 GPU 在下一帧渲染时读取这些参数完成裁剪缩放。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctx</strong> – 目标摄像头上下文 </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_camera_zoom_sub">
+<span class="target" id="het__camera_8h_1a196005a9d413eb79a1156131204a289d"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_camera_zoom_sub</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">het_camera_ctx_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_camera_zoom_sub" title="Link to this definition"></a><br /></dt>
+<dd><p>数码变焦：扩大视场角（拉远）。 </p>
+<p>zoom_div 减 1（下限 1），并更新变焦参数。 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctx</strong> – 目标摄像头上下文 </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_camera_zoom_get">
+<span class="target" id="het__camera_8h_1a04d00d31d1d5f7ea0c8272a00e6cb8d5"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_camera_zoom_get</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">het_camera_ctx_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_camera_zoom_get" title="Link to this definition"></a><br /></dt>
+<dd><p>获取当前变焦倍数。 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctx</strong> – 目标摄像头上下文 </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>当前 zoom_div（1 = 不变焦，最大 16） </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_camera_frame_get">
+<span class="target" id="het__camera_8h_1a790fa817fc5e949903e34440e4625d59"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">het_camera_frame_get</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">het_camera_ctx_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_camera_frame_get" title="Link to this definition"></a><br /></dt>
+<dd><p>获取可供显示的帧缓冲区首地址（含 8 字节 magic/size 头）。 </p>
+<p>校验 magic（0x24150）及宽高非零后，返回 disp_buff - 8 的指针。 调用方在读取帧内容后，负责通知上层渲染。 本函数不清除 frame_ready，调用方根据需要自行管理。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctx</strong> – 目标摄像头上下文 </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>非 NULL：帧 header 指针（layout: [magic:4][w:2][h:2][data…]）； NULL：disp_buff 为空或 magic 校验失败（数据异常） </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_camera_gpu2cpu_get">
+<span class="target" id="het__camera_8h_1ab3da5c151aa05d167ed8765163727e7e"></span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_camera_gpu2cpu_get</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">het_camera_ctx_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_camera_gpu2cpu_get" title="Link to this definition"></a><br /></dt>
+<dd><p>读取 GPU→CPU 异步事件位图。 </p>
+<p>GPU 通过写入 ctx-&gt;gpu2cpu_bitmap 向 CPU 发送异步通知（如编码完成、 拍照完成等）。CPU 读取后调用 <a class="reference internal" href="#het__camera_8h_1a3e1eb65b049f8e389643d49c2f2b73fb"><span class="std std-ref">het_camera_gpu2cpu_clear()</span></a> 清除已处理位。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctx</strong> – 目标摄像头上下文 </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>当前 gpu2cpu_bitmap 值；ctx == NULL 时返回 0 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_camera_gpu2cpu_clear">
+<span class="target" id="het__camera_8h_1a3e1eb65b049f8e389643d49c2f2b73fb"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_camera_gpu2cpu_clear</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">het_camera_ctx_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_camera_gpu2cpu_clear" title="Link to this definition"></a><br /></dt>
+<dd><p>清除 GPU→CPU 事件位图（全部清零）。 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctx</strong> – 目标摄像头上下文 </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-enums">Enums</p>
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.het_camera_in_format_t">
+<span class="target" id="het__camera_8h_1acb50209d7554a6418e86f6343e39fff9"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_camera_in_format_t</span></span></span><a class="headerlink" href="#c.het_camera_in_format_t" title="Link to this definition"></a><br /></dt>
+<dd><p>传感器数据输入像素格式 </p>
+<p>对应 DVP 输入端 YUV 字节顺序。 </p>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.het_camera_in_format_t.HET_CAMERA_IN_FMT_YUYV">
+<span class="target" id="het__camera_8h_1acb50209d7554a6418e86f6343e39fff9a32db3b2ea576514f7c2719ff0af8b48d"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HET_CAMERA_IN_FMT_YUYV</span></span></span><a class="headerlink" href="#c.het_camera_in_format_t.HET_CAMERA_IN_FMT_YUYV" title="Link to this definition"></a><br /></dt>
+<dd><p>Y0-U0-Y1-V0，最常见，GC032A 默认 </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.het_camera_in_format_t.HET_CAMERA_IN_FMT_YVYU">
+<span class="target" id="het__camera_8h_1acb50209d7554a6418e86f6343e39fff9af31471cfed4e851b3cf307b3d43194ea"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HET_CAMERA_IN_FMT_YVYU</span></span></span><a class="headerlink" href="#c.het_camera_in_format_t.HET_CAMERA_IN_FMT_YVYU" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.het_camera_in_format_t.HET_CAMERA_IN_FMT_UYVY">
+<span class="target" id="het__camera_8h_1acb50209d7554a6418e86f6343e39fff9af5879fb1030bc7803c041d8df5ced945"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HET_CAMERA_IN_FMT_UYVY</span></span></span><a class="headerlink" href="#c.het_camera_in_format_t.HET_CAMERA_IN_FMT_UYVY" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.het_camera_in_format_t.HET_CAMERA_IN_FMT_VYUY">
+<span class="target" id="het__camera_8h_1acb50209d7554a6418e86f6343e39fff9a7d11b5d562efc2b3643d72916a2309c9"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HET_CAMERA_IN_FMT_VYUY</span></span></span><a class="headerlink" href="#c.het_camera_in_format_t.HET_CAMERA_IN_FMT_VYUY" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.het_camera_out_format_t">
+<span class="target" id="het__camera_8h_1abcf8dc6db6bf5d20827e63c41c93568f"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_camera_out_format_t</span></span></span><a class="headerlink" href="#c.het_camera_out_format_t" title="Link to this definition"></a><br /></dt>
+<dd><p>传感器数据输出像素格式 </p>
+<p>决定 DVP 控制器向内存写入的格式。 </p>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.het_camera_out_format_t.HET_CAMERA_OUT_FMT_YUV422">
+<span class="target" id="het__camera_8h_1abcf8dc6db6bf5d20827e63c41c93568fabad8857e95c688af1fef27b20cabe7e8"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HET_CAMERA_OUT_FMT_YUV422</span></span></span><a class="headerlink" href="#c.het_camera_out_format_t.HET_CAMERA_OUT_FMT_YUV422" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.het_camera_out_format_t.HET_CAMERA_OUT_FMT_RGB565">
+<span class="target" id="het__camera_8h_1abcf8dc6db6bf5d20827e63c41c93568fa14db3e85568f65e697f51c0ee5d32733"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HET_CAMERA_OUT_FMT_RGB565</span></span></span><a class="headerlink" href="#c.het_camera_out_format_t.HET_CAMERA_OUT_FMT_RGB565" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="peripherals/uart.html" class="btn btn-neutral float-left" title="UART asynchronous serial port (het_uart.h)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cbb.html" class="btn btn-neutral float-right" title="CBB API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .
+      <span class="lastupdated">Last updated on 2026-09-18.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

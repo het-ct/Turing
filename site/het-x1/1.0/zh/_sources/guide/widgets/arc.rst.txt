@@ -1,0 +1,234 @@
+.. Generated from platform/docs/pages/gui\arc.js
+
+het_arc 圆弧组件
+================
+
+.. container:: module-summary widget-summary
+
+   **UI 组件**
+
+   include/het_arc.h · src/het_arc.c
+
+include/het_arc.h · src/het_arc.c
+
+类图
+----
+
+生命周期序列图
+--------------
+
+组件说明
+--------
+
+het_arc 是 LVGL 风格的圆弧（仪表盘）组件，由背景轨道弧、指示弧和旋钮三层构成，支持三种增长模式和触摸拖动交互，适合音量旋钮、仪表盘、电量环等场景。
+
+增长模式
+--------
+
+参数与选项
+----------
+
+.. list-table::
+   :header-rows: 1
+
+   * - 枚举值
+     - 说明
+   * - HET_ARC_MODE_NORMAL
+     - 从背景弧起点开始顺向增长（默认）
+   * - HET_ARC_MODE_REVERSE
+     - 从背景弧终点反向增长
+   * - HET_ARC_MODE_SYMMETRICAL
+     - 从背景弧中点向两侧展开
+
+API 介绍
+--------
+
+.. rst-class:: api-entry
+
+het_arc_create
+^^^^^^^^^^^^^^
+
+创建一个 arc 组件。
+
+参数：frm 所属窗体；enable_anim 是否使能数值渐变动画
+
+返回：void \* arc 对象指针，失败返回 NULL
+
+.. rst-class:: api-entry
+
+het_arc_set_geometry
+^^^^^^^^^^^^^^^^^^^^
+
+设置 arc 的几何区域。
+
+参数：obj arc 对象指针；rect 区域（x/y 为中心点，建议宽高相等）
+
+.. rst-class:: api-entry
+
+het_arc_set_width
+^^^^^^^^^^^^^^^^^
+
+设置弧宽（内外半径差）。
+
+参数：obj arc 对象指针；width 弧宽（像素），默认 10
+
+.. rst-class:: api-entry
+
+het_arc_set_knob_size
+^^^^^^^^^^^^^^^^^^^^^
+
+设置旋钮直径，0 表示隐藏旋钮。
+
+参数：obj arc 对象指针；size 直径（像素），默认 20
+
+.. rst-class:: api-entry
+
+het_arc_set_bg_angles
+^^^^^^^^^^^^^^^^^^^^^
+
+设置背景弧的起止角度，单位 0.1°，0° 在右水平方向，顺时针增长。
+
+参数：obj arc 对象指针；start 起始角（0.1°）；end 结束角（0.1°）
+
+示例：270° 表盘 → start=1350, end=450
+
+.. rst-class:: api-entry
+
+het_arc_set_range
+^^^^^^^^^^^^^^^^^
+
+设置数值范围。
+
+参数：obj arc 对象指针；min 下限；max 上限
+
+.. rst-class:: api-entry
+
+het_arc_set_value
+^^^^^^^^^^^^^^^^^
+
+设置当前值，不触发事件回调。值自动钳制到 min~max 范围。
+
+参数：obj arc 对象指针；value 目标值
+
+注意：创建时使能了 enable_anim 则平滑渐变，否则瞬时刷新。
+
+.. rst-class:: api-entry
+
+het_arc_set_value_notify
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置当前值并触发 VALUE_CHANGED 事件回调。
+
+参数：obj arc 对象指针；value 目标值；param 透传给回调的事件参数
+
+.. rst-class:: api-entry
+
+het_arc_set_mode
+^^^^^^^^^^^^^^^^
+
+设置指示弧增长模式。
+
+参数：obj arc 对象指针；mode HET_ARC_MODE_NORMAL / REVERSE / SYMMETRICAL
+
+.. rst-class:: api-entry
+
+het_arc_set_adjustable
+^^^^^^^^^^^^^^^^^^^^^^
+
+设置是否允许触摸拖动调节数值。
+
+参数：obj arc 对象指针；adjustable true=可拖动（默认），false=仅显示
+
+.. rst-class:: api-entry
+
+het_arc_set_anim_time
+^^^^^^^^^^^^^^^^^^^^^
+
+设置数值渐变动画时长，创建时未使能动画则本接口无效。
+
+参数：obj arc 对象指针；ms 动画时长（毫秒），默认 300
+
+.. rst-class:: api-entry
+
+het_arc_set_color
+^^^^^^^^^^^^^^^^^
+
+设置指示弧、背景轨道、旋钮的颜色。
+
+参数：obj arc 对象指针；indic_color 指示弧颜色；track_color 背景轨道颜色；knob_color 旋钮颜色
+
+.. rst-class:: api-entry
+
+het_arc_set_slot
+^^^^^^^^^^^^^^^^
+
+设置事件回调，触摸拖动或 set_value_notify 时触发 VALUE_CHANGED。
+
+参数：obj arc 对象指针；cb 回调函数；user_data 用户数据
+
+.. rst-class:: api-entry
+
+het_arc_set_visible
+^^^^^^^^^^^^^^^^^^^
+
+设置 arc 的可见性。
+
+参数：obj arc 对象指针；visible 是否可见
+
+.. rst-class:: api-entry
+
+het_arc_get_value
+^^^^^^^^^^^^^^^^^
+
+获取当前值。
+
+参数：obj arc 对象指针
+
+返回：int16_t 当前值
+
+.. rst-class:: api-entry
+
+het_arc_get_min
+^^^^^^^^^^^^^^^
+
+获取数值下限。
+
+参数：obj arc 对象指针
+
+返回：int16_t 最小值
+
+.. rst-class:: api-entry
+
+het_arc_get_max
+^^^^^^^^^^^^^^^
+
+获取数值上限。
+
+参数：obj arc 对象指针
+
+返回：int16_t 最大值
+
+使用示例
+--------
+
+.. code-block:: c
+
+   /* 创建 270° 仪表盘，带动画 */
+   void *arc = het_arc_create(frm, true);
+   het_arc_set_geometry(arc, (rect_t){120, 120, 200, 200});
+   het_arc_set_bg_angles(arc, 1350, 450);   /* 135°~45°，单位 0.1° */
+   het_arc_set_range(arc, 0, 100);
+   het_arc_set_width(arc, 12);
+   het_arc_set_knob_size(arc, 20);
+   het_arc_set_color(arc, COLOR_BLUE, COLOR_GRAY, COLOR_WHITE);
+   het_arc_set_slot(arc, my_arc_cb, NULL);
+   
+   /* 设值并触发回调 */
+   het_arc_set_value_notify(arc, 75, NULL);
+   
+   /* 回调中读取当前值 */
+   void my_arc_cb(void *obj, het_event_t *evt) {
+       if (evt->type == HET_EVENT_VALUE_CHANGED) {
+           int16_t v = het_arc_get_value(obj);
+       }
+   }

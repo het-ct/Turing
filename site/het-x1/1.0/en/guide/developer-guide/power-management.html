@@ -1,0 +1,189 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Low power consumption and power management &mdash; Turing SDK Development Manual 1.0</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=e891653f" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/language-switch.js?v=a682b188"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="OTA upgrade" href="ota.html" />
+    <link rel="prev" title="OS and task model" href="os.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Turing SDK Development Manual
+              <img src="../../_static/het_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div class="sdk-doc-selectors"><label class="sdk-chip-switch sdk-navigation-select"><span class="fa fa-cube" aria-hidden="true"></span><span class="sr-only">Select chip</span><select aria-label="Select chip"><option value="../../../../../het-x1/1.0/en/guide/developer-guide/power-management.html" selected>HET-X1</option></select></label><label class="sdk-version-switch sdk-navigation-select"><span class="fa fa-code-fork" aria-hidden="true"></span><span class="sr-only">Select version</span><select aria-label="Select version"><option value="../../../../2.0/en/guide/developer-guide/power-management.html">v2.0</option><option value="../../../../1.0/en/guide/developer-guide/power-management.html" selected>v1.0</option></select></label></div><div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Document directory</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quick-start/index.html">quick start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/index.html">Get started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Developer Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="architecture.html">Software architecture and layering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">System security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="board-config.html">Board level configuration config.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html">Memory and storage management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal.html">HAL peripherals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drivers.html">Drivers and BSP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="middleware.html">middleware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cbb.html">CBB capability components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ui-widgets.html">UI controls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ui-effects.html">UI special effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="os.html">OS and task model</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Low power consumption and power management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Configuration items</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Enter the low power consumption process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Things to note</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#api">Main API</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ota.html">OTA upgrade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cbb/index.html">CBB capability components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../widgets/index.html">UI components</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../demo-projects/index.html">Demonstration project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">Hardware platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">tool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Support and Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Turing SDK Development Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Developer Guide</a></li>
+      <li class="breadcrumb-item active">Low power consumption and power management</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  <li class="sdk-toolbar-actions"><label class="sdk-language-switch sdk-navigation-select"><span class="fa fa-globe" aria-hidden="true"></span><span class="sr-only">Switch language</span><select aria-label="Switch language"><option value="../../../en/guide/developer-guide/power-management.html" selected>English</option><option value="../../../zh/guide/developer-guide/power-management.html">简体中文</option></select></label></li></ul>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>Low power consumption and power management<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<section id="id2">
+<h2>Overview<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>Het-X1 integrates LDO, lithium battery charging management and NVDC, and the project also provides board-level implementations such as <code class="docutils literal notranslate"><span class="pre">platform/bsp/bsp_sleep.c</span></code> and <code class="docutils literal notranslate"><span class="pre">bsp_charge.c</span></code>. Low power must jointly handle clock, display, touch, wireless, storage and wake sources.</p>
+</section>
+<section id="id3">
+<h2>Configuration items<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<p>Power-related configurations in <code class="docutils literal notranslate"><span class="pre">config.h</span></code> include <code class="docutils literal notranslate"><span class="pre">BUCK_MODE_EN</span></code>, <code class="docutils literal notranslate"><span class="pre">SYS_CLK_SEL</span></code>, <code class="docutils literal notranslate"><span class="pre">SOFT_POWER_ON_OFF</span></code>, <code class="docutils literal notranslate"><span class="pre">LP_XOSC_CLOCK_EN</span></code>, <code class="docutils literal notranslate"><span class="pre">RTC_CLOCK_PDN_EN</span></code>, and <code class="docutils literal notranslate"><span class="pre">GUI_AUTO_POWER_EN</span></code>. Different boards may have different support ranges, and the current must be measured after modification.</p>
+</section>
+<section id="id4">
+<h2>Enter the low power consumption process<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>The application stops new traffic and waits for storage, audio, display, and communication operations to complete.</p></li>
+<li><p>Save necessary state, turn off backlight and unnecessary peripheral interrupts/DMA.</p></li>
+<li><p>Configure key, RTC, touch or communication wake-up sources.</p></li>
+<li><p>Call the board-level sleep entry.</p></li>
+<li><p>Resume clock, bus, display and services after wake-up and check the cause of wake-up.</p></li>
+</ol>
+</section>
+<section id="id5">
+<h2>Example<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">app_enter_sleep</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">ui_suspend</span><span class="p">();</span>
+<span class="w">    </span><span class="n">storage_flush</span><span class="p">();</span>
+<span class="w">    </span><span class="n">bsp_sleep_prepare</span><span class="p">();</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">bsp_sleep_enter</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h2>Things to note<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Flash writing must be completed before entering sleep, and it is prohibited to update key configurations during the power-off window.</p></li>
+<li><p>RTC and low-power crystal oscillator selection will affect shutdown current and timing accuracy.</p></li>
+<li><p>It cannot be assumed that all peripheral registers retain their original values ​​after wake-up.</p></li>
+<li><p>Typical/maximum current, allowed wake-up sources and recovery delays for each mode <strong>To be developed</strong>.</p></li>
+</ul>
+</section>
+<section id="api">
+<h2>Main API<a class="headerlink" href="#api" title="Link to this heading"></a></h2>
+<p>Currently, <code class="docutils literal notranslate"><span class="pre">bsp_sleep.h</span></code>, <code class="docutils literal notranslate"><span class="pre">bsp_charge.h</span></code> and engineering power control functions prevail; the unified power management API is <strong>to be developed</strong>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="os.html" class="btn btn-neutral float-left" title="OS and task model" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ota.html" class="btn btn-neutral float-right" title="OTA upgrade" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .
+      <span class="lastupdated">Last updated on 2026-09-18.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

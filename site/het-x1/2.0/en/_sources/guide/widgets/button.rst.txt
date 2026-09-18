@@ -1,0 +1,254 @@
+.. Generated from platform/docs/pages/gui\button.js
+
+het_button 按钮组件
+===================
+
+.. container:: module-summary widget-summary
+
+   **UI 组件**
+
+   include/het_button.h · src/het_button.c
+
+include/het_button.h · src/het_button.c
+
+结构图
+------
+
+事件时序
+--------
+
+事件拦截过滤
+------------
+
+Radio 机制
+----------
+
+通过 het_button_set_radio_group(obj, group_id) 启用互斥组，同组按钮只能有一个处于选中状态。
+
+* group_id = 0：关闭 radio 模式（恢复普通 toggle）。
+
+* group_id > 0：启用互斥，点击当前按钮会取消同组其他已选中按钮。
+
+完整示例
+--------
+
+参数与选项
+----------
+
+.. list-table::
+   :header-rows: 1
+
+   * - 监听消息
+     - 过滤条件
+     - 结果
+   * - MSG_CTP_TOUCH
+     - 无命中过滤
+     - 广播消息（允许并行感知）
+   * - MSG_CTP_CLICK / MSG_CTP_LONG_LIFT / MSG_CTP_DOUBLE_CLICK
+     - 触点命中按钮背景区域（命中检测）
+     - 命中：消费消息；未命中：透传消息
+
+API 介绍
+--------
+
+.. rst-class:: api-entry
+
+void \* het_button_create(compo_form_t \*frm, const het_bg_mode bg_mode)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+创建按钮。bg_mode 使用 HET_BG_MODE_SC（矩形背景）或 HET_BG_MODE_2D（图片背景）。
+
+参数：frm 目标表单；bg_mode 背景模式。
+
+返回：void\* 按钮句柄，失败返回 NULL。
+
+.. rst-class:: api-entry
+
+int het_button_event(void \* obj, const void \* const msg)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+保留接口（当前实现返回 0）。推荐依赖对象系统回调链。
+
+参数：obj 按钮句柄；msg 输入消息对象。
+
+返回：int 当前实现恒为 0。
+
+.. rst-class:: api-entry
+
+void het_button_set_geometry(void \* obj, const rect_t geometry)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置位置与大小。
+
+参数：obj 按钮句柄；geometry 几何信息。
+
+.. rst-class:: api-entry
+
+void het_button_set_pos(void \* obj, int16_t x, int16_t y)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置位置。
+
+参数：obj 按钮句柄；x/y 目标中心坐标。
+
+.. rst-class:: api-entry
+
+void het_button_set_size(void \* obj, int16_t width, int16_t height)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置大小。
+
+参数：obj 按钮句柄；width/height 宽高。
+
+.. rst-class:: api-entry
+
+void het_button_set_bg_style(void \* obj, const het_bg_res_t style)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置背景样式（图片地址或颜色）。
+
+参数：obj 按钮句柄；style 背景资源描述。
+
+.. rst-class:: api-entry
+
+void het_button_set_bg_radius(void \* obj, const uint8_t radius, const het_radius_pos corner)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置背景圆角。
+
+参数：obj 按钮句柄；radius 圆角半径；corner 生效角位置。
+
+.. rst-class:: api-entry
+
+void het_button_set_bg_alpha(void \* obj, const uint8_t alpha)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置背景透明度。
+
+参数：obj 按钮句柄；alpha 透明度，通常范围 0~255。
+
+.. rst-class:: api-entry
+
+void het_button_set_slot(void \* obj, event_cb slot, void \* user_data)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+注册回调。
+
+参数：obj 按钮句柄；slot 事件回调；user_data 用户透传指针。
+
+.. rst-class:: api-entry
+
+void het_button_set_state(void \* obj, const bool state)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+主动设置按钮状态。
+
+参数：obj 按钮句柄；state 目标选中状态。
+
+.. rst-class:: api-entry
+
+void het_button_set_radio_group(void \* obj, const uint16_t group_id)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+配置 radio 组互斥。
+
+参数：obj 按钮句柄；group_id 组号，0 表示关闭互斥。
+
+.. rst-class:: api-entry
+
+void het_button_set_visible(void \* obj, const bool visible)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置可见性。
+
+参数：obj 按钮句柄；visible 是否可见。
+
+.. rst-class:: api-entry
+
+void het_button_set_text(void \* obj, const char \* text)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置文本。
+
+参数：obj 按钮句柄；text UTF-8 文本内容。
+
+.. rst-class:: api-entry
+
+void het_button_set_text_align(void \* obj, const uint8_t align, const het_pad_t padding)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置文本对齐与内边距。
+
+参数：obj 按钮句柄；align 对齐方式；padding 文字内边距。
+
+.. rst-class:: api-entry
+
+void het_button_set_font(void \* obj, const uint32_t font)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置字体。
+
+参数：obj 按钮句柄；font 字体资源 ID。
+
+.. rst-class:: api-entry
+
+void het_button_set_text_color(void \* obj, const uint16_t color)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置文本颜色。
+
+参数：obj 按钮句柄；color 文字颜色，格式为 RGB565。
+
+.. rst-class:: api-entry
+
+void het_button_set_text_alpha(void \* obj, const uint8_t alpha)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置文本透明度。
+
+参数：obj 按钮句柄；alpha 透明度，通常范围 0~255。
+
+.. rst-class:: api-entry
+
+int het_button_get_state(const void \* const obj)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+获取当前状态。
+
+参数：obj 按钮句柄。
+
+返回：int 当前按钮状态值。
+
+.. rst-class:: api-entry
+
+uint32_t het_button_get_id(const void \* const obj)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+获取组件 ID。
+
+参数：obj 按钮句柄。
+
+返回：uint32_t 组件唯一 ID。
+
+使用示例
+--------
+
+.. code-block:: c
+
+   static void on_btn(const het_event_t * const e)
+   {
+       int st = het_button_get_state(e->original);
+       (void)st;
+   }
+   
+   void *btn = het_button_create(frm->page, HET_BG_MODE_SC, 7);
+   het_button_set_geometry(btn, HET_GEOMETRY(160, 120, 100, 40));
+   het_button_set_bg_style(btn, HET_BG_COLOR(30, 144, 255));
+   het_button_set_bg_radius(btn, 8, HET_RADIUS_DEFAULT);
+   het_button_set_text(btn, "确认");
+   het_button_set_font(btn, UI_BUF_COFFEE_FONT_ARIAL_11_BIN);
+   het_button_set_text_align(btn, HET_TEXT_ALIGN_CENTER, HET_PADDING(0, 0, 0, 0));
+   het_button_set_slot(btn, on_btn, NULL);
+   
+   // radio 示例
+   het_button_set_radio_group(btn, 1);

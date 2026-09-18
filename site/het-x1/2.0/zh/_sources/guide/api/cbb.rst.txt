@@ -1,0 +1,14 @@
+CBB API
+=======
+
+CBB API 按能力组件组织，专题页面提供概述、流程、示例和预期接口。只有仓库中存在且经过当前工程
+验证的头文件才能作为稳定 API；其余接口保持“待开发”。
+
+音频播放已有 ``platform/services/audio/het_audio_play.h``，GUI 组件已有
+``platform/middlewares/gui/components/include`` 下的公开头文件。通信、算法、充电、安全存储等
+能力的统一 ``het_*`` API 完整度不一，使用前应核对 :doc:`../cbb/index` 和实际工程。
+
+音频播放和 UI 组件公开头文件已纳入 Doxygen，其余组件以专题页标注的实际头文件为准。
+
+当前具有稳定 ``het`` 公共头文件的 CBB 声明在 :doc:`services` 与 :doc:`ui` 中展示；仅有规划
+名称、内部函数或非 ``het`` 接口的组件不生成 API。

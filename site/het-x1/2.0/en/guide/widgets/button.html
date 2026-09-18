@@ -1,0 +1,327 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>het_button button component &mdash; Turing SDK Development Manual 2.0</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=e891653f" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=60dbed4a"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/language-switch.js?v=a682b188"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="het_checkbox checkbox component" href="checkbox.html" />
+    <link rel="prev" title="het_bar progress bar component" href="bar.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Turing SDK Development Manual
+              <img src="../../_static/het_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div class="sdk-doc-selectors"><label class="sdk-chip-switch sdk-navigation-select"><span class="fa fa-cube" aria-hidden="true"></span><span class="sr-only">Select chip</span><select aria-label="Select chip"><option value="../../../../../het-x1/2.0/en/guide/widgets/button.html" selected>HET-X1</option></select></label><label class="sdk-version-switch sdk-navigation-select"><span class="fa fa-code-fork" aria-hidden="true"></span><span class="sr-only">Select version</span><select aria-label="Select version"><option value="../../../../2.0/en/guide/widgets/button.html" selected>v2.0</option><option value="../../../../1.0/en/guide/widgets/button.html">v1.0</option></select></label></div><div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Document directory</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quick-start/index.html">quick start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/index.html">Get started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../developer-guide/index.html">Developer Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/architecture.html">Software architecture and layering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/security.html">System security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/board-config.html">Board level configuration config.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/memory.html">Memory and storage management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/hal.html">HAL peripherals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/drivers.html">Drivers and BSP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/middleware.html">middleware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/cbb.html">CBB capability components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/ui-widgets.html">UI controls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/ui-effects.html">UI special effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/os.html">OS and task model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/power-management.html">Low power consumption and power management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/ota.html">OTA upgrade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cbb/index.html">CBB capability components</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">UI components</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#id1">Table of contents</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="arc.html">het_arc arc component</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bar.html">het_bar progress bar component</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">het_button button component</a></li>
+<li class="toctree-l4"><a class="reference internal" href="checkbox.html">het_checkbox checkbox component</a></li>
+<li class="toctree-l4"><a class="reference internal" href="flex.html">het_flex flexible layout container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="grid.html">het_grid grid layout container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="image.html">het_image picture component</a></li>
+<li class="toctree-l4"><a class="reference internal" href="label.html">het_label text label component</a></li>
+<li class="toctree-l4"><a class="reference internal" href="led.html">het_led LED indicator component</a></li>
+<li class="toctree-l4"><a class="reference internal" href="roller.html">het_roller wheel selector component</a></li>
+<li class="toctree-l4"><a class="reference internal" href="slider.html">het_slider slider component</a></li>
+<li class="toctree-l4"><a class="reference internal" href="switch.html">het_switch toggle switch component</a></li>
+<li class="toctree-l4"><a class="reference internal" href="textarea.html">het_textarea text input box component</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../demo-projects/index.html">Demonstration project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">Hardware platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">tool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Support and Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Turing SDK Development Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../developer-guide/index.html">Developer Guide</a></li>
+          <li class="breadcrumb-item"><a href="index.html">UI components</a></li>
+      <li class="breadcrumb-item active">het_button button component</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  <li class="sdk-toolbar-actions"><label class="sdk-language-switch sdk-navigation-select"><span class="fa fa-globe" aria-hidden="true"></span><span class="sr-only">Switch language</span><select aria-label="Switch language"><option value="../../../en/guide/widgets/button.html" selected>English</option><option value="../../../zh/guide/widgets/button.html">简体中文</option></select></label></li></ul>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="het-button">
+<h1>het_button button component<a class="headerlink" href="#het-button" title="Link to this heading"></a></h1>
+<div class="module-summary widget-summary docutils container">
+<p><strong>UI components</strong></p>
+<p>include/het_button.h · src/het_button.c</p>
+</div>
+<p>include/het_button.h · src/het_button.c</p>
+<section id="id1">
+<h2>Structure diagram<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+</section>
+<section id="id2">
+<h2>event sequence<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+</section>
+<section id="id3">
+<h2>Event interception and filtering<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+</section>
+<section id="radio">
+<h2>Radio mechanism<a class="headerlink" href="#radio" title="Link to this heading"></a></h2>
+<p>Enable mutually exclusive groups through het_button_set_radio_group(obj, group_id). Only one button in the same group can be selected.</p>
+<ul class="simple">
+<li><p>group_id = 0: Turn off radio mode (restore normal toggle).</p></li>
+<li><p>group_id &gt; 0: Enable mutual exclusion. Clicking the current button will cancel other selected buttons in the same group.</p></li>
+</ul>
+</section>
+<section id="id4">
+<h2>Complete example<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+</section>
+<section id="id5">
+<h2>Parameters and options<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Listen for messages</p></th>
+<th class="head"><p>filter conditions</p></th>
+<th class="head"><p>result</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>MSG_CTP_TOUCH</p></td>
+<td><p>No hit filtering</p></td>
+<td><p>Broadcast messages (allows parallel sensing)</p></td>
+</tr>
+<tr class="row-odd"><td><p>MSG_CTP_CLICK / MSG_CTP_LONG_LIFT / MSG_CTP_DOUBLE_CLICK</p></td>
+<td><p>Contact hits button background area (hit detection)</p></td>
+<td><p>Hit: consume the message; miss: transparently transmit the message</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="api">
+<h2>API introduction<a class="headerlink" href="#api" title="Link to this heading"></a></h2>
+<section class="api-entry" id="void-het-button-create-compo-form-t-frm-const-het-bg-mode-bg-mode">
+<h3>void * het_button_create(compo_form_t *frm, const het_bg_mode bg_mode)<a class="headerlink" href="#void-het-button-create-compo-form-t-frm-const-het-bg-mode-bg-mode" title="Link to this heading"></a></h3>
+<p>Create button. bg_mode uses HET_BG_MODE_SC (rectangular background) or HET_BG_MODE_2D (picture background).</p>
+<p>Parameters: frm target form; bg_mode background mode.</p>
+<p>Returns: void* button handle, returns NULL on failure.</p>
+</section>
+<section class="api-entry" id="int-het-button-event-void-obj-const-void-const-msg">
+<h3>int het_button_event(void * obj, const void * const msg)<a class="headerlink" href="#int-het-button-event-void-obj-const-void-const-msg" title="Link to this heading"></a></h3>
+<p>Interface retained (current implementation returns 0). It is recommended to rely on the object system callback chain.</p>
+<p>Parameters: obj button handle; msg input message object.</p>
+<p>Return: int The current implementation is always 0.</p>
+</section>
+<section class="api-entry" id="void-het-button-set-geometry-void-obj-const-rect-t-geometry">
+<h3>void het_button_set_geometry(void * obj, const rect_t geometry)<a class="headerlink" href="#void-het-button-set-geometry-void-obj-const-rect-t-geometry" title="Link to this heading"></a></h3>
+<p>Set position and size.</p>
+<p>Parameters: obj button handle; geometry geometry information.</p>
+</section>
+<section class="api-entry" id="void-het-button-set-pos-void-obj-int16-t-x-int16-t-y">
+<h3>void het_button_set_pos(void * obj, int16_t x, int16_t y)<a class="headerlink" href="#void-het-button-set-pos-void-obj-int16-t-x-int16-t-y" title="Link to this heading"></a></h3>
+<p>Set location.</p>
+<p>Parameters: obj button handle; x/y target center coordinates.</p>
+</section>
+<section class="api-entry" id="void-het-button-set-size-void-obj-int16-t-width-int16-t-height">
+<h3>void het_button_set_size(void * obj, int16_t width, int16_t height)<a class="headerlink" href="#void-het-button-set-size-void-obj-int16-t-width-int16-t-height" title="Link to this heading"></a></h3>
+<p>Set size.</p>
+<p>Parameters: obj button handle; width/height width and height.</p>
+</section>
+<section class="api-entry" id="void-het-button-set-bg-style-void-obj-const-het-bg-res-t-style">
+<h3>void het_button_set_bg_style(void * obj, const het_bg_res_t style)<a class="headerlink" href="#void-het-button-set-bg-style-void-obj-const-het-bg-res-t-style" title="Link to this heading"></a></h3>
+<p>Set the background style (image address or color).</p>
+<p>Parameters: obj button handle; style background resource description.</p>
+</section>
+<section class="api-entry" id="void-het-button-set-bg-radius-void-obj-const-uint8-t-radius-const-het-radius-pos-corner">
+<h3>void het_button_set_bg_radius(void * obj, const uint8_t radius, const het_radius_pos corner)<a class="headerlink" href="#void-het-button-set-bg-radius-void-obj-const-uint8-t-radius-const-het-radius-pos-corner" title="Link to this heading"></a></h3>
+<p>Set background rounded corners.</p>
+<p>Parameters: obj button handle; radius corner radius; corner effective angular position.</p>
+</section>
+<section class="api-entry" id="void-het-button-set-bg-alpha-void-obj-const-uint8-t-alpha">
+<h3>void het_button_set_bg_alpha(void * obj, const uint8_t alpha)<a class="headerlink" href="#void-het-button-set-bg-alpha-void-obj-const-uint8-t-alpha" title="Link to this heading"></a></h3>
+<p>Set background transparency.</p>
+<p>Parameters: obj button handle; alpha transparency, usually in the range of 0~255.</p>
+</section>
+<section class="api-entry" id="void-het-button-set-slot-void-obj-event-cb-slot-void-user-data">
+<h3>void het_button_set_slot(void * obj, event_cb slot, void * user_data)<a class="headerlink" href="#void-het-button-set-slot-void-obj-event-cb-slot-void-user-data" title="Link to this heading"></a></h3>
+<p>Register callback.</p>
+<p>Parameters: obj button handle; slot event callback; user_data user transparent transmission pointer.</p>
+</section>
+<section class="api-entry" id="void-het-button-set-state-void-obj-const-bool-state">
+<h3>void het_button_set_state(void * obj, const bool state)<a class="headerlink" href="#void-het-button-set-state-void-obj-const-bool-state" title="Link to this heading"></a></h3>
+<p>Actively set button state.</p>
+<p>Parameters: obj button handle; state target selected state.</p>
+</section>
+<section class="api-entry" id="void-het-button-set-radio-group-void-obj-const-uint16-t-group-id">
+<h3>void het_button_set_radio_group(void * obj, const uint16_t group_id)<a class="headerlink" href="#void-het-button-set-radio-group-void-obj-const-uint16-t-group-id" title="Link to this heading"></a></h3>
+<p>Configure radio groups to be mutually exclusive.</p>
+<p>Parameters: obj button handle; group_id group number, 0 means turning off mutual exclusion.</p>
+</section>
+<section class="api-entry" id="void-het-button-set-visible-void-obj-const-bool-visible">
+<h3>void het_button_set_visible(void * obj, const bool visible)<a class="headerlink" href="#void-het-button-set-visible-void-obj-const-bool-visible" title="Link to this heading"></a></h3>
+<p>Set visibility.</p>
+<p>Parameters: obj button handle; visible whether it is visible.</p>
+</section>
+<section class="api-entry" id="void-het-button-set-text-void-obj-const-char-text">
+<h3>void het_button_set_text(void * obj, const char * text)<a class="headerlink" href="#void-het-button-set-text-void-obj-const-char-text" title="Link to this heading"></a></h3>
+<p>Set text.</p>
+<p>Parameters: obj button handle; text UTF-8 text content.</p>
+</section>
+<section class="api-entry" id="void-het-button-set-text-align-void-obj-const-uint8-t-align-const-het-pad-t-padding">
+<h3>void het_button_set_text_align(void * obj, const uint8_t align, const het_pad_t padding)<a class="headerlink" href="#void-het-button-set-text-align-void-obj-const-uint8-t-align-const-het-pad-t-padding" title="Link to this heading"></a></h3>
+<p>Set text alignment and padding.</p>
+<p>Parameters: obj button handle; align alignment; padding text inner margin.</p>
+</section>
+<section class="api-entry" id="void-het-button-set-font-void-obj-const-uint32-t-font">
+<h3>void het_button_set_font(void * obj, const uint32_t font)<a class="headerlink" href="#void-het-button-set-font-void-obj-const-uint32-t-font" title="Link to this heading"></a></h3>
+<p>Set font.</p>
+<p>Parameters: obj button handle; font font resource ID.</p>
+</section>
+<section class="api-entry" id="void-het-button-set-text-color-void-obj-const-uint16-t-color">
+<h3>void het_button_set_text_color(void * obj, const uint16_t color)<a class="headerlink" href="#void-het-button-set-text-color-void-obj-const-uint16-t-color" title="Link to this heading"></a></h3>
+<p>Set text color.</p>
+<p>Parameters: obj button handle; color text color, format is RGB565.</p>
+</section>
+<section class="api-entry" id="void-het-button-set-text-alpha-void-obj-const-uint8-t-alpha">
+<h3>void het_button_set_text_alpha(void * obj, const uint8_t alpha)<a class="headerlink" href="#void-het-button-set-text-alpha-void-obj-const-uint8-t-alpha" title="Link to this heading"></a></h3>
+<p>Set text transparency.</p>
+<p>Parameters: obj button handle; alpha transparency, usually in the range of 0~255.</p>
+</section>
+<section class="api-entry" id="int-het-button-get-state-const-void-const-obj">
+<h3>int het_button_get_state(const void * const obj)<a class="headerlink" href="#int-het-button-get-state-const-void-const-obj" title="Link to this heading"></a></h3>
+<p>Get the current status.</p>
+<p>Parameters: obj button handle.</p>
+<p>Return: int current button status value.</p>
+</section>
+<section class="api-entry" id="uint32-t-het-button-get-id-const-void-const-obj">
+<h3>uint32_t het_button_get_id(const void * const obj)<a class="headerlink" href="#uint32-t-het-button-get-id-const-void-const-obj" title="Link to this heading"></a></h3>
+<p>Get the component ID.</p>
+<p>Parameters: obj button handle.</p>
+<p>Returns: uint32_t component unique ID.</p>
+</section>
+</section>
+<section id="id6">
+<h2>Usage example<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">on_btn</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">het_event_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">e</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">st</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">het_button_get_state</span><span class="p">(</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">original</span><span class="p">);</span>
+<span class="w">    </span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">st</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">btn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">het_button_create</span><span class="p">(</span><span class="n">frm</span><span class="o">-&gt;</span><span class="n">page</span><span class="p">,</span><span class="w"> </span><span class="n">HET_BG_MODE_SC</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">);</span>
+<span class="n">het_button_set_geometry</span><span class="p">(</span><span class="n">btn</span><span class="p">,</span><span class="w"> </span><span class="n">HET_GEOMETRY</span><span class="p">(</span><span class="mi">160</span><span class="p">,</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">40</span><span class="p">));</span>
+<span class="n">het_button_set_bg_style</span><span class="p">(</span><span class="n">btn</span><span class="p">,</span><span class="w"> </span><span class="n">HET_BG_COLOR</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="mi">144</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">));</span>
+<span class="n">het_button_set_bg_radius</span><span class="p">(</span><span class="n">btn</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="n">HET_RADIUS_DEFAULT</span><span class="p">);</span>
+<span class="n">het_button_set_text</span><span class="p">(</span><span class="n">btn</span><span class="p">,</span><span class="w"> </span><span class="s">"确认"</span><span class="p">);</span>
+<span class="n">het_button_set_font</span><span class="p">(</span><span class="n">btn</span><span class="p">,</span><span class="w"> </span><span class="n">UI_BUF_COFFEE_FONT_ARIAL_11_BIN</span><span class="p">);</span>
+<span class="n">het_button_set_text_align</span><span class="p">(</span><span class="n">btn</span><span class="p">,</span><span class="w"> </span><span class="n">HET_TEXT_ALIGN_CENTER</span><span class="p">,</span><span class="w"> </span><span class="n">HET_PADDING</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">));</span>
+<span class="n">het_button_set_slot</span><span class="p">(</span><span class="n">btn</span><span class="p">,</span><span class="w"> </span><span class="n">on_btn</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+
+<span class="c1">// radio 示例</span>
+<span class="n">het_button_set_radio_group</span><span class="p">(</span><span class="n">btn</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="bar.html" class="btn btn-neutral float-left" title="het_bar progress bar component" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="checkbox.html" class="btn btn-neutral float-right" title="het_checkbox checkbox component" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .
+      <span class="lastupdated">Last updated on 2026-09-18.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

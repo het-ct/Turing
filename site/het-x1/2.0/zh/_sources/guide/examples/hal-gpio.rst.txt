@@ -1,0 +1,18 @@
+GPIO 外设示例
+=============
+
+本示例对应 ``platform/examples/hal/example_gpio.c``，演示输出电平和输入下降沿回调。实际引脚、
+复用和电气属性必须由目标板配置决定。
+
+.. code-block:: c
+
+   het_gpio_handle_t gpio = het_gpio_def_cfg();
+   gpio.pin = HET_GPIO_PIN_PE10;
+   gpio.mode = HET_GPIO_MODE_OUTPUT;
+   gpio.default_level = 0;
+   int ret = het_gpio_init(&gpio);
+   if (ret < 0) return ret;
+   return het_gpio_write(gpio.pin, 1);
+
+输入模式还需配置 ``pull``、``irq_trigger``，注册回调后再使能中断。回调内只读取状态和投递事件。
+API 见 :doc:`../api/peripherals/gpio`。

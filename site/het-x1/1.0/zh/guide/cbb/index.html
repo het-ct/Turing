@@ -1,0 +1,292 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CBB 能力组件 &mdash; Turing SDK开发手册 1.0</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=e891653f" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=f115507d"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/translations.js?v=beaddf03"></script>
+      <script src="../../_static/language-switch.js?v=a682b188"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="音频算法库" href="audio-algo.html" />
+    <link rel="prev" title="OTA 升级" href="../developer-guide/ota.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Turing SDK开发手册
+              <img src="../../_static/het_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div class="sdk-doc-selectors"><label class="sdk-chip-switch sdk-navigation-select"><span class="fa fa-cube" aria-hidden="true"></span><span class="sr-only">选择芯片</span><select aria-label="选择芯片"><option value="../../../../../het-x1/1.0/zh/guide/cbb/index.html" selected>HET-X1</option></select></label><label class="sdk-version-switch sdk-navigation-select"><span class="fa fa-code-fork" aria-hidden="true"></span><span class="sr-only">选择版本</span><select aria-label="选择版本"><option value="../../../../2.0/zh/guide/cbb/index.html">v2.0</option><option value="../../../../1.0/zh/guide/cbb/index.html" selected>v1.0</option></select></label></div><div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">文档目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quick-start/index.html">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/index.html">开始使用</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../developer-guide/index.html">开发者指南</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/architecture.html">软件架构与分层</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/security.html">系统安全</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/board-config.html">板级配置 config.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/memory.html">内存与存储管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/hal.html">HAL 外设</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/drivers.html">驱动与 BSP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/middleware.html">中间件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/cbb.html">CBB 能力组件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/ui-widgets.html">UI 控件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/ui-effects.html">UI 特效</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/os.html">OS 与任务模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/power-management.html">低功耗与电源管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer-guide/ota.html">OTA 升级</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">CBB 能力组件</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">目录</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="audio-algo.html">音频算法库</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bt-comm.html">蓝牙通讯库</a></li>
+<li class="toctree-l4"><a class="reference internal" href="canopen-comm.html">CANOpen 通讯库</a></li>
+<li class="toctree-l4"><a class="reference internal" href="imu-algo.html">IMU 运动算法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ir-comm.html">IR 通讯库</a></li>
+<li class="toctree-l4"><a class="reference internal" href="li-charger.html">Li-Charger</a></li>
+<li class="toctree-l4"><a class="reference internal" href="log-mgmt.html">日志管理</a></li>
+<li class="toctree-l4"><a class="reference internal" href="modbus-comm.html">Modbus 通讯库</a></li>
+<li class="toctree-l4"><a class="reference internal" href="motor-algo.html">电机算法库</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rgb-light.html">RGB 彩灯</a></li>
+<li class="toctree-l4"><a class="reference internal" href="secure-storage.html">安全存储库</a></li>
+<li class="toctree-l4"><a class="reference internal" href="usb-comm.html">USB 通讯库</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vision-algo.html">视觉算法库</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wifi-comm.html">WIFI 通讯库</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../widgets/index.html">UI 组件</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API 参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../demo-projects/index.html">演示工程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">硬件平台</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">支持与参考</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Turing SDK开发手册</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../developer-guide/index.html">开发者指南</a></li>
+      <li class="breadcrumb-item active">CBB 能力组件</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  <li class="sdk-toolbar-actions"><label class="sdk-language-switch sdk-navigation-select"><span class="fa fa-globe" aria-hidden="true"></span><span class="sr-only">切换语言</span><select aria-label="切换语言"><option value="../../../en/guide/cbb/index.html">English</option><option value="../../../zh/guide/cbb/index.html" selected>简体中文</option></select></label></li></ul>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cbb">
+<h1>CBB 能力组件<a class="headerlink" href="#cbb" title="Link to this heading"></a></h1>
+<p>复用通信协议、算法和系统服务。</p>
+<section id="id1">
+<h2>目录<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="audio-algo.html">音频算法库</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="audio-algo.html#id2">概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="audio-algo.html#id3">核心能力</a></li>
+<li class="toctree-l2"><a class="reference internal" href="audio-algo.html#id4">使用方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="audio-algo.html#id5">使用示例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="audio-algo.html#api">API 说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="audio-algo.html#id6">注意事项</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="bt-comm.html">蓝牙通讯库</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="bt-comm.html#id2">概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bt-comm.html#id3">核心能力</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bt-comm.html#id4">使用方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bt-comm.html#id5">使用示例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bt-comm.html#api">API 说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bt-comm.html#id6">注意事项</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="canopen-comm.html">CANOpen 通讯库</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="canopen-comm.html#id1">概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="canopen-comm.html#id2">核心能力</a></li>
+<li class="toctree-l2"><a class="reference internal" href="canopen-comm.html#id3">使用方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="canopen-comm.html#id4">使用示例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="canopen-comm.html#api">API 说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="canopen-comm.html#id5">注意事项</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="imu-algo.html">IMU 运动算法</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="imu-algo.html#id1">概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="imu-algo.html#id2">核心能力</a></li>
+<li class="toctree-l2"><a class="reference internal" href="imu-algo.html#id3">使用方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="imu-algo.html#id4">使用示例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="imu-algo.html#api">API 说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="imu-algo.html#id5">注意事项</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ir-comm.html">IR 通讯库</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ir-comm.html#id1">概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ir-comm.html#id2">核心能力</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ir-comm.html#id3">使用方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ir-comm.html#id4">使用示例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ir-comm.html#api">API 说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ir-comm.html#id5">注意事项</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="li-charger.html">Li-Charger</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="li-charger.html#id1">概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="li-charger.html#id2">核心能力</a></li>
+<li class="toctree-l2"><a class="reference internal" href="li-charger.html#id3">使用方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="li-charger.html#id4">使用示例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="li-charger.html#api">API 说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="li-charger.html#id5">注意事项</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="log-mgmt.html">日志管理</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="log-mgmt.html#id2">概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="log-mgmt.html#id3">核心能力</a></li>
+<li class="toctree-l2"><a class="reference internal" href="log-mgmt.html#id4">使用方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="log-mgmt.html#id5">使用示例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="log-mgmt.html#api">API 说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="log-mgmt.html#id6">注意事项</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modbus-comm.html">Modbus 通讯库</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modbus-comm.html#id1">概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modbus-comm.html#id2">核心能力</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modbus-comm.html#id3">使用方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modbus-comm.html#id4">使用示例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modbus-comm.html#api">API 说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modbus-comm.html#id5">注意事项</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="motor-algo.html">电机算法库</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="motor-algo.html#id2">概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="motor-algo.html#id3">核心能力</a></li>
+<li class="toctree-l2"><a class="reference internal" href="motor-algo.html#id4">使用方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="motor-algo.html#id5">使用示例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="motor-algo.html#api">API 说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="motor-algo.html#id6">注意事项</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rgb-light.html">RGB 彩灯</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rgb-light.html#id1">概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rgb-light.html#id2">核心能力</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rgb-light.html#id3">使用方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rgb-light.html#id4">使用示例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rgb-light.html#api">API 说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rgb-light.html#id5">注意事项</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="secure-storage.html">安全存储库</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="secure-storage.html#id2">概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="secure-storage.html#id3">核心能力</a></li>
+<li class="toctree-l2"><a class="reference internal" href="secure-storage.html#id4">使用方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="secure-storage.html#id5">使用示例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="secure-storage.html#api">API 说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="secure-storage.html#id6">注意事项</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="usb-comm.html">USB 通讯库</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="usb-comm.html#id1">概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usb-comm.html#id2">核心能力</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usb-comm.html#id3">使用方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usb-comm.html#id4">使用示例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usb-comm.html#api">API 说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usb-comm.html#id5">注意事项</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="vision-algo.html">视觉算法库</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="vision-algo.html#id2">概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vision-algo.html#id3">核心能力</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vision-algo.html#id4">使用方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vision-algo.html#id5">使用示例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vision-algo.html#api">API 说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vision-algo.html#id6">注意事项</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="wifi-comm.html">WIFI 通讯库</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="wifi-comm.html#id1">概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wifi-comm.html#id2">核心能力</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wifi-comm.html#id3">使用方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wifi-comm.html#id4">使用示例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wifi-comm.html#api">API 说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wifi-comm.html#id5">注意事项</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="../developer-guide/ota.html" class="btn btn-neutral float-left" title="OTA 升级" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="audio-algo.html" class="btn btn-neutral float-right" title="音频算法库" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 。
+      <span class="lastupdated">最后更新于 2026-09-18.
+      </span></p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

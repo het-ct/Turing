@@ -1,0 +1,545 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Service API &mdash; Turing SDK Development Manual 2.0</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=e891653f" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=60dbed4a"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/language-switch.js?v=a682b188"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Example" href="../examples/index.html" />
+    <link rel="prev" title="UI API" href="ui.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Turing SDK Development Manual
+              <img src="../../_static/het_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div class="sdk-doc-selectors"><label class="sdk-chip-switch sdk-navigation-select"><span class="fa fa-cube" aria-hidden="true"></span><span class="sr-only">Select chip</span><select aria-label="Select chip"><option value="../../../../../het-x1/2.0/en/guide/api/services.html" selected>HET-X1</option></select></label><label class="sdk-version-switch sdk-navigation-select"><span class="fa fa-code-fork" aria-hidden="true"></span><span class="sr-only">Select version</span><select aria-label="Select version"><option value="../../../../2.0/en/guide/api/services.html" selected>v2.0</option><option value="../../../../1.0/en/guide/api/services.html">v1.0</option></select></label></div><div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Document directory</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quick-start/index.html">quick start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/index.html">Get started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer-guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#id1">Table of contents</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="peripherals/index.html">Peripheral HAL (on-chip and on-chip peripherals)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="middleware.html">Middleware API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cbb.html">CBB API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ui.html">UI API</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Service API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Audio playback statement</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ui">UI form declaration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ota">OTA Statement</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../demo-projects/index.html">Demonstration project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">Hardware platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">tool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Support and Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Turing SDK Development Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">API reference</a></li>
+      <li class="breadcrumb-item active">Service API</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  <li class="sdk-toolbar-actions"><label class="sdk-language-switch sdk-navigation-select"><span class="fa fa-globe" aria-hidden="true"></span><span class="sr-only">Switch language</span><select aria-label="Switch language"><option value="../../../en/guide/api/services.html" selected>English</option><option value="../../../zh/guide/api/services.html">简体中文</option></select></label></li></ul>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="api">
+<h1>Service API<a class="headerlink" href="#api" title="Link to this heading"></a></h1>
+<p>This section only introduces the public services in <code class="docutils literal notranslate"><span class="pre">platform/services</span></code> that use the <code class="docutils literal notranslate"><span class="pre">het</span></code> prefix. Services usually span multiple HALs and middleware and should be initialized uniformly by the product application and should not be started implicitly by a single control in an event callback.</p>
+<table class="docutils align-default" id="id2">
+<caption><span class="caption-text">Current service entrance</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 24.0%" />
+<col style="width: 42.0%" />
+<col style="width: 34.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Serve</p></th>
+<th class="head"><p>Code entry</p></th>
+<th class="head"><p>state</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>audio playback</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">services/audio/het_audio_play.h</span></code></p></td>
+<td><p>Already have examples</p></td>
+</tr>
+<tr class="row-odd"><td><p>Bluetooth/OTA</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">services/BT/ble/het_ota.h</span></code></p></td>
+<td><p>Need to be verified in conjunction with the target project</p></td>
+</tr>
+<tr class="row-even"><td><p>UI form</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">services/UI/form/het_api_form.h</span></code></p></td>
+<td><p>Incorporated into Doxygen</p></td>
+</tr>
+</tbody>
+</table>
+<p>Audio playback and UI forms for <code class="docutils literal notranslate"><span class="pre">het*.h</span></code> have been incorporated into Doxygen. TinyML internal interfaces and non-<code class="docutils literal notranslate"><span class="pre">het</span></code> compatible interfaces are not scanned.</p>
+<section id="id1">
+<h2>Audio playback statement<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_audio_init">
+<span class="target" id="het__audio__play_8h_1a1f2a3c5aac853e79eedddeee85ee77e8"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_audio_init</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.het_audio_id_t" title="het_audio_id_t"><span class="n"><span class="pre">het_audio_id_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">id</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">het_audio_config_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">config</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_audio_init" title="Link to this definition"></a><br /></dt>
+<dd><p>初始化音频播放设备。 </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>DAC 硬件配置必须在首次使用 DAC 前完成。 </p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> – <strong>[in]</strong> 音频设备 ID。 </p></li>
+<li><p><strong>config</strong> – <strong>[in]</strong> 初始化配置；传入 NULL 时使用模块默认配置。 </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>HET_OK 初始化成功；其他值为 het_err_t 错误码。 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_audio_play">
+<span class="target" id="het__audio__play_8h_1a783943170bb2812382f136d4fd139903"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_audio_play</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.het_audio_id_t" title="het_audio_id_t"><span class="n"><span class="pre">het_audio_id_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">id</span></span>, <a class="reference internal" href="#c.het_audio_type_t" title="het_audio_type_t"><span class="n"><span class="pre">het_audio_type_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">type</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n"><span class="pre">addr</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span>, <a class="reference internal" href="#c.het_audio_mode_t" title="het_audio_mode_t"><span class="n"><span class="pre">het_audio_mode_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mode</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_audio_play" title="Link to this definition"></a><br /></dt>
+<dd><p>播放 Flash 中的 MP3 或 WAV 音频资源。 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> – <strong>[in]</strong> 音频设备 ID。 </p></li>
+<li><p><strong>type</strong> – <strong>[in]</strong> 音频资源类型。 </p></li>
+<li><p><strong>addr</strong> – <strong>[in]</strong> 音频资源的 Flash 地址。 </p></li>
+<li><p><strong>len</strong> – <strong>[in]</strong> 音频资源长度，单位为字节。 </p></li>
+<li><p><strong>mode</strong> – <strong>[in]</strong> 阻塞或异步播放模式。 </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>HET_OK 播放启动成功；其他值为 het_err_t 错误码。 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_audio_stop">
+<span class="target" id="het__audio__play_8h_1afa1d29bfd469e7bf89f88fc43c2e4415"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_audio_stop</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.het_audio_id_t" title="het_audio_id_t"><span class="n"><span class="pre">het_audio_id_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">id</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_audio_stop" title="Link to this definition"></a><br /></dt>
+<dd><p>停止音频资源播放。 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> – <strong>[in]</strong> 音频设备 ID。 </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>HET_OK 停止成功；其他值为 het_err_t 错误码。 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_audio_process">
+<span class="target" id="het__audio__play_8h_1a2a2f52e39844a5aa11f8d6695b174a2a"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_audio_process</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.het_audio_id_t" title="het_audio_id_t"><span class="n"><span class="pre">het_audio_id_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">id</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_audio_process" title="Link to this definition"></a><br /></dt>
+<dd><p>处理异步音频播放任务。 </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>异步播放期间应在主循环中周期调用本接口。 </p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> – <strong>[in]</strong> 音频设备 ID。 </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>HET_OK 处理成功；其他值为 het_err_t 错误码。 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_audio_is_playing">
+<span class="target" id="het__audio__play_8h_1a8566937da7b267d429ceadceecf0aab9"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_audio_is_playing</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.het_audio_id_t" title="het_audio_id_t"><span class="n"><span class="pre">het_audio_id_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">id</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">playing</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_audio_is_playing" title="Link to this definition"></a><br /></dt>
+<dd><p>查询音频资源是否正在播放。 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> – <strong>[in]</strong> 音频设备 ID。 </p></li>
+<li><p><strong>playing</strong> – <strong>[out]</strong> 返回播放状态，true 表示正在播放。 </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>HET_OK 查询成功；其他值为 het_err_t 错误码。 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_audio_play_block">
+<span class="target" id="het__audio__play_8h_1a7e418ef64237d6334ad850d6fbfb79f9"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_audio_play_block</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.het_audio_id_t" title="het_audio_id_t"><span class="n"><span class="pre">het_audio_id_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">id</span></span>, <a class="reference internal" href="#c.het_audio_type_t" title="het_audio_type_t"><span class="n"><span class="pre">het_audio_type_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">type</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n"><span class="pre">addr</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_audio_play_block" title="Link to this definition"></a><br /></dt>
+<dd><p>阻塞播放 MP3 或 WAV 音频资源。 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> – <strong>[in]</strong> 音频设备 ID。 </p></li>
+<li><p><strong>type</strong> – <strong>[in]</strong> 音频资源类型。 </p></li>
+<li><p><strong>addr</strong> – <strong>[in]</strong> 音频资源的 Flash 地址。 </p></li>
+<li><p><strong>len</strong> – <strong>[in]</strong> 音频资源长度，单位为字节。 </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>HET_OK 播放完成；其他值为 het_err_t 错误码。 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_player_set_volume">
+<span class="target" id="het__audio__play_8h_1a5c8df714e52a73bba030b7df5e03b036"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_player_set_volume</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.het_audio_id_t" title="het_audio_id_t"><span class="n"><span class="pre">het_audio_id_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">id</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n"><span class="pre">volume</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_player_set_volume" title="Link to this definition"></a><br /></dt>
+<dd><p>设置音频播放音量。 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> – <strong>[in]</strong> 音频设备 ID。 </p></li>
+<li><p><strong>volume</strong> – <strong>[in]</strong> 音量，范围 0~100。 </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>HET_OK 设置成功；其他值为 het_err_t 错误码。 </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-enums">Enums</p>
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.het_audio_id_t">
+<span class="target" id="het__audio__play_8h_1afecb55dc374f3a7b9e828a2fc84f693a"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_audio_id_t</span></span></span><a class="headerlink" href="#c.het_audio_id_t" title="Link to this definition"></a><br /></dt>
+<dd><p>音频播放设备 ID。 </p>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.het_audio_id_t.HET_AUDIO_ID_0">
+<span class="target" id="het__audio__play_8h_1afecb55dc374f3a7b9e828a2fc84f693aa9f24a0f838ae714ba015af5b95e33193"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HET_AUDIO_ID_0</span></span></span><a class="headerlink" href="#c.het_audio_id_t.HET_AUDIO_ID_0" title="Link to this definition"></a><br /></dt>
+<dd><p>片上 DAC 音频设备。 </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.het_audio_id_t.HET_AUDIO_ID_MAX">
+<span class="target" id="het__audio__play_8h_1afecb55dc374f3a7b9e828a2fc84f693aadfc940b88876edbcb659b81ddd72856f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HET_AUDIO_ID_MAX</span></span></span><a class="headerlink" href="#c.het_audio_id_t.HET_AUDIO_ID_MAX" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.het_audio_type_t">
+<span class="target" id="het__audio__play_8h_1a5c3609d74d35221fefeb14abda3f5fd4"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_audio_type_t</span></span></span><a class="headerlink" href="#c.het_audio_type_t" title="Link to this definition"></a><br /></dt>
+<dd><p>音频资源类型。 </p>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.het_audio_type_t.HET_AUDIO_TYPE_MP3">
+<span class="target" id="het__audio__play_8h_1a5c3609d74d35221fefeb14abda3f5fd4a9802bd79975d24e25b98237fda693043"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HET_AUDIO_TYPE_MP3</span></span></span><a class="headerlink" href="#c.het_audio_type_t.HET_AUDIO_TYPE_MP3" title="Link to this definition"></a><br /></dt>
+<dd><p>MP3 音频资源。 </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.het_audio_type_t.HET_AUDIO_TYPE_WAV">
+<span class="target" id="het__audio__play_8h_1a5c3609d74d35221fefeb14abda3f5fd4a020f3d6afb9084218a1ae0ddd6565dae"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HET_AUDIO_TYPE_WAV</span></span></span><a class="headerlink" href="#c.het_audio_type_t.HET_AUDIO_TYPE_WAV" title="Link to this definition"></a><br /></dt>
+<dd><p>WAV 音频资源。 </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.het_audio_type_t.HET_AUDIO_TYPE_MAX">
+<span class="target" id="het__audio__play_8h_1a5c3609d74d35221fefeb14abda3f5fd4a15d0de010fb0a727ae59c425c1c154c2"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HET_AUDIO_TYPE_MAX</span></span></span><a class="headerlink" href="#c.het_audio_type_t.HET_AUDIO_TYPE_MAX" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.het_audio_mode_t">
+<span class="target" id="het__audio__play_8h_1affa49c35bafc063df23e9e7fbf3caf7f"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_audio_mode_t</span></span></span><a class="headerlink" href="#c.het_audio_mode_t" title="Link to this definition"></a><br /></dt>
+<dd><p>音频播放模式。 </p>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.het_audio_mode_t.HET_AUDIO_PLAY_BLOCK">
+<span class="target" id="het__audio__play_8h_1affa49c35bafc063df23e9e7fbf3caf7fa78f97d9f7eb3df5ca75c107e315d65a9"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HET_AUDIO_PLAY_BLOCK</span></span></span><a class="headerlink" href="#c.het_audio_mode_t.HET_AUDIO_PLAY_BLOCK" title="Link to this definition"></a><br /></dt>
+<dd><p>阻塞播放，播放结束后返回。 </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.het_audio_mode_t.HET_AUDIO_PLAY_ASYNC">
+<span class="target" id="het__audio__play_8h_1affa49c35bafc063df23e9e7fbf3caf7faeef4ed5d140df374c233504d52c443c6"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HET_AUDIO_PLAY_ASYNC</span></span></span><a class="headerlink" href="#c.het_audio_mode_t.HET_AUDIO_PLAY_ASYNC" title="Link to this definition"></a><br /></dt>
+<dd><p>异步播放，需要周期调用 het_audio_process()。 </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.het_audio_mode_t.HET_AUDIO_PLAY_MODE_MAX">
+<span class="target" id="het__audio__play_8h_1affa49c35bafc063df23e9e7fbf3caf7fa69ee05c185c1ab2b7b1670ec62437fda"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HET_AUDIO_PLAY_MODE_MAX</span></span></span><a class="headerlink" href="#c.het_audio_mode_t.HET_AUDIO_PLAY_MODE_MAX" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.het_audio_dac_channel_t">
+<span class="target" id="het__audio__play_8h_1a7e42e25d34c670d9b417cae44879d864"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_audio_dac_channel_t</span></span></span><a class="headerlink" href="#c.het_audio_dac_channel_t" title="Link to this definition"></a><br /></dt>
+<dd><p>DAC 声道模式。 </p>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.het_audio_dac_channel_t.HET_AUDIO_DAC_STEREO">
+<span class="target" id="het__audio__play_8h_1a7e42e25d34c670d9b417cae44879d864a18c9876ce6f438d2c174a687969c2423"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HET_AUDIO_DAC_STEREO</span></span></span><a class="headerlink" href="#c.het_audio_dac_channel_t.HET_AUDIO_DAC_STEREO" title="Link to this definition"></a><br /></dt>
+<dd><p>单端双声道。 </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.het_audio_dac_channel_t.HET_AUDIO_DAC_MONO">
+<span class="target" id="het__audio__play_8h_1a7e42e25d34c670d9b417cae44879d864a3bbec48a4b032c15cd968fc6d872c0f9"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HET_AUDIO_DAC_MONO</span></span></span><a class="headerlink" href="#c.het_audio_dac_channel_t.HET_AUDIO_DAC_MONO" title="Link to this definition"></a><br /></dt>
+<dd><p>单端单声道。 </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.het_audio_dac_channel_t.HET_AUDIO_DAC_CHANNEL_MAX">
+<span class="target" id="het__audio__play_8h_1a7e42e25d34c670d9b417cae44879d864aad525b6d790235c98f7f5bf45f3f0567"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HET_AUDIO_DAC_CHANNEL_MAX</span></span></span><a class="headerlink" href="#c.het_audio_dac_channel_t.HET_AUDIO_DAC_CHANNEL_MAX" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.het_audio_dac_ldo_t">
+<span class="target" id="het__audio__play_8h_1a19a335d062b36ed85b24f1842a1cfa0e"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_audio_dac_ldo_t</span></span></span><a class="headerlink" href="#c.het_audio_dac_ldo_t" title="Link to this definition"></a><br /></dt>
+<dd><p>VDDDAC 电压选择。 </p>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.het_audio_dac_ldo_t.HET_AUDIO_DAC_LDO_2V5">
+<span class="target" id="het__audio__play_8h_1a19a335d062b36ed85b24f1842a1cfa0ea4eb801243330225b4901e8aa3c6b1645"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HET_AUDIO_DAC_LDO_2V5</span></span></span><a class="headerlink" href="#c.het_audio_dac_ldo_t.HET_AUDIO_DAC_LDO_2V5" title="Link to this definition"></a><br /></dt>
+<dd><p>2.5 V。 </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.het_audio_dac_ldo_t.HET_AUDIO_DAC_LDO_2V6">
+<span class="target" id="het__audio__play_8h_1a19a335d062b36ed85b24f1842a1cfa0eac45bdd733dfbbec21fc86b3432b9c8ba"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HET_AUDIO_DAC_LDO_2V6</span></span></span><a class="headerlink" href="#c.het_audio_dac_ldo_t.HET_AUDIO_DAC_LDO_2V6" title="Link to this definition"></a><br /></dt>
+<dd><p>2.6 V。 </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.het_audio_dac_ldo_t.HET_AUDIO_DAC_LDO_2V7">
+<span class="target" id="het__audio__play_8h_1a19a335d062b36ed85b24f1842a1cfa0eab7702b13e150b2be31c85bede4a030ba"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HET_AUDIO_DAC_LDO_2V7</span></span></span><a class="headerlink" href="#c.het_audio_dac_ldo_t.HET_AUDIO_DAC_LDO_2V7" title="Link to this definition"></a><br /></dt>
+<dd><p>2.7 V。 </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.het_audio_dac_ldo_t.HET_AUDIO_DAC_LDO_2V8">
+<span class="target" id="het__audio__play_8h_1a19a335d062b36ed85b24f1842a1cfa0ead838c197420439a595c44e7eb184eede"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HET_AUDIO_DAC_LDO_2V8</span></span></span><a class="headerlink" href="#c.het_audio_dac_ldo_t.HET_AUDIO_DAC_LDO_2V8" title="Link to this definition"></a><br /></dt>
+<dd><p>2.8 V。 </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.het_audio_dac_ldo_t.HET_AUDIO_DAC_LDO_2V9">
+<span class="target" id="het__audio__play_8h_1a19a335d062b36ed85b24f1842a1cfa0ea1127b95e578389cb1991ba42f2142584"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HET_AUDIO_DAC_LDO_2V9</span></span></span><a class="headerlink" href="#c.het_audio_dac_ldo_t.HET_AUDIO_DAC_LDO_2V9" title="Link to this definition"></a><br /></dt>
+<dd><p>2.9 V。 </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.het_audio_dac_ldo_t.HET_AUDIO_DAC_LDO_3V0">
+<span class="target" id="het__audio__play_8h_1a19a335d062b36ed85b24f1842a1cfa0ead2575834ffba57389aeea62ecfb1a726"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HET_AUDIO_DAC_LDO_3V0</span></span></span><a class="headerlink" href="#c.het_audio_dac_ldo_t.HET_AUDIO_DAC_LDO_3V0" title="Link to this definition"></a><br /></dt>
+<dd><p>3.0 V。 </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.het_audio_dac_ldo_t.HET_AUDIO_DAC_LDO_3V1">
+<span class="target" id="het__audio__play_8h_1a19a335d062b36ed85b24f1842a1cfa0ea926aefb0b7bf00bd08f3f3e6b2557479"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HET_AUDIO_DAC_LDO_3V1</span></span></span><a class="headerlink" href="#c.het_audio_dac_ldo_t.HET_AUDIO_DAC_LDO_3V1" title="Link to this definition"></a><br /></dt>
+<dd><p>3.1 V。 </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.het_audio_dac_ldo_t.HET_AUDIO_DAC_LDO_3V2">
+<span class="target" id="het__audio__play_8h_1a19a335d062b36ed85b24f1842a1cfa0ea76ab5ec32daf575d23d77754112d5739"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HET_AUDIO_DAC_LDO_3V2</span></span></span><a class="headerlink" href="#c.het_audio_dac_ldo_t.HET_AUDIO_DAC_LDO_3V2" title="Link to this definition"></a><br /></dt>
+<dd><p>3.2 V。 </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.het_audio_dac_ldo_t.HET_AUDIO_DAC_LDO_MAX">
+<span class="target" id="het__audio__play_8h_1a19a335d062b36ed85b24f1842a1cfa0ead0b73006f88e611b7a4af2d07fc7dca6"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HET_AUDIO_DAC_LDO_MAX</span></span></span><a class="headerlink" href="#c.het_audio_dac_ldo_t.HET_AUDIO_DAC_LDO_MAX" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.het_audio_dac_bypass_t">
+<span class="target" id="het__audio__play_8h_1a0077e54010a68395247c50e58ee594a3"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_audio_dac_bypass_t</span></span></span><a class="headerlink" href="#c.het_audio_dac_bypass_t" title="Link to this definition"></a><br /></dt>
+<dd><p>VDDDAC 旁路模式。 </p>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.het_audio_dac_bypass_t.HET_AUDIO_DAC_BYPASS_DISABLE">
+<span class="target" id="het__audio__play_8h_1a0077e54010a68395247c50e58ee594a3a020d1edadf54c12337a2423f96257194"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HET_AUDIO_DAC_BYPASS_DISABLE</span></span></span><a class="headerlink" href="#c.het_audio_dac_bypass_t.HET_AUDIO_DAC_BYPASS_DISABLE" title="Link to this definition"></a><br /></dt>
+<dd><p>禁用省 VDDDAC 方案。 </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.het_audio_dac_bypass_t.HET_AUDIO_DAC_BYPASS_ENABLE">
+<span class="target" id="het__audio__play_8h_1a0077e54010a68395247c50e58ee594a3a7f778fa098319dfd0aff14fbc65dbf68"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HET_AUDIO_DAC_BYPASS_ENABLE</span></span></span><a class="headerlink" href="#c.het_audio_dac_bypass_t.HET_AUDIO_DAC_BYPASS_ENABLE" title="Link to this definition"></a><br /></dt>
+<dd><p>启用省 VDDDAC 方案。 </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.het_audio_dac_bypass_t.HET_AUDIO_DAC_BYPASS_MAX">
+<span class="target" id="het__audio__play_8h_1a0077e54010a68395247c50e58ee594a3a1df03c28fb28053ea1771993a13c6d56"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HET_AUDIO_DAC_BYPASS_MAX</span></span></span><a class="headerlink" href="#c.het_audio_dac_bypass_t.HET_AUDIO_DAC_BYPASS_MAX" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="c enum">
+<dt class="sig sig-object c" id="c.het_audio_dac_gain_t">
+<span class="target" id="het__audio__play_8h_1a401a17db6273ca9d97c60467ea4abcc4"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_audio_dac_gain_t</span></span></span><a class="headerlink" href="#c.het_audio_dac_gain_t" title="Link to this definition"></a><br /></dt>
+<dd><p>DAC 最大模拟增益。 </p>
+<p><em>Values:</em></p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.het_audio_dac_gain_t.HET_AUDIO_DAC_GAIN_0DB">
+<span class="target" id="het__audio__play_8h_1a401a17db6273ca9d97c60467ea4abcc4aef6d3852632bb2d8f73443686617f939"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HET_AUDIO_DAC_GAIN_0DB</span></span></span><a class="headerlink" href="#c.het_audio_dac_gain_t.HET_AUDIO_DAC_GAIN_0DB" title="Link to this definition"></a><br /></dt>
+<dd><p>0 dB。 </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.het_audio_dac_gain_t.HET_AUDIO_DAC_GAIN_N1DB">
+<span class="target" id="het__audio__play_8h_1a401a17db6273ca9d97c60467ea4abcc4a6cd7609ad17c12798f1b75c0f7352ad0"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HET_AUDIO_DAC_GAIN_N1DB</span></span></span><a class="headerlink" href="#c.het_audio_dac_gain_t.HET_AUDIO_DAC_GAIN_N1DB" title="Link to this definition"></a><br /></dt>
+<dd><p>-1 dB。 </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.het_audio_dac_gain_t.HET_AUDIO_DAC_GAIN_N2DB">
+<span class="target" id="het__audio__play_8h_1a401a17db6273ca9d97c60467ea4abcc4a47a92f657db37ef30a0af4ca9d7ea2de"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HET_AUDIO_DAC_GAIN_N2DB</span></span></span><a class="headerlink" href="#c.het_audio_dac_gain_t.HET_AUDIO_DAC_GAIN_N2DB" title="Link to this definition"></a><br /></dt>
+<dd><p>-2 dB。 </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.het_audio_dac_gain_t.HET_AUDIO_DAC_GAIN_N3DB">
+<span class="target" id="het__audio__play_8h_1a401a17db6273ca9d97c60467ea4abcc4a73025c90f9ed1ef2e456fde0c1786c7a"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HET_AUDIO_DAC_GAIN_N3DB</span></span></span><a class="headerlink" href="#c.het_audio_dac_gain_t.HET_AUDIO_DAC_GAIN_N3DB" title="Link to this definition"></a><br /></dt>
+<dd><p>-3 dB。 </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.het_audio_dac_gain_t.HET_AUDIO_DAC_GAIN_N4DB">
+<span class="target" id="het__audio__play_8h_1a401a17db6273ca9d97c60467ea4abcc4aeed9c342726003e268a9116f35d2e1be"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HET_AUDIO_DAC_GAIN_N4DB</span></span></span><a class="headerlink" href="#c.het_audio_dac_gain_t.HET_AUDIO_DAC_GAIN_N4DB" title="Link to this definition"></a><br /></dt>
+<dd><p>-4 dB。 </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.het_audio_dac_gain_t.HET_AUDIO_DAC_GAIN_N5DB">
+<span class="target" id="het__audio__play_8h_1a401a17db6273ca9d97c60467ea4abcc4a05f1030f4f5b6615005aff7a258ee324"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HET_AUDIO_DAC_GAIN_N5DB</span></span></span><a class="headerlink" href="#c.het_audio_dac_gain_t.HET_AUDIO_DAC_GAIN_N5DB" title="Link to this definition"></a><br /></dt>
+<dd><p>-5 dB。 </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.het_audio_dac_gain_t.HET_AUDIO_DAC_GAIN_N6DB">
+<span class="target" id="het__audio__play_8h_1a401a17db6273ca9d97c60467ea4abcc4ad69e93a1267c2218b31406e6c477249b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HET_AUDIO_DAC_GAIN_N6DB</span></span></span><a class="headerlink" href="#c.het_audio_dac_gain_t.HET_AUDIO_DAC_GAIN_N6DB" title="Link to this definition"></a><br /></dt>
+<dd><p>-6 dB。 </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.het_audio_dac_gain_t.HET_AUDIO_DAC_GAIN_N7DB">
+<span class="target" id="het__audio__play_8h_1a401a17db6273ca9d97c60467ea4abcc4a6209b290201b7c608cff905941f0f2b6"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HET_AUDIO_DAC_GAIN_N7DB</span></span></span><a class="headerlink" href="#c.het_audio_dac_gain_t.HET_AUDIO_DAC_GAIN_N7DB" title="Link to this definition"></a><br /></dt>
+<dd><p>-7 dB。 </p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.het_audio_dac_gain_t.HET_AUDIO_DAC_GAIN_MAX">
+<span class="target" id="het__audio__play_8h_1a401a17db6273ca9d97c60467ea4abcc4a80210cb083d91c5572af0bb410cae807"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HET_AUDIO_DAC_GAIN_MAX</span></span></span><a class="headerlink" href="#c.het_audio_dac_gain_t.HET_AUDIO_DAC_GAIN_MAX" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</section>
+<section id="ui">
+<h2>UI form declaration<a class="headerlink" href="#ui" title="Link to this heading"></a></h2>
+</section>
+<section id="ota">
+<h2>OTA Statement<a class="headerlink" href="#ota" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ui.html" class="btn btn-neutral float-left" title="UI API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../examples/index.html" class="btn btn-neutral float-right" title="Example" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .
+      <span class="lastupdated">Last updated on 2026-09-18.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

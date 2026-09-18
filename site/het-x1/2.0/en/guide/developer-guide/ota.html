@@ -1,0 +1,186 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OTA upgrade &mdash; Turing SDK Development Manual 2.0</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=e891653f" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=60dbed4a"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/language-switch.js?v=a682b188"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="CBB capability components" href="../cbb/index.html" />
+    <link rel="prev" title="Low power consumption and power management" href="power-management.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Turing SDK Development Manual
+              <img src="../../_static/het_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div class="sdk-doc-selectors"><label class="sdk-chip-switch sdk-navigation-select"><span class="fa fa-cube" aria-hidden="true"></span><span class="sr-only">Select chip</span><select aria-label="Select chip"><option value="../../../../../het-x1/2.0/en/guide/developer-guide/ota.html" selected>HET-X1</option></select></label><label class="sdk-version-switch sdk-navigation-select"><span class="fa fa-code-fork" aria-hidden="true"></span><span class="sr-only">Select version</span><select aria-label="Select version"><option value="../../../../2.0/en/guide/developer-guide/ota.html" selected>v2.0</option><option value="../../../../1.0/en/guide/developer-guide/ota.html">v1.0</option></select></label></div><div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Document directory</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quick-start/index.html">quick start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/index.html">Get started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Developer Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="architecture.html">Software architecture and layering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">System security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="board-config.html">Board level configuration config.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html">Memory and storage management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal.html">HAL peripherals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drivers.html">Drivers and BSP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="middleware.html">middleware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cbb.html">CBB capability components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ui-widgets.html">UI controls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ui-effects.html">UI special effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="os.html">OS and task model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="power-management.html">Low power consumption and power management</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">OTA upgrade</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Usage process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Things to note</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#api">Main API</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cbb/index.html">CBB capability components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../widgets/index.html">UI components</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../demo-projects/index.html">Demonstration project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">Hardware platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">tool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Support and Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Turing SDK Development Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Developer Guide</a></li>
+      <li class="breadcrumb-item active">OTA upgrade</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  <li class="sdk-toolbar-actions"><label class="sdk-language-switch sdk-navigation-select"><span class="fa fa-globe" aria-hidden="true"></span><span class="sr-only">Switch language</span><select aria-label="Switch language"><option value="../../../en/guide/developer-guide/ota.html" selected>English</option><option value="../../../zh/guide/developer-guide/ota.html">简体中文</option></select></label></li></ul>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ota">
+<h1>OTA upgrade<a class="headerlink" href="#ota" title="Link to this heading"></a></h1>
+<section id="id1">
+<h2>Overview<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<p>The OTA process defined in the manual is: wireless connection, reading version, initiating upgrade request, sending firmware package, verification and restart. The current interface is named <code class="docutils literal notranslate"><span class="pre">het_ota_*</span></code>, supports writing firmware and resources to Flash/SD card, and completes trial run confirmation according to A/B partition or MCUBOOT SWAP strategy.</p>
+</section>
+<section id="id2">
+<h2>Usage process<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Read the current execution partition and device version.</p></li>
+<li><p>Download to inactive partition, recording offset, length and verification status during transfer.</p></li>
+<li><p>Complete image summary/signature verification and reject packages with mismatched versions, board types, or resources.</p></li>
+<li><p>Set up a temporary execution partition and restart the test run.</p></li>
+<li><p>The new firmware will confirm the partition after passing the startup self-test; if it fails, the old partition will remain bootable.</p></li>
+</ol>
+<img alt="Het-X1 OTA upgrade process" class="manual-figure align-center" src="../../_images/ota-flow.png" />
+</section>
+<section id="id3">
+<h2>Example<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">ota_finish</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">part</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">het_ota_get_current_partition</span><span class="p">();</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">part</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">part</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">het_ota_double_check_for_execution</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">HET_FAIL</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">het_ota_accept_image</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h2>Things to note<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Download interruptions, power outages, insufficient space, verification failures and low battery must be recoverable.</p></li>
+<li><p>The current data annotation does not support version rollback protection, and the A/B partition confirmation cannot be mistaken for hardware rollback prevention.</p></li>
+<li><p>The upgrade package should be bound to the chip/board, firmware, UI resources and configuration version.</p></li>
+<li><p>The mass production upgrader, partition table, signing tool and forced recovery process are <strong>to be developed</strong>.</p></li>
+</ul>
+</section>
+<section id="api">
+<h2>Main API<a class="headerlink" href="#api" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">het_ota_get_current_partition</span></code>, <code class="docutils literal notranslate"><span class="pre">het_ota_register_temp_partition_callback</span></code>, <code class="docutils literal notranslate"><span class="pre">het_ota_confirm_update_partition</span></code>, <code class="docutils literal notranslate"><span class="pre">het_ota_accept_image</span></code>, <code class="docutils literal notranslate"><span class="pre">het_ota_start_download</span></code>, <code class="docutils literal notranslate"><span class="pre">het_ota_double_check_for_execution</span></code>, <code class="docutils literal notranslate"><span class="pre">het_ota_write_flash</span></code> and <code class="docutils literal notranslate"><span class="pre">het_ota_temp_execute_partition</span></code>.</p>
+<p>For interface signature, parameters and return values, see <a class="reference internal" href="../api/services.html"><span class="doc">Service API</span></a>。</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="power-management.html" class="btn btn-neutral float-left" title="Low power consumption and power management" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../cbb/index.html" class="btn btn-neutral float-right" title="CBB capability components" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .
+      <span class="lastupdated">Last updated on 2026-09-18.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

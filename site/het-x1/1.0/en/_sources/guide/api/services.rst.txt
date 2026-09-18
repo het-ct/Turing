@@ -1,0 +1,45 @@
+服务 API
+========
+
+本节只介绍 ``platform/services`` 中采用 ``het`` 前缀的公开服务。服务通常跨越多个 HAL 和
+中间件，应由产品应用统一初始化，不应由单个控件在事件回调中隐式启动。
+
+.. list-table:: 当前服务入口
+   :header-rows: 1
+   :widths: 24 42 34
+
+   * - 服务
+     - 代码入口
+     - 状态
+   * - 音频播放
+     - ``services/audio/het_audio_play.h``
+     - 已有示例
+   * - 蓝牙/OTA
+     - ``services/BT/ble/het_ota.h``
+     - 需结合目标工程验证
+   * - UI 表单
+     - ``services/UI/form/het_api_form.h``
+     - 已纳入 Doxygen
+
+音频播放和 UI 表单的 ``het*.h`` 已纳入 Doxygen。TinyML 内部接口和非 ``het`` 兼容接口不扫描。
+
+音频播放声明
+------------
+
+.. doxygenfile:: het_audio_play.h
+   :project: bt8790
+   :sections: func typedef enum struct
+
+UI 表单声明
+-----------
+
+.. doxygenfile:: het_api_form.h
+   :project: bt8790
+   :sections: func typedef enum struct
+
+OTA 声明
+---------
+
+.. doxygenfile:: het_ota.h
+   :project: bt8790
+   :sections: func typedef enum struct

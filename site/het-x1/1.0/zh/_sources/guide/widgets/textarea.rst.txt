@@ -1,0 +1,326 @@
+.. Generated from platform/docs/pages/gui\textarea.js
+
+het_textarea 文本输入框组件
+===========================
+
+.. container:: module-summary widget-summary
+
+   **UI 组件**
+
+   include/het_textarea.h · src/het_textarea.c
+
+include/het_textarea.h · src/het_textarea.c
+
+类图
+----
+
+生命周期序列图
+--------------
+
+事件拦截过滤
+------------
+
+组件说明
+--------
+
+het_textarea 对齐 LVGL lv_textarea 语义，支持多行/单行输入、光标定位与闪烁、占位符、密码掩码、文本增删改等能力。
+
+能力清单
+--------
+
+参数与选项
+----------
+
+.. list-table::
+   :header-rows: 1
+
+   * - 监听消息
+     - 过滤条件
+     - 结果
+   * - MSG_CTP_CLICK
+     - 触点命中输入框背景（中心命中检测）
+     - 命中：光标移到末尾并消费消息；未命中：透传消息
+
+参数与选项
+----------
+
+.. list-table::
+   :header-rows: 1
+
+   * - 能力
+     - 相关接口
+   * - 文本写入与清空
+     - set_text / add_text / add_char / clear_text
+   * - 删除操作
+     - del_char / del_char_forward
+   * - 光标控制
+     - set_cursor_pos / set_cursor_begin / set_cursor_end
+   * - 光标样式与闪烁
+     - set_cursor_style / set_cursor_blink_time
+   * - 占位符
+     - set_placeholder
+   * - 密码模式
+     - set_password_mode
+   * - 单行模式
+     - set_one_line
+   * - 事件回调
+     - set_slot（VALUE_CHANGED / CLICKED）
+
+API 介绍
+--------
+
+.. rst-class:: api-entry
+
+void \* het_textarea_create(compo_form_t \*frm)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+创建 textarea 组件。
+
+参数：frm 目标表单。
+
+返回：void\* textarea 组件句柄，失败返回 NULL。
+
+.. rst-class:: api-entry
+
+void het_textarea_set_geometry(void \*obj, const rect_t rect)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置位置与大小。
+
+参数：obj textarea 句柄；rect 几何信息。
+
+.. rst-class:: api-entry
+
+void het_textarea_set_font(void \*obj, const uint32_t font)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置字体，建议创建后优先调用。
+
+参数：obj textarea 句柄；font 字体资源 ID。
+
+.. rst-class:: api-entry
+
+void het_textarea_set_text(void \*obj, const char \*txt)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+覆盖设置全文本，光标移动到末尾。
+
+参数：obj textarea 句柄；txt 新文本内容。
+
+.. rst-class:: api-entry
+
+void het_textarea_add_text(void \*obj, const char \*txt)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+在光标处追加字符串（UTF-8）。
+
+参数：obj textarea 句柄；txt 要追加的字符串。
+
+.. rst-class:: api-entry
+
+void het_textarea_add_char(void \*obj, const char c)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+在光标处追加单个 ASCII 字符。
+
+参数：obj textarea 句柄；c 要追加的字符。
+
+.. rst-class:: api-entry
+
+void het_textarea_del_char(void \*obj)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+删除光标左侧一个 UTF-8 字符（退格）。
+
+参数：obj textarea 句柄。
+
+.. rst-class:: api-entry
+
+void het_textarea_del_char_forward(void \*obj)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+删除光标右侧一个 UTF-8 字符（Delete）。
+
+参数：obj textarea 句柄。
+
+.. rst-class:: api-entry
+
+void het_textarea_clear_text(void \*obj)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+清空全部文本并将光标归零。
+
+参数：obj textarea 句柄。
+
+.. rst-class:: api-entry
+
+void het_textarea_set_placeholder(void \*obj, const char \*txt, const uint32_t font, const uint16_t color)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置占位符文本、字体与颜色。
+
+参数：obj textarea 句柄；txt 占位符文本；font 占位符字体；color 占位符颜色。
+
+.. rst-class:: api-entry
+
+void het_textarea_set_password_mode(void \*obj, const bool en)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+开启后文本以 \* 掩码显示。
+
+参数：obj textarea 句柄；en 是否启用密码模式。
+
+.. rst-class:: api-entry
+
+void het_textarea_set_one_line(void \*obj, const bool en)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+开启单行模式后回车输入被忽略。
+
+参数：obj textarea 句柄；en 是否启用单行模式。
+
+.. rst-class:: api-entry
+
+void het_textarea_set_text_color(void \*obj, const uint16_t color)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置文本颜色。
+
+参数：obj textarea 句柄；color 文本颜色（RGB565）。
+
+.. rst-class:: api-entry
+
+void het_textarea_set_bg_color(void \*obj, const het_bg_res_t style)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置背景样式（纯色或背景资源）。
+
+参数：obj textarea 句柄；style 背景样式资源。
+
+.. rst-class:: api-entry
+
+void het_textarea_set_bg_radius(void \*obj, const uint16_t radius)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置输入框背景圆角。
+
+参数：obj textarea 句柄；radius 圆角半径（像素）。
+
+.. rst-class:: api-entry
+
+void het_textarea_set_padding(void \*obj, const het_pad_t padding)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置内边距（文本与背景边缘间距）。
+
+参数：obj textarea 句柄；padding 内边距参数。
+
+.. rst-class:: api-entry
+
+void het_textarea_set_visible(void \*obj, const bool visible)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置控件可见性。
+
+参数：obj textarea 句柄；visible 为 true 显示，false 隐藏。
+
+.. rst-class:: api-entry
+
+void het_textarea_set_cursor_pos(void \*obj, const uint16_t pos)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置光标字节偏移（自动对齐 UTF-8 边界）。
+
+参数：obj textarea 句柄；pos 目标光标字节位置。
+
+.. rst-class:: api-entry
+
+void het_textarea_set_cursor_end(void \*obj)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+将光标移动到文本末尾。
+
+参数：obj textarea 句柄。
+
+.. rst-class:: api-entry
+
+void het_textarea_set_cursor_begin(void \*obj)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+将光标移动到文本开头。
+
+参数：obj textarea 句柄。
+
+.. rst-class:: api-entry
+
+void het_textarea_set_cursor_style(void \*obj, const uint16_t width, const uint16_t height, const uint16_t color)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置光标样式。
+
+参数：obj textarea 句柄；width/height 光标尺寸；color 光标颜色。
+
+.. rst-class:: api-entry
+
+void het_textarea_set_cursor_blink_time(void \*obj, const uint16_t ms)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置光标闪烁半周期，0 表示常亮。
+
+参数：obj textarea 句柄；ms 光标闪烁半周期，单位 ms。
+
+.. rst-class:: api-entry
+
+void het_textarea_set_slot(void \*obj, event_cb cb, void \*user_data)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+注册回调，支持 HET_EVENT_VALUE_CHANGED / HET_EVENT_CLICKED。
+
+参数：obj textarea 句柄；cb 回调函数；user_data 用户透传指针。
+
+.. rst-class:: api-entry
+
+const char \* het_textarea_get_text(const void \*obj)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+获取当前文本只读指针。
+
+参数：obj textarea 句柄。
+
+返回：const char\* 当前文本缓冲区只读指针。
+
+.. rst-class:: api-entry
+
+uint16_t het_textarea_get_text_len(const void \*obj)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+获取文本字节长度。
+
+参数：obj textarea 句柄。
+
+返回：uint16_t 当前文本字节长度。
+
+.. rst-class:: api-entry
+
+uint16_t het_textarea_get_cursor_pos(const void \*obj)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+获取当前光标位置。
+
+参数：obj textarea 句柄。
+
+返回：uint16_t 当前光标字节偏移。
+
+使用示例
+--------
+
+.. code-block:: c
+
+   void *ta = het_textarea_create(frm);
+   het_textarea_set_geometry(ta, HET_GEOMETRY(160, 120, 220, 76));
+   het_textarea_set_font(ta, UI_BUF_COFFEE_FONT_ARIAL_11_BIN);
+   het_textarea_set_bg_color(ta, HET_BG_COLOR(32, 38, 52));
+   het_textarea_set_text_color(ta, COLOR_WHITE);
+   het_textarea_set_placeholder(ta, "请输入设备名称", UI_BUF_COFFEE_FONT_ARIAL_11_BIN, make_color(145, 156, 178));
+   het_textarea_set_one_line(ta, true);
+   het_textarea_set_cursor_blink_time(ta, 350);

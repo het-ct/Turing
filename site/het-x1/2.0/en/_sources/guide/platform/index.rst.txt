@@ -1,0 +1,16 @@
+硬件平台
+========
+
+本章整理《图灵平台使用说明书》中的 Het-X1 硬件能力、关键电气参数、资源、封装、核心板和
+参考电路。正式量产以对应芯片批次数据手册、原理图和受控硬件发布包为准。
+
+.. toctree::
+   :maxdepth: 2
+
+   overview
+   electrical-characteristics
+   resources
+   pinout
+   packages-boards
+   hardware-circuits
+   hardware-materials

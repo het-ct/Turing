@@ -1,0 +1,338 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PWM pulse width modulation (het_pwm.h) &mdash; Turing SDK Development Manual 2.0</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=e891653f" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=60dbed4a"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/language-switch.js?v=a682b188"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="QDEC Quadrature Decoder (het_qdec.h)" href="qdec.html" />
+    <link rel="prev" title="LCD display controller (het_lcd.h)" href="lcd.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Turing SDK Development Manual
+              <img src="../../../_static/het_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div class="sdk-doc-selectors"><label class="sdk-chip-switch sdk-navigation-select"><span class="fa fa-cube" aria-hidden="true"></span><span class="sr-only">Select chip</span><select aria-label="Select chip"><option value="../../../../../../het-x1/2.0/en/guide/api/peripherals/pwm.html" selected>HET-X1</option></select></label><label class="sdk-version-switch sdk-navigation-select"><span class="fa fa-code-fork" aria-hidden="true"></span><span class="sr-only">Select version</span><select aria-label="Select version"><option value="../../../../../2.0/en/guide/api/peripherals/pwm.html" selected>v2.0</option><option value="../../../../../1.0/en/guide/api/peripherals/pwm.html">v1.0</option></select></label></div><div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Document directory</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../quick-start/index.html">quick start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started/index.html">Get started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer-guide/index.html">Developer Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">API reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#id1">Table of contents</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Peripheral HAL (on-chip and on-chip peripherals)</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="index.html#id1">HAL layering</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="index.html#id2">On-chip and on-chip peripherals</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../middleware.html">Middleware API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cbb.html">CBB API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ui.html">UI API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../services.html">Service API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo-projects/index.html">Demonstration project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../platform/index.html">Hardware platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/index.html">tool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Support and Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Turing SDK Development Manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">API reference</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Peripheral HAL (on-chip and on-chip peripherals)</a></li>
+      <li class="breadcrumb-item active">PWM pulse width modulation (het_pwm.h)</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  <li class="sdk-toolbar-actions"><label class="sdk-language-switch sdk-navigation-select"><span class="fa fa-globe" aria-hidden="true"></span><span class="sr-only">Switch language</span><select aria-label="Switch language"><option value="../../../../en/guide/api/peripherals/pwm.html" selected>English</option><option value="../../../../zh/guide/api/peripherals/pwm.html">简体中文</option></select></label></li></ul>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="pwm-het-pwm-h">
+<h1>PWM pulse width modulation (het_pwm.h)<a class="headerlink" href="#pwm-het-pwm-h" title="Link to this heading"></a></h1>
+<p>Source file: <code class="docutils literal notranslate"><span class="pre">platform/hal/api/het_pwm.h</span></code></p>
+<section id="id1">
+<h2>Overview<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<p>Timer3/4 of Het-X1 supports dual-channel PWM, and Timer5 supports up to 6 channels of PWM, which can be used for backlight, buzzer, motor and lighting effect control.</p>
+</section>
+<section id="id2">
+<h2>usage<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>The timer channel and pin are selected by board configuration. After initialization, set the frequency and thousandth duty cycle, and then start the output; check the return value when modifying parameters.</p>
+</section>
+<section id="id3">
+<h2>Typical process<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Get the default configuration or prepare board-level configuration.</p></li>
+<li><p>Initialize the peripheral and check the return value.</p></li>
+<li><p>Perform read, write, control, or callback registration operations.</p></li>
+<li><p>Stop the asynchronous source and deinitialize the peripheral.</p></li>
+</ol>
+</section>
+<section id="id4">
+<h2>Example<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">"het_pwm.h"</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">pwm_start_output</span><span class="p">(</span><span class="n">het_pwm_id_t</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">hz</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">duty_permile</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">het_pwm_handle_t</span><span class="w"> </span><span class="n">pwm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">het_pwm_def_cfg</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">het_pwm_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pwm</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ret</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">HET_OK</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">ret</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">het_pwm_set_frequency</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">hz</span><span class="p">))</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">HET_OK</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">ret</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">het_pwm_set_duty</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">duty_permile</span><span class="p">))</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">HET_OK</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">ret</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">het_pwm_start</span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="api">
+<h2>API introduction<a class="headerlink" href="#api" title="Link to this heading"></a></h2>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_pwm_init">
+<span class="target" id="het__pwm_8h_1a2f1fab3ed15014c4ab53136dd4a4913f"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_pwm_init</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">het_pwm_handle_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">p_pwm</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_pwm_init" title="Link to this definition"></a><br /></dt>
+<dd><p>pwm 配置 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p_pwm</strong> – <strong>[in]</strong> : pwm 配置句柄 </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return values<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>HET_OK</strong> – : 操作成功 </p></li>
+<li><p><strong>其他</strong> – : 操作失败 </p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int : 状态码 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_pwm_deinit">
+<span class="target" id="het__pwm_8h_1ab0b2f5c170bf7dbd57cf13a21f494504"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_pwm_deinit</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">het_pwm_id_t</span></span><span class="w"> </span><span class="n"><span class="pre">pwm_id</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_pwm_deinit" title="Link to this definition"></a><br /></dt>
+<dd><p>pwm 复位 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pwm_id</strong> – <strong>[in]</strong> : pwm ID号 </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return values<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>HET_OK</strong> – : 操作成功 </p></li>
+<li><p><strong>其他</strong> – : 操作失败 </p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int : 状态码 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_pwm_start">
+<span class="target" id="het__pwm_8h_1a484adda0760be6eca70eeebbe9b0856b"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_pwm_start</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">het_pwm_id_t</span></span><span class="w"> </span><span class="n"><span class="pre">pwm_id</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_pwm_start" title="Link to this definition"></a><br /></dt>
+<dd><p>pwm 通道控制 (通道号由 pwm_id 内部编码) </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pwm_id</strong> – <strong>[in]</strong> : pwm 引脚 ID (含定时器+通道号) </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return values<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>HET_OK</strong> – : 操作成功 </p></li>
+<li><p><strong>其他</strong> – : 操作失败 </p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int : 状态码 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_pwm_stop">
+<span class="target" id="het__pwm_8h_1afc7861f16d672198f8f20c13dd8bd4f4"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_pwm_stop</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">het_pwm_id_t</span></span><span class="w"> </span><span class="n"><span class="pre">pwm_id</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_pwm_stop" title="Link to this definition"></a><br /></dt>
+<dd><p>pwm 停止 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pwm_id</strong></p></li>
+</ul>
+</dd>
+<dt class="field-even">Return values<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>HET_OK</strong> – : 操作成功 </p></li>
+<li><p><strong>其他</strong> – : 操作失败 </p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int : 状态码 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_pwm_set_duty">
+<span class="target" id="het__pwm_8h_1a303ab4c6e655e96960d6257ee84fd448"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_pwm_set_duty</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">het_pwm_id_t</span></span><span class="w"> </span><span class="n"><span class="pre">pwm_id</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n"><span class="pre">duty_permile</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_pwm_set_duty" title="Link to this definition"></a><br /></dt>
+<dd><p>设置 pwm 占空比 (通道号由 pwm_id 内部编码) </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pwm_id</strong> – <strong>[in]</strong> : pwm 引脚 ID (含定时器+通道号) </p></li>
+<li><p><strong>duty_permile</strong> – <strong>[in]</strong> : 占空比值 (千分比, 0~1000) </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return values<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>HET_OK</strong> – : 操作成功 </p></li>
+<li><p><strong>其他</strong> – : 操作失败 </p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int : 状态码 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_pwm_get_duty">
+<span class="target" id="het__pwm_8h_1aedc99a2b888d94151d2a7dafbd6ecd21"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_pwm_get_duty</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">het_pwm_id_t</span></span><span class="w"> </span><span class="n"><span class="pre">pwm_id</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">p_duty_permile</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_pwm_get_duty" title="Link to this definition"></a><br /></dt>
+<dd><p>获取 pwm 占空比 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pwm_id</strong> – pwm 引脚 ID </p></li>
+<li><p><strong>p_duty_permile</strong> – 指向占空比的指针 (千分比, 0~1000) </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>int </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_pwm_set_frequency">
+<span class="target" id="het__pwm_8h_1ae48bc09a055dff89a37ea25ed85ac057"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_pwm_set_frequency</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">het_pwm_id_t</span></span><span class="w"> </span><span class="n"><span class="pre">pwm_id</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n"><span class="pre">freq_hz</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_pwm_set_frequency" title="Link to this definition"></a><br /></dt>
+<dd><p>设置 pwm 频率 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pwm_id</strong> – <strong>[in]</strong> : pwm ID号 </p></li>
+<li><p><strong>freq_hz</strong> – <strong>[in]</strong> : 频率值 (Hz) </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return values<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>HET_OK</strong> – : 操作成功 </p></li>
+<li><p><strong>其他</strong> – : 操作失败 </p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int : 状态码 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_pwm_def_cfg">
+<span class="target" id="het__pwm_8h_1a33537a27f0783a08e9af3b44ff0ea3ae"></span><span class="n"><span class="pre">het_pwm_handle_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_pwm_def_cfg</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_pwm_def_cfg" title="Link to this definition"></a><br /></dt>
+<dd><p>获取 pwm 默认配置 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>het_pwm_handle_t : pwm 默认配置结构 </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="lcd.html" class="btn btn-neutral float-left" title="LCD display controller (het_lcd.h)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="qdec.html" class="btn btn-neutral float-right" title="QDEC Quadrature Decoder (het_qdec.h)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .
+      <span class="lastupdated">Last updated on 2026-09-18.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,196 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>驱动与 BSP &mdash; Turing SDK开发手册 2.0</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=e891653f" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=8ba3eb92"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/translations.js?v=beaddf03"></script>
+      <script src="../../_static/language-switch.js?v=a682b188"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="中间件" href="middleware.html" />
+    <link rel="prev" title="HAL 外设" href="hal.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Turing SDK开发手册
+              <img src="../../_static/het_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div class="sdk-doc-selectors"><label class="sdk-chip-switch sdk-navigation-select"><span class="fa fa-cube" aria-hidden="true"></span><span class="sr-only">选择芯片</span><select aria-label="选择芯片"><option value="../../../../../het-x1/2.0/zh/guide/developer-guide/drivers.html" selected>HET-X1</option></select></label><label class="sdk-version-switch sdk-navigation-select"><span class="fa fa-code-fork" aria-hidden="true"></span><span class="sr-only">选择版本</span><select aria-label="选择版本"><option value="../../../../2.0/zh/guide/developer-guide/drivers.html" selected>v2.0</option><option value="../../../../1.0/zh/guide/developer-guide/drivers.html">v1.0</option></select></label></div><div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">文档目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quick-start/index.html">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/index.html">开始使用</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">开发者指南</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="architecture.html">软件架构与分层</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">系统安全</a></li>
+<li class="toctree-l2"><a class="reference internal" href="board-config.html">板级配置 config.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html">内存与存储管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal.html">HAL 外设</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">驱动与 BSP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">概述</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">接入流程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">现有驱动</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">驱动使用要点</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">示例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#api">主要 API</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="middleware.html">中间件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cbb.html">CBB 能力组件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ui-widgets.html">UI 控件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ui-effects.html">UI 特效</a></li>
+<li class="toctree-l2"><a class="reference internal" href="os.html">OS 与任务模型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="power-management.html">低功耗与电源管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ota.html">OTA 升级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cbb/index.html">CBB 能力组件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../widgets/index.html">UI 组件</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API 参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../demo-projects/index.html">演示工程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">硬件平台</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">支持与参考</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Turing SDK开发手册</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">开发者指南</a></li>
+      <li class="breadcrumb-item active">驱动与 BSP</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  <li class="sdk-toolbar-actions"><label class="sdk-language-switch sdk-navigation-select"><span class="fa fa-globe" aria-hidden="true"></span><span class="sr-only">切换语言</span><select aria-label="切换语言"><option value="../../../en/guide/developer-guide/drivers.html">English</option><option value="../../../zh/guide/developer-guide/drivers.html" selected>简体中文</option></select></label></li></ul>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="bsp">
+<h1>驱动与 BSP<a class="headerlink" href="#bsp" title="Link to this heading"></a></h1>
+<section id="id1">
+<h2>概述<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">platform/bsp</span></code> 把 HAL 映射为可直接使用的板载器件能力，包括显示、触摸、摄像头、音频、
+传感器、Flash、按键、充电、USB 和网络。驱动必须隔离器件差异，不把产品业务写入总线层。</p>
+</section>
+<section id="id2">
+<h2>接入流程<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>确认器件电源、复位、总线、地址和中断连接。</p></li>
+<li><p>先用 HAL 验证总线读写，再接入器件初始化表。</p></li>
+<li><p>在 BSP 中实现 <code class="docutils literal notranslate"><span class="pre">init/read/write/deinit</span></code> 或现有模块约定的接口。</p></li>
+<li><p>将器件型号和管脚选择放入 <code class="docutils literal notranslate"><span class="pre">config.h</span></code>。</p></li>
+<li><p>验证冷启动、热复位、总线异常、低功耗恢复和长时间运行。</p></li>
+</ol>
+</section>
+<section id="id3">
+<h2>现有驱动<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<p>显示和触摸驱动位于 <code class="docutils literal notranslate"><span class="pre">platform/middlewares/gui/tft</span></code> 与 <code class="docutils literal notranslate"><span class="pre">platform/middlewares/gui/ctp</span></code>；摄像头
+适配位于 <code class="docutils literal notranslate"><span class="pre">platform/bsp/bsp_image_sensor</span></code>；传感器驱动位于 <code class="docutils literal notranslate"><span class="pre">platform/bsp/bsp_sensor</span></code>。</p>
+</section>
+<section id="id4">
+<h2>驱动使用要点<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>显示：先上电/复位，再配置总线和窗口，最后开启背光与刷新。</p></li>
+<li><p>触摸：先确认 IIC 地址、INT/RST，再处理坐标方向和屏幕旋转。</p></li>
+<li><p>摄像头：配置时钟、帧格式和缓冲区，帧处理完成后及时归还 DMA 缓冲。</p></li>
+<li><p>音频：设置采样率、增益和输入输出通道，播放循环中调用处理函数。</p></li>
+<li><p>传感器：先探测设备 ID，再执行校准和周期读取，异常时释放总线。</p></li>
+</ul>
+<p>公共 <code class="docutils literal notranslate"><span class="pre">het</span></code> API 见 <a class="reference internal" href="../api/index.html"><span class="doc">API 参考</span></a>；BSP 的器件专用 <code class="docutils literal notranslate"><span class="pre">bsp_*</span></code> 接口只作为实现细节参考，
+不在 API 参考范围内。</p>
+</section>
+<section id="id5">
+<h2>示例<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">sensor_probe</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="cm">/* 先验证总线，再进入器件初始化，避免吞掉 NACK。 */</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bsp_i2c_init</span><span class="p">();</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ret</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">ret</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">bsp_sensor_init</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="api">
+<h2>主要 API<a class="headerlink" href="#api" title="Link to this heading"></a></h2>
+<p>BSP 尚未形成统一公开 API 清单，当前以各 <code class="docutils literal notranslate"><span class="pre">bsp_*.h</span></code> 为准；稳定的公共头文件、错误模型和
+线程安全说明 <strong>待开发</strong>。</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="hal.html" class="btn btn-neutral float-left" title="HAL 外设" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="middleware.html" class="btn btn-neutral float-right" title="中间件" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 。
+      <span class="lastupdated">最后更新于 2026-09-18.
+      </span></p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+板级配置 config.h
+=================
+
+概述
+----
+
+每个产品工程通过 ``projects/<project>/config.h`` 选择芯片封装、时钟、存储、显示、触摸、通信和
+业务功能。当前可参考 ``projects/watch320/config.h`` 与 ``projects/haier_hmi/config.h``，但
+二者参数不能直接跨板复用。
+
+配置流程
+--------
+
+1. 从目标板原理图记录封装、电源、Flash/PSRAM、显示、触摸和调试串口。
+2. 复制最接近的工程配置，先关闭与目标板无关的功能。
+3. 配置 ``CHIP_PACKAGE_SELECT``、``SYS_CLK_SEL``、``FLASH_*`` 和 ``NOC_PSRAM_*``。
+4. 配置 ``GUI_SELECT``、``CTP_SELECT`` 及对应的复位、中断、背光和总线管脚。
+5. 执行 ``python gen-srclist.py``，检查生成的源码和头文件清单，再全量编译。
+
+配置依赖顺序
+------------
+
+建议按“芯片与时钟 → Flash/PSRAM → 管脚复用 → 显示/触摸 → 通信/音频 → 功能裁剪 → UI 资源”
+的顺序修改。前置配置未确认时不要先打开高层功能，例如 LCD 与触摸的管脚、电源和总线未验证前，
+不要直接启用页面或复杂特效。
+
+``config.h`` 只保存产品选择，不直接放入初始化流程。初始化顺序应在项目入口或对应 BSP 中实现，
+避免因宏开关分散导致同一外设被重复初始化。
+
+常用配置项
+----------
+
+.. list-table:: 配置分组
+   :header-rows: 1
+   :widths: 30 34 36
+
+   * - 配置
+     - 作用
+     - 重点检查
+   * - ``CHIP_PACKAGE_SELECT``
+     - 芯片封装与资源选择
+     - 必须与实物一致
+   * - ``SYS_CLK_SEL``
+     - 系统主频
+     - 性能、功耗和外设时钟
+   * - ``FLASH_CODE_SIZE`` / ``FLASH_UI_*``
+     - 固件和 UI 资源分区
+     - 地址不能重叠并满足擦除对齐
+   * - ``GUI_SELECT`` / ``CTP_SELECT``
+     - 显示和触摸驱动
+     - 型号、分辨率、方向和总线
+   * - ``PORT_*``
+     - 管脚和复用
+     - 与原理图逐项核对
+   * - ``FUNC_*_EN``
+     - 产品功能裁剪
+     - 同步生成源码清单
+
+注意事项
+--------
+
+修改分区前先绘制地址图；修改屏参后同时验证触摸坐标；修改时钟后复测 UART、IIC、SPI、LCD
+和音频采样。配置文件中仍有部分历史注释编码异常，含义不清的选项应向模块负责人确认。
+
+* 修改 ``FUNC_*_EN``、``GUI_USE_*`` 或资源选项后必须重新执行 ``gen-srclist.py``，否则源码清单
+  可能仍引用旧模块。
+* 每次改动记录板卡版本、``config.h`` 的提交、固件版本和测试结果，避免把运行时问题误判为驱动问题。
+
+示例
+----
+
+.. code-block:: c
+
+   #define SYS_CLK_SEL       SYS_192M
+   #define FLASH_SIZE        FSIZE_16M
+   #define GUI_SELECT        GUI_TFT_480_272_ST6201
+   #define CTP_SELECT        CTP_GT911
+   #define UART0_PRINTF_SEL  PRINTF_PB3
+
+完成配置后，按 :doc:`drivers` 核对板载器件的初始化顺序，并在 :doc:`../platform/pinout` 复核管脚定义。

@@ -1,0 +1,300 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DAC 数模转换（het_dac.h） &mdash; Turing SDK开发手册 1.0</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=e891653f" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=f115507d"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/translations.js?v=beaddf03"></script>
+      <script src="../../../_static/language-switch.js?v=a682b188"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="GPIO 通用输入输出（het_gpio.h）" href="gpio.html" />
+    <link rel="prev" title="ADC 模数转换（het_adc.h）" href="adc.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Turing SDK开发手册
+              <img src="../../../_static/het_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div class="sdk-doc-selectors"><label class="sdk-chip-switch sdk-navigation-select"><span class="fa fa-cube" aria-hidden="true"></span><span class="sr-only">选择芯片</span><select aria-label="选择芯片"><option value="../../../../../../het-x1/1.0/zh/guide/api/peripherals/dac.html" selected>HET-X1</option></select></label><label class="sdk-version-switch sdk-navigation-select"><span class="fa fa-code-fork" aria-hidden="true"></span><span class="sr-only">选择版本</span><select aria-label="选择版本"><option value="../../../../../2.0/zh/guide/api/peripherals/dac.html">v2.0</option><option value="../../../../../1.0/zh/guide/api/peripherals/dac.html" selected>v1.0</option></select></label></div><div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">文档目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../quick-start/index.html">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started/index.html">开始使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer-guide/index.html">开发者指南</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">API 参考</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#id1">目录</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">外设 HAL（片内外设）</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="index.html#id1">HAL 分层</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="index.html#id2">片内外设</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../middleware.html">中间件 API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cbb.html">CBB API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ui.html">UI API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../services.html">服务 API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../demo-projects/index.html">演示工程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../platform/index.html">硬件平台</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/index.html">工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">支持与参考</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Turing SDK开发手册</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">API 参考</a></li>
+          <li class="breadcrumb-item"><a href="index.html">外设 HAL（片内外设）</a></li>
+      <li class="breadcrumb-item active">DAC 数模转换（het_dac.h）</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  <li class="sdk-toolbar-actions"><label class="sdk-language-switch sdk-navigation-select"><span class="fa fa-globe" aria-hidden="true"></span><span class="sr-only">切换语言</span><select aria-label="切换语言"><option value="../../../../en/guide/api/peripherals/dac.html">English</option><option value="../../../../zh/guide/api/peripherals/dac.html" selected>简体中文</option></select></label></li></ul>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="dac-het-dac-h">
+<h1>DAC 数模转换（het_dac.h）<a class="headerlink" href="#dac-het-dac-h" title="Link to this heading"></a></h1>
+<p>源文件：<code class="docutils literal notranslate"><span class="pre">platform/hal/api/het_dac.h</span></code></p>
+<section id="id1">
+<h2>概述<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<p>DAC 用于输出可编程模拟电平或连续采样数据，可服务于音频、波形和模拟控制场景。实际通道、精度和输出范围以板级实现为准。</p>
+</section>
+<section id="id2">
+<h2>用法<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>取得默认配置后初始化指定 DAC 实例，通过单点写入或缓冲区写入输出数据，完成后反初始化。</p>
+</section>
+<section id="id3">
+<h2>典型流程<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>获取默认配置或准备板级配置。</p></li>
+<li><p>初始化外设并检查返回值。</p></li>
+<li><p>执行读写、控制或回调注册操作。</p></li>
+<li><p>停止异步来源并反初始化外设。</p></li>
+</ol>
+</section>
+<section id="id4">
+<h2>示例<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">"het_dac.h"</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">dac_write_value</span><span class="p">(</span><span class="n">het_dac_id_t</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">channel</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">value</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">het_dac_config_t</span><span class="w"> </span><span class="n">cfg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">het_dac_def_cfg</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">het_dac_init</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">cfg</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ret</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">HET_OK</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">ret</span><span class="p">;</span>
+<span class="w">    </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">het_dac_write</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">channel</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">);</span>
+<span class="w">    </span><span class="n">het_dac_deinit</span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ret</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="api">
+<h2>API 介绍<a class="headerlink" href="#api" title="Link to this heading"></a></h2>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_dac_def_cfg">
+<span class="target" id="het__dac_8h_1a15397db0bd0c9b9ae99488f6a828dda0"></span><span class="n"><span class="pre">het_dac_config_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_dac_def_cfg</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_dac_def_cfg" title="Link to this definition"></a><br /></dt>
+<dd><p>获取 DAC 默认配置。 </p>
+<dl class="field-list simple">
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>默认配置：12 位分辨率、内部参考、轮询模式。 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_dac_init">
+<span class="target" id="het__dac_8h_1adc1118d867cd9fa2623d36fd8389e0c5"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_dac_init</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">het_dac_id_t</span></span><span class="w"> </span><span class="n"><span class="pre">id</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">het_dac_config_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">config</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_dac_init" title="Link to this definition"></a><br /></dt>
+<dd><p>初始化 DAC 实例。 </p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> -- <strong>[in]</strong> DAC 实例 ID，例如 HET_DAC_ID_0。 </p></li>
+<li><p><strong>config</strong> -- <strong>[in]</strong> DAC 配置参数（分辨率、参考电压、传输模式）。 </p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>ret &gt; 0 成功；ret == 0 失败；ret &lt; 0 为 het_err_t 错误码。 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_dac_deinit">
+<span class="target" id="het__dac_8h_1ae30d57ddd88c08ee11f3ce46d43d3b74"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_dac_deinit</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">het_dac_id_t</span></span><span class="w"> </span><span class="n"><span class="pre">id</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_dac_deinit" title="Link to this definition"></a><br /></dt>
+<dd><p>反初始化 DAC 实例。 </p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> -- <strong>[in]</strong> DAC 实例 ID。 </p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>ret &gt; 0 成功；ret == 0 失败；ret &lt; 0 为 het_err_t 错误码。 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_dac_write">
+<span class="target" id="het__dac_8h_1a92ed32d8e1c1c9507c9c02d0370933f6"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_dac_write</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">het_dac_id_t</span></span><span class="w"> </span><span class="n"><span class="pre">id</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n"><span class="pre">channel</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_dac_write" title="Link to this definition"></a><br /></dt>
+<dd><p>按初始化传输模式输出单通道原始 DAC 值。 </p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>DMA 模式下通知 HET_DAC_EVENT_DONE、HET_DAC_EVENT_ERROR。 </p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> -- <strong>[in]</strong> DAC 实例 ID。 </p></li>
+<li><p><strong>channel</strong> -- <strong>[in]</strong> DAC 通道号。 </p></li>
+<li><p><strong>value</strong> -- <strong>[in]</strong> 原始输出值。 </p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>ret &gt; 0 成功或已启动；ret == 0 失败；ret &lt; 0 为 het_err_t 错误码。 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_dac_write_buffer">
+<span class="target" id="het__dac_8h_1a75c1ab0ceab3be5449ef8e0cb07c25b8"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_dac_write_buffer</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">het_dac_id_t</span></span><span class="w"> </span><span class="n"><span class="pre">id</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n"><span class="pre">channel</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">data</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_dac_write_buffer" title="Link to this definition"></a><br /></dt>
+<dd><p>按初始化传输模式输出波形缓冲区。 </p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>DMA 模式下通知 HET_DAC_EVENT_DONE、HET_DAC_EVENT_ERROR。 </p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> -- <strong>[in]</strong> DAC 实例 ID。 </p></li>
+<li><p><strong>channel</strong> -- <strong>[in]</strong> DAC 通道号。 </p></li>
+<li><p><strong>data</strong> -- <strong>[in]</strong> 波形数据缓冲区。 </p></li>
+<li><p><strong>len</strong> -- <strong>[in]</strong> 数据长度。 </p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>ret &gt; 0 成功或已启动；ret == 0 失败；ret &lt; 0 为 het_err_t 错误码。 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_dac_register_cb">
+<span class="target" id="het__dac_8h_1a5a7112acfd36edb10f6aa164e56c2b67"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_dac_register_cb</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">het_dac_id_t</span></span><span class="w"> </span><span class="n"><span class="pre">id</span></span>, <span class="n"><span class="pre">het_dac_cb_t</span></span><span class="w"> </span><span class="n"><span class="pre">cb</span></span>, <span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">user_ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_dac_register_cb" title="Link to this definition"></a><br /></dt>
+<dd><p>注册 DAC 事件回调。 </p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> -- <strong>[in]</strong> DAC 实例 ID。 </p></li>
+<li><p><strong>cb</strong> -- <strong>[in]</strong> 回调函数。 </p></li>
+<li><p><strong>user_ctx</strong> -- <strong>[in]</strong> 用户上下文。 </p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>ret &gt; 0 成功；ret == 0 失败；ret &lt; 0 为 het_err_t 错误码。 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.het_dac_unregister_cb">
+<span class="target" id="het__dac_8h_1a36f302a636a3109dbd8aaa92eddb56f7"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">het_dac_unregister_cb</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">het_dac_id_t</span></span><span class="w"> </span><span class="n"><span class="pre">id</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.het_dac_unregister_cb" title="Link to this definition"></a><br /></dt>
+<dd><p>注销 DAC 事件回调。 </p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> -- <strong>[in]</strong> DAC 实例 ID。 </p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>ret &gt; 0 成功；ret == 0 失败；ret &lt; 0 为 het_err_t 错误码。 </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="adc.html" class="btn btn-neutral float-left" title="ADC 模数转换（het_adc.h）" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="gpio.html" class="btn btn-neutral float-right" title="GPIO 通用输入输出（het_gpio.h）" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 。
+      <span class="lastupdated">最后更新于 2026-09-18.
+      </span></p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+GUI 设计工具
+============
+
+当前 GUI 开发以代码、资源文件、``config.h`` 和 ``platform/middlewares/gui`` 为基础。可使用
+VS Code 编辑页面与控件，通过 ``projects/*/functions/demos`` 验证组件。
+
+.. image:: /_static/img/manual/project-config.png
+   :alt: 工程配置界面
+   :class: manual-figure
+
+Pixso 自动切图、分辨率一键适配、可视化页面编辑、CBB 事件绑定、资源一致性检查及稳定插件发布包
+尚未在当前仓库形成完整工作流，**待开发**。在此之前，生成资源必须记录原始设计稿、像素格式、
+压缩方式、目标地址和版本。

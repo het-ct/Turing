@@ -1,0 +1,218 @@
+.. Generated from platform/docs/pages/gui\flex.js
+
+het_flex 弹性布局容器
+=====================
+
+.. container:: module-summary widget-summary
+
+   **UI 组件**
+
+   include/het_flex.h
+
+include/het_flex.h
+
+组件说明
+--------
+
+het_flex 是轻量级线性布局容器，用于在主轴方向（行/列）上排列子项，并支持主轴分配与交叉轴对齐。
+
+* 适用于同类型控件的规则排列，如按钮组、信息条、状态块。
+
+* 每个子项可设置固定尺寸、百分比尺寸或自动尺寸。
+
+* 通过 grow 可在剩余空间内进行弹性扩展。
+
+宏定义
+------
+
+枚举定义
+--------
+
+het_flex_dir
+^^^^^^^^^^^^
+
+het_flex_justify
+^^^^^^^^^^^^^^^^
+
+het_flex_align
+^^^^^^^^^^^^^^
+
+参数与选项
+----------
+
+.. list-table::
+   :header-rows: 1
+
+   * - 宏
+     - 值/原型
+     - 说明
+   * - HET_FLEX_MAX_ITEMS
+     - 4（可重定义）
+     - 容器可容纳的最大子项数量。
+   * - HET_FLEX_SIZE_AUTO
+     - -1
+     - 自动尺寸标记。
+   * - HET_FLEX_PCT_BASE
+     - 1000
+     - 百分比基数。
+   * - HET_FLEX_PCT(pct)
+     - ((int16_t)(-1000 - (pct)))
+     - 将百分比尺寸编码为内部尺寸值。
+
+参数与选项
+----------
+
+.. list-table::
+   :header-rows: 1
+
+   * - 枚举值
+     - 说明
+   * - HET_FLEX_DIR_ROW
+     - 主轴为水平方向（从左到右）。
+   * - HET_FLEX_DIR_COLUMN
+     - 主轴为垂直方向（从上到下）。
+
+参数与选项
+----------
+
+.. list-table::
+   :header-rows: 1
+
+   * - 枚举值
+     - 说明
+   * - HET_FLEX_JUSTIFY_START
+     - 子项从主轴起点开始排列。
+   * - HET_FLEX_JUSTIFY_CENTER
+     - 子项在主轴方向居中排列。
+   * - HET_FLEX_JUSTIFY_END
+     - 子项靠主轴终点排列。
+   * - HET_FLEX_JUSTIFY_SPACE_BETWEEN
+     - 首尾贴边，剩余空间均分到相邻子项间隙。
+
+参数与选项
+----------
+
+.. list-table::
+   :header-rows: 1
+
+   * - 枚举值
+     - 说明
+   * - HET_FLEX_ALIGN_START
+     - 子项在交叉轴起点对齐。
+   * - HET_FLEX_ALIGN_CENTER
+     - 子项在交叉轴居中对齐。
+   * - HET_FLEX_ALIGN_END
+     - 子项在交叉轴终点对齐。
+   * - HET_FLEX_ALIGN_STRETCH
+     - 子项在交叉轴方向拉伸填充。
+
+API 介绍
+--------
+
+.. rst-class:: api-entry
+
+void \*het_flex_create(compo_form_t \*frm)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+创建 flex 容器对象。
+
+参数：frm 目标表单。
+
+返回：void\* 容器句柄，失败返回 NULL。
+
+.. rst-class:: api-entry
+
+void het_flex_clear(void \*obj)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+清空容器中的所有子项。
+
+参数：obj flex 容器句柄。
+
+.. rst-class:: api-entry
+
+bool het_flex_add(void \*obj, void \*child, int16_t width, int16_t height, uint8_t grow)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+添加子项并指定尺寸和扩展因子。
+
+参数：obj 容器句柄；child 子项对象；width/height 子项尺寸；grow 扩展因子。
+
+返回：true 成功；false 失败。
+
+.. rst-class:: api-entry
+
+bool het_flex_add_pct(void \*obj, void \*child, uint8_t width_pct, uint8_t height_pct, uint8_t grow)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+按百分比尺寸添加子项。
+
+参数：obj 容器句柄；child 子项对象；width_pct/height_pct 百分比尺寸（建议 0~100）；grow 扩展因子。
+
+返回：true 成功；false 失败。
+
+.. rst-class:: api-entry
+
+void het_flex_update(void \*obj)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+触发布局更新并重新计算子项几何。
+
+参数：obj 容器句柄。
+
+.. rst-class:: api-entry
+
+void het_flex_set_geometry(void \*obj, const rect_t rect)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置容器几何区域。
+
+参数：obj 容器句柄；rect 几何信息。
+
+.. rst-class:: api-entry
+
+void het_flex_set_padding(void \*obj, const het_pad_t padding)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置容器内边距。
+
+参数：obj 容器句柄；padding 内边距。
+
+.. rst-class:: api-entry
+
+void het_flex_set_gap(void \*obj, int16_t gap)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置子项间距。
+
+参数：obj 容器句柄；gap 间距像素值。
+
+.. rst-class:: api-entry
+
+void het_flex_set_flow(void \*obj, het_flex_dir dir, het_flex_justify justify, het_flex_align align)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置主轴方向、主轴分配和交叉轴对齐方式。
+
+参数：obj 容器句柄；dir 方向；justify 主轴分配；align 交叉轴对齐。
+
+使用示例
+--------
+
+.. code-block:: c
+
+   void *flex = het_flex_create(frm);
+   het_flex_set_geometry(flex, HET_GEOMETRY(160, 120, 220, 72));
+   het_flex_set_padding(flex, HET_PADDING(6, 8, 8, 6));
+   het_flex_set_gap(flex, 8);
+   het_flex_set_flow(flex,
+                     HET_FLEX_DIR_ROW,
+                     HET_FLEX_JUSTIFY_SPACE_BETWEEN,
+                     HET_FLEX_ALIGN_CENTER);
+   
+   void *btn_ok = het_button_create(frm->page, HET_BG_MODE_SC, 7);
+   void *btn_cancel = het_button_create(frm->page, HET_BG_MODE_SC, 7);
+   
+   het_flex_add_pct(flex, btn_ok, 45, 100, 0);
+   het_flex_add_pct(flex, btn_cancel, 45, 100, 0);
+   het_flex_update(flex);

@@ -1,0 +1,13 @@
+工具
+====
+
+工具章节整理说明书中的开发工具使用方法，并按当前可用、交付中和规划中区分状态。
+
+.. toctree::
+   :maxdepth: 2
+
+   vscode
+   build-download
+   gui-tools
+   planned-tools
+   docs-toolchain

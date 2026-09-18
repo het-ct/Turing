@@ -1,0 +1,13 @@
+演示工程
+========
+
+演示工程是可独立编译的完整应用，与单一外设示例不同。当前仓库包含 ``watch320`` 和
+``haier_hmi`` 两个工程。
+
+.. toctree::
+   :maxdepth: 2
+
+   watch320
+   haier-hmi
+   coffee-machine
+   multimodal

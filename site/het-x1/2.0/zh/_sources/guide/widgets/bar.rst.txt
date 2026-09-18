@@ -1,0 +1,358 @@
+.. Generated from platform/docs/pages/gui\bar.js
+
+het_bar 进度条组件
+==================
+
+.. container:: module-summary widget-summary
+
+   **UI 组件**
+
+   include/het_bar.h · src/het_bar.c
+
+include/het_bar.h · src/het_bar.c
+
+类图
+----
+
+生命周期序列图
+--------------
+
+事件拦截过滤
+------------
+
+het_bar 是展示型控件，不注册触摸事件回调，不主动拦截 MSG_CTP\_\*。
+
+组件说明
+--------
+
+het_bar 是 LVGL 风格的进度条组件，支持基础进度、对称进度和范围进度三种显示语义，适合音量、电量、缓冲进度、区间值显示等场景。
+
+模式与方向
+----------
+
+参数与选项
+----------
+
+.. list-table::
+   :header-rows: 1
+
+   * - 类型
+     - 枚举值
+     - 说明
+   * - 方向
+     - HET_BAR_ORIENTATION_HORIZONTAL
+     - 水平（默认）
+   * - 方向
+     - HET_BAR_ORIENTATION_VERTICAL
+     - 垂直
+   * - 模式
+     - HET_BAR_MODE_NORMAL
+     - 从 min 到 value 的普通进度
+   * - 模式
+     - HET_BAR_MODE_SYMMETRICAL
+     - 从中间向两侧扩展
+   * - 模式
+     - HET_BAR_MODE_RANGE
+     - 显示 start_value 到 value 的区间
+
+API 介绍
+--------
+
+.. rst-class:: api-entry
+
+void \* het_bar_create(compo_form_t \*frm, const bool enable_anim)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+创建 bar 组件并挂载到表单页面。
+
+参数：frm 目标表单；enable_anim 是否启用后续数值切换动画能力。
+
+返回：void\* 组件句柄，失败返回 NULL。
+
+.. rst-class:: api-entry
+
+void het_bar_set_geometry(void \*obj, const rect_t rect)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+同时设置位置和大小，推荐优先使用该接口完成布局。
+
+参数：obj bar 组件句柄；rect 几何信息，通常使用 HET_GEOMETRY(x, y, w, h) 构造。
+
+.. rst-class:: api-entry
+
+void het_bar_set_pos(void \*obj, const int16_t x, const int16_t y)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置控件左上角坐标。
+
+参数：obj bar 组件句柄；x X 坐标；y Y 坐标。
+
+.. rst-class:: api-entry
+
+void het_bar_set_size(void \*obj, const int16_t w, const int16_t h)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置控件宽高。
+
+参数：obj bar 组件句柄；w 宽度；h 高度。
+
+.. rst-class:: api-entry
+
+void het_bar_set_range(void \*obj, const int32_t min, const int32_t max)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置数值范围。建议先设范围，再设当前值。
+
+参数：obj bar 组件句柄；min 最小值；max 最大值，通常要求 min <= max。
+
+.. rst-class:: api-entry
+
+void het_bar_set_min_value(void \*obj, const int32_t min)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置最小值。
+
+参数：obj bar 组件句柄；min 最小值。
+
+.. rst-class:: api-entry
+
+void het_bar_set_max_value(void \*obj, const int32_t max)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置最大值。
+
+参数：obj bar 组件句柄；max 最大值。
+
+.. rst-class:: api-entry
+
+void het_bar_set_mode(void \*obj, const het_bar_mode mode)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置显示模式，可在运行期切换。
+
+参数：obj bar 组件句柄；mode 显示模式，可选普通、对称或区间模式。
+
+.. rst-class:: api-entry
+
+void het_bar_set_orientation(void \*obj, const het_bar_orientation orientation)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置水平/垂直方向。
+
+参数：obj bar 组件句柄；orientation 方向枚举，取值为水平或垂直。
+
+.. rst-class:: api-entry
+
+void het_bar_set_value(void \*obj, const int32_t value, const uint16_t duration)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置当前值。duration=0 为立即跳转，非 0 为动画过渡（单位 ms）。
+
+参数：obj bar 组件句柄；value 目标值，超出范围时通常会按组件规则裁剪；duration 动画时长，单位 ms。
+
+.. rst-class:: api-entry
+
+void het_bar_set_start_value(void \*obj, const int32_t start_value)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置区间起始值，仅在 HET_BAR_MODE_RANGE 下生效。
+
+参数：obj bar 组件句柄；start_value 区间起点，建议与当前值一起保持在已配置范围内。
+
+.. rst-class:: api-entry
+
+void het_bar_set_style(void \*obj, const het_bg_res_t indic, const het_bg_res_t bg)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+一次性设置指示器与背景样式。也可分别使用 set_bg_style / set_indic_style。
+
+参数：obj bar 组件句柄；indic 指示器样式资源；bg 轨道背景样式资源。两者都可使用颜色或图片资源描述。
+
+.. rst-class:: api-entry
+
+void het_bar_set_bg_style(void \*obj, const het_bg_res_t bg)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+仅设置轨道背景样式。
+
+参数：obj bar 组件句柄；bg 背景样式资源。
+
+.. rst-class:: api-entry
+
+void het_bar_set_indic_style(void \*obj, const het_bg_res_t indic)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+仅设置进度指示器样式。
+
+参数：obj bar 组件句柄；indic 指示器样式资源。
+
+.. rst-class:: api-entry
+
+void het_bar_set_bg_alpha(void \*obj, const uint8_t alpha)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置背景透明度。
+
+参数：obj bar 组件句柄；alpha 透明度（0-255）。
+
+.. rst-class:: api-entry
+
+void het_bar_set_indic_alpha(void \*obj, const uint8_t alpha)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置指示器透明度。
+
+参数：obj bar 组件句柄；alpha 透明度（0-255）。
+
+.. rst-class:: api-entry
+
+void het_bar_set_radius(void \*obj, const uint16_t radius)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+统一设置背景与指示器圆角。若要分别控制可用 set_bg_radius / set_indic_radius。
+
+参数：obj bar 组件句柄；radius 圆角半径，单位为像素。
+
+.. rst-class:: api-entry
+
+void het_bar_set_bg_radius(void \*obj, const uint16_t radius)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置背景圆角半径。
+
+参数：obj bar 组件句柄；radius 圆角半径。
+
+.. rst-class:: api-entry
+
+void het_bar_set_indic_radius(void \*obj, const uint16_t radius)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置指示器圆角半径。
+
+参数：obj bar 组件句柄；radius 圆角半径。
+
+.. rst-class:: api-entry
+
+void het_bar_set_indic_padding(void \*obj, const het_pad_t padding)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置指示器内缩，控制指示器与背景边缘的间距。
+
+参数：obj bar 组件句柄；padding 内缩属性。
+
+.. rst-class:: api-entry
+
+void het_bar_set_corner(void \*obj, const het_radius_pos corner)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+统一设置背景与指示器的圆角位置。
+
+参数：obj bar 组件句柄；corner 圆角位置枚举。
+
+.. rst-class:: api-entry
+
+void het_bar_set_bg_corner(void \*obj, const het_radius_pos corner)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置背景指定角的圆角位置。
+
+参数：obj bar 组件句柄；corner 圆角位置枚举。
+
+.. rst-class:: api-entry
+
+void het_bar_set_indic_corner(void \*obj, const het_radius_pos corner)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置指示器指定角的圆角位置。
+
+参数：obj bar 组件句柄；corner 圆角位置枚举。
+
+.. rst-class:: api-entry
+
+void het_bar_set_visible(void \*obj, const bool visible)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置控件可见性。
+
+参数：obj bar 组件句柄；visible 为 true 时显示，为 false 时隐藏。
+
+.. rst-class:: api-entry
+
+int32_t het_bar_get_value(const void \*obj)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+获取当前值。
+
+参数：obj bar 组件句柄。
+
+返回：int32_t 当前 value。
+
+.. rst-class:: api-entry
+
+int32_t het_bar_get_min_value(const void \*obj) / int32_t het_bar_get_max_value(const void \*obj)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+获取最小值 / 最大值。
+
+参数：obj bar 组件句柄。
+
+返回：int32_t 当前配置的最小值或最大值。
+
+.. rst-class:: api-entry
+
+int32_t het_bar_get_start_value(const void \*obj)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+获取区间模式起始值。
+
+参数：obj bar 组件句柄。
+
+返回：int32_t 当前 start_value；非区间模式下可用于查看已保存的起点值。
+
+.. rst-class:: api-entry
+
+het_bar_mode het_bar_get_mode(const void \*obj)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+获取当前模式。
+
+参数：obj bar 组件句柄。
+
+返回：het_bar_mode 当前显示模式。
+
+.. rst-class:: api-entry
+
+het_bar_orientation het_bar_get_orientation(const void \*obj)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+获取当前方向。
+
+参数：obj bar 组件句柄。
+
+返回：het_bar_orientation 当前方向枚举。
+
+.. rst-class:: api-entry
+
+bool het_bar_get_animating(const void \*obj)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+查询是否仍在动画过渡中。
+
+参数：obj bar 组件句柄。
+
+返回：bool 为 true 表示当前仍在向目标值过渡。
+
+使用示例
+--------
+
+.. code-block:: c
+
+   void *bar = het_bar_create(frm, true);
+   het_bar_set_geometry(bar, HET_GEOMETRY(160, 120, 180, 16));
+   het_bar_set_range(bar, 0, 100);
+   het_bar_set_mode(bar, HET_BAR_MODE_NORMAL);
+   het_bar_set_style(bar, HET_BG_COLOR(80, 170, 255), HET_BG_COLOR(35, 40, 52));
+   het_bar_set_radius(bar, 8);
+   
+   // 带动画更新到 65%
+   het_bar_set_value(bar, 65, 220);

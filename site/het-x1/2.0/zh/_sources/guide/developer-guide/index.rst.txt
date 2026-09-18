@@ -1,0 +1,28 @@
+开发者指南
+==========
+
+本章说明 Het-X1 固件的分层、配置和模块接入方法。每个专题先说明职责边界，再给出配置流程、
+注意事项、最小示例和主要 API 入口。
+
+.. toctree::
+   :maxdepth: 2
+
+   architecture
+   security
+   board-config
+   memory
+   hal
+   drivers
+   middleware
+   cbb
+   ui-widgets
+   ui-effects
+   os
+   power-management
+   ota
+
+.. toctree::
+   :hidden:
+
+   ../cbb/index
+   ../widgets/index

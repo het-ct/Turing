@@ -1,0 +1,165 @@
+.. Generated from platform/docs/pages/gui\label.js
+
+het_label 文本标签组件
+======================
+
+.. container:: module-summary widget-summary
+
+   **UI 组件**
+
+   include/het_label.h · src/het_label.c
+
+include/het_label.h · src/het_label.c
+
+结构图
+------
+
+生命周期
+--------
+
+事件拦截过滤
+------------
+
+het_label 不注册对象事件回调，不主动拦截或消费 MSG_CTP\_\* 消息。
+
+对齐与内边距
+------------
+
+het_label_set_align 的内边距参数类型为 het_pad_t，字段顺序是 {top, left, right, bottom}。
+
+完整示例
+--------
+
+API 介绍
+--------
+
+.. rst-class:: api-entry
+
+void \* het_label_create(compo_form_t \*frm, widget_page_t \*page, const u16 max_word_cnt)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+创建 label。page 传 NULL 时自动挂到 frm->page_body。
+
+参数：frm 目标表单；page 指定挂载页，为 NULL 时使用默认页面；max_word_cnt 文本缓存容量。
+
+返回：void\* label 句柄，失败返回 NULL。
+
+.. rst-class:: api-entry
+
+void het_label_set_geometry(void \*obj, const rect_t geometry)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置位置和大小。
+
+参数：obj label 句柄；geometry 几何信息。
+
+.. rst-class:: api-entry
+
+void het_label_set_pos(void \*obj, int16_t x, int16_t y)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+仅设置位置。
+
+参数：obj label 句柄；x/y 中心坐标。
+
+.. rst-class:: api-entry
+
+void het_label_set_size(void \*obj, int16_t width, int16_t height)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+仅设置大小。
+
+参数：obj label 句柄；width/height 宽高。
+
+.. rst-class:: api-entry
+
+void het_label_set_text(void \*obj, const char \*text)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置文本内容（UTF-8）。
+
+参数：obj label 句柄；text 文本内容。
+
+.. rst-class:: api-entry
+
+void het_label_set_text_fmt(void \*obj, const char \*fmt, ...)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+格式化设置文本，内部缓冲区最大 256 字节。
+
+参数：obj label 句柄；fmt 格式化模板；可变参数按模板展开。
+
+.. rst-class:: api-entry
+
+void het_label_set_align(void \*obj, const uint8_t align, const het_pad_t padding)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置对齐和内边距。
+
+参数：obj label 句柄；align 对齐方式；padding 内边距。
+
+.. rst-class:: api-entry
+
+void het_label_set_font(void \*obj, const uint32_t font)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置字体。建议先设字体再设文本。
+
+参数：obj label 句柄；font 字体资源 ID。
+
+.. rst-class:: api-entry
+
+void het_label_set_autosize(void \*obj, const bool autosize)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置是否自动尺寸。
+
+参数：obj label 句柄；autosize 是否自动根据文本调整尺寸。
+
+.. rst-class:: api-entry
+
+void het_label_set_color(void \*obj, const u16 color)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置文字颜色（RGB565）。
+
+参数：obj label 句柄；color 文字颜色。
+
+.. rst-class:: api-entry
+
+void het_label_set_alpha(void \*obj, const u8 alpha)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置透明度。
+
+参数：obj label 句柄；alpha 透明度，通常范围 0~255。
+
+.. rst-class:: api-entry
+
+void het_label_set_visible(void \*obj, const bool visible)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+设置可见性。
+
+参数：obj label 句柄；visible 是否显示。
+
+使用示例
+--------
+
+.. code-block:: c
+
+   typedef struct {
+       int8_t top;
+       int8_t left;
+       int8_t right;
+       int8_t bottom;
+   } het_pad_t;
+
+.. code-block:: c
+
+   void *label = het_label_create(frm, NULL, 64);
+   het_label_set_geometry(label, HET_GEOMETRY(160, 60, 120, 24));
+   het_label_set_font(label, UI_BUF_COFFEE_FONT_ARIAL_11_BIN);
+   het_label_set_color(label, COLOR_WHITE);
+   het_label_set_align(label, HET_TEXT_ALIGN_CENTER, HET_PADDING(0, 0, 0, 0));
+   het_label_set_text_fmt(label, "电量: %d%%", 87);

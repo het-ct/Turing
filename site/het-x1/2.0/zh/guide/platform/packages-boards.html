@@ -1,0 +1,195 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>封装与开发板 &mdash; Turing SDK开发手册 2.0</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=e891653f" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=8ba3eb92"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/translations.js?v=beaddf03"></script>
+      <script src="../../_static/language-switch.js?v=a682b188"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="标准电路与评审清单" href="hardware-circuits.html" />
+    <link rel="prev" title="引脚定义与复用" href="pinout.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Turing SDK开发手册
+              <img src="../../_static/het_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div class="sdk-doc-selectors"><label class="sdk-chip-switch sdk-navigation-select"><span class="fa fa-cube" aria-hidden="true"></span><span class="sr-only">选择芯片</span><select aria-label="选择芯片"><option value="../../../../../het-x1/2.0/zh/guide/platform/packages-boards.html" selected>HET-X1</option></select></label><label class="sdk-version-switch sdk-navigation-select"><span class="fa fa-code-fork" aria-hidden="true"></span><span class="sr-only">选择版本</span><select aria-label="选择版本"><option value="../../../../2.0/zh/guide/platform/packages-boards.html" selected>v2.0</option><option value="../../../../1.0/zh/guide/platform/packages-boards.html">v1.0</option></select></label></div><div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">文档目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quick-start/index.html">快速开始</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/index.html">开始使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer-guide/index.html">开发者指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API 参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../demo-projects/index.html">演示工程</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">硬件平台</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview.html">硬件概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="electrical-characteristics.html">电气特性与设计边界</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources.html">硬件资源说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pinout.html">引脚定义与复用</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">封装与开发板</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">芯片封装</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">核心板</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">上板前检查</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="hardware-circuits.html">标准电路与评审清单</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware-materials.html">关键物料与 AVL</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">支持与参考</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Turing SDK开发手册</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">硬件平台</a></li>
+      <li class="breadcrumb-item active">封装与开发板</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  <li class="sdk-toolbar-actions"><label class="sdk-language-switch sdk-navigation-select"><span class="fa fa-globe" aria-hidden="true"></span><span class="sr-only">切换语言</span><select aria-label="切换语言"><option value="../../../en/guide/platform/packages-boards.html">English</option><option value="../../../zh/guide/platform/packages-boards.html" selected>简体中文</option></select></label></li></ul>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>封装与开发板<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<p>X1 提供 QFN32 4×4 mm 与 QFN68 7×7 mm 封装，并可通过核心板快速完成显示、音频、
+传感器和通信功能验证。选型时应同时考虑 IO 数量、显示/摄像头接口、外部存储、音频通道和 PCB 工艺。</p>
+<section id="id2">
+<h2>芯片封装<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<table class="docutils align-default" id="id5">
+<caption><span class="caption-text">封装选择</span><a class="headerlink" href="#id5" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 24.0%" />
+<col style="width: 56.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>封装</p></th>
+<th class="head"><p>尺寸</p></th>
+<th class="head"><p>适用方向</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>QFN32</p></td>
+<td><p>4×4 mm</p></td>
+<td><p>空间受限、接口数量可控的穿戴和小型 HMI 产品</p></td>
+</tr>
+<tr class="row-odd"><td><p>QFN68</p></td>
+<td><p>7×7 mm</p></td>
+<td><p>需要更多 GPIO、RGB/DVP、双通道音频或外部存储扩展的产品</p></td>
+</tr>
+</tbody>
+</table>
+<div class="figure-pair docutils container">
+<img alt="QFN32 封装尺寸图" class="manual-figure" src="../../_images/qfn32.png" />
+<img alt="QFN68 封装尺寸图" class="manual-figure" src="../../_images/qfn68.png" />
+</div>
+<p>封装图用于结构和焊盘理解，不建议直接据此手工创建量产封装。PCB 库应采用硬件发布包中的
+受控 footprint，并重点检查中心散热焊盘、阻焊开窗、钢网分割和回流焊工艺。</p>
+</section>
+<section id="id3">
+<h2>核心板<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<p>核心板把芯片、电源、时钟和高风险高速器件集中到已验证模块中，适合先完成软件功能和整机接口评估。</p>
+<div class="figure-pair docutils container">
+<img alt="X1 核心板外形和主要接口" class="manual-figure" src="../../_images/core-board.png" />
+<img alt="S1 核心板尺寸和连接器" class="manual-figure" src="../../_images/s1-board.png" />
+</div>
+<p>说明书中的 S1 核心板引出电源、UART、PDM/I2S、I2C、LCD、触摸、USB、PWM、QDEC、
+ADC 等常用信号。S2/S3 或后续版本可能调整管脚与物料，软件配置必须与实际板卡版本对应。</p>
+</section>
+<section id="id4">
+<h2>上板前检查<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>核对板卡丝印、BOM 版本、芯片封装和工程中的 <code class="docutils literal notranslate"><span class="pre">projects/&lt;project&gt;</span></code> 配置。</p></li>
+<li><p>确认 LCD/CTP、摄像头、Flash、音频和传感器使用的复用组没有冲突。</p></li>
+<li><p>调试口、启动脚和量产测试点应在原理图阶段预留，量产锁定安全配置前完成验证。</p></li>
+<li><p>高速显示、USB、晶振和射频网络遵循参考布局，不跨分割地，不在天线净空区布线。</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>完整管脚复用表较长且会随封装、板卡和 SDK 版本变化。本手册保留选型和检查方法；
+具体管脚以硬件发布包、板级原理图和工程配置为准。</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="pinout.html" class="btn btn-neutral float-left" title="引脚定义与复用" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="hardware-circuits.html" class="btn btn-neutral float-right" title="标准电路与评审清单" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 。
+      <span class="lastupdated">最后更新于 2026-09-18.
+      </span></p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

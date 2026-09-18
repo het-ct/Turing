@@ -1,0 +1,48 @@
+LCD 显示控制器（het_lcd.h）
+===========================
+
+源文件：``platform/hal/api/het_lcd.h``
+
+概述
+----
+
+Het-X1 LCD 控制器支持串行/并行 RGB、8080、DSPI、QSPI 和 3/4 线 SPI 等接口，并支持多种像素格式及 GPU 渲染结果输出。
+
+用法
+----
+
+准备与面板匹配的驱动描述后初始化 LCD，再配置亮度、传输时序和 TE 模式。面板命令与像素传输应遵守具体屏幕的数据手册。
+
+典型流程
+--------
+
+#. 获取默认配置或准备板级配置。
+#. 初始化外设并检查返回值。
+#. 执行读写、控制或回调注册操作。
+#. 停止异步来源并反初始化外设。
+
+示例
+----
+
+.. code-block:: c
+
+   #include "het_lcd.h"
+
+   int display_start(lcd_drv_t *driver, u8 brightness)
+   {
+       int ret = het_lcd_init(driver);
+       if (ret != HET_OK) return ret;
+       return het_lcd_set_brightness(brightness);
+   }
+   
+   void display_stop(void)
+   {
+       het_lcd_deinit();
+   }
+
+API 介绍
+--------
+
+.. doxygenfile:: het_lcd.h
+   :project: bt8790
+   :sections: func

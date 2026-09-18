@@ -1,0 +1,231 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>环境搭建 &mdash; Turing SDK开发手册 1.0</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=e891653f" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=f115507d"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/translations.js?v=beaddf03"></script>
+      <script src="../../_static/language-switch.js?v=a682b188"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="开发者指南" href="../developer-guide/index.html" />
+    <link rel="prev" title="开始使用" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Turing SDK开发手册
+              <img src="../../_static/het_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div class="sdk-doc-selectors"><label class="sdk-chip-switch sdk-navigation-select"><span class="fa fa-cube" aria-hidden="true"></span><span class="sr-only">选择芯片</span><select aria-label="选择芯片"><option value="../../../../../het-x1/1.0/zh/guide/getting-started/environment.html" selected>HET-X1</option></select></label><label class="sdk-version-switch sdk-navigation-select"><span class="fa fa-code-fork" aria-hidden="true"></span><span class="sr-only">选择版本</span><select aria-label="选择版本"><option value="../../../../2.0/zh/guide/getting-started/environment.html">v2.0</option><option value="../../../../1.0/zh/guide/getting-started/environment.html" selected>v1.0</option></select></label></div><div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">文档目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quick-start/index.html">快速开始</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">开始使用</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">环境搭建</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">所需工具</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">安装编译工具链</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">安装串口驱动与助手</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vs-code">安装 VS Code 与插件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">首次构建</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">编译完成后下载和调试</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">常见问题</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../developer-guide/index.html">开发者指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API 参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../demo-projects/index.html">演示工程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../platform/index.html">硬件平台</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">支持与参考</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Turing SDK开发手册</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">开始使用</a></li>
+      <li class="breadcrumb-item active">环境搭建</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  <li class="sdk-toolbar-actions"><label class="sdk-language-switch sdk-navigation-select"><span class="fa fa-globe" aria-hidden="true"></span><span class="sr-only">切换语言</span><select aria-label="切换语言"><option value="../../../en/guide/getting-started/environment.html">English</option><option value="../../../zh/guide/getting-started/environment.html" selected>简体中文</option></select></label></li></ul>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>环境搭建<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<section id="id2">
+<h2>所需工具<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<table class="docutils align-default" id="id8">
+<caption><span class="caption-text">开发环境组成</span><a class="headerlink" href="#id8" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 22.0%" />
+<col style="width: 38.0%" />
+<col style="width: 40.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>工具</p></th>
+<th class="head"><p>用途</p></th>
+<th class="head"><p>验证方式</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Het-X1 编译工具链</p></td>
+<td><p>编译 MCU 固件</p></td>
+<td><p>运行工具链版本命令</p></td>
+</tr>
+<tr class="row-odd"><td><p>GNU Make</p></td>
+<td><p>执行工程构建</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">--version</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Python 3</p></td>
+<td><p>生成源码清单和构建文档</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">--version</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>VS Code</p></td>
+<td><p>编辑、搜索和项目管理</p></td>
+<td><p>能正常打开仓库目录</p></td>
+</tr>
+<tr class="row-even"><td><p>PlatformIO IDE</p></td>
+<td><p>串口终端等辅助能力</p></td>
+<td><p>VS Code 扩展页显示已启用</p></td>
+</tr>
+<tr class="row-odd"><td><p>HeT Plugin</p></td>
+<td><p>项目配置和 API 辅助功能</p></td>
+<td><p>从受控离线包安装并检查版本</p></td>
+</tr>
+<tr class="row-even"><td><p>USB 转串口驱动</p></td>
+<td><p>下载和启动日志</p></td>
+<td><p>设备管理器中无异常标记</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id3">
+<h2>安装编译工具链<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<p>解压项目配套工具链到不含空格和中文字符的固定目录，将其 <code class="docutils literal notranslate"><span class="pre">bin</span></code> 目录加入系统 <code class="docutils literal notranslate"><span class="pre">PATH</span></code>，
+重新打开 PowerShell 后验证编译器和 <code class="docutils literal notranslate"><span class="pre">make</span></code>。工具链名称和版本必须以 SDK 交付说明为准。</p>
+<img alt="编译工具链安装包" class="align-center" src="../../_images/toolchain-package.png" />
+</section>
+<section id="id4">
+<h2>安装串口驱动与助手<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>根据开发板上的 USB 转串口芯片安装匹配驱动。</p></li>
+<li><p>在设备管理器记录 COM 口，插拔设备确认端口会同步出现和消失。</p></li>
+<li><p>使用 PlatformIO Serial Monitor 或团队指定串口助手打开端口。</p></li>
+<li><p>波特率、数据位、停止位和流控以工程 <code class="docutils literal notranslate"><span class="pre">config.h</span></code> 及板卡说明为准。</p></li>
+</ol>
+<p>具体驱动型号、默认串口参数和官方下载地址 <strong>待开发</strong>。</p>
+</section>
+<section id="vs-code">
+<h2>安装 VS Code 与插件<a class="headerlink" href="#vs-code" title="Link to this heading"></a></h2>
+<p>从 VS Code 官方网站安装稳定版。个人电脑可使用 User Installer，共享开发机建议使用 System
+Installer。随后安装 PlatformIO IDE；HeT Plugin 使用团队提供的离线 <code class="docutils literal notranslate"><span class="pre">.vsix</span></code> 包安装。</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">code</span> <span class="p">-</span><span class="n">-install-extension</span> <span class="p">.\</span><span class="n">het-plugin</span><span class="p">.</span><span class="n">vsix</span>
+</pre></div>
+</div>
+<img alt="PlatformIO IDE 插件" class="manual-figure" src="../../_images/platformio.png" />
+<img alt="HeT Plugin 插件" class="manual-figure" src="../../_images/het-plugin.png" />
+</section>
+<section id="id5">
+<h2>首次构建<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd </span><span class="p">.\</span><span class="n">projects</span><span class="p">\</span><span class="n">watch320</span>
+<span class="n">python</span> <span class="n">gen-srclist</span><span class="p">.</span><span class="n">py</span>
+<span class="n">make</span>
+</pre></div>
+</div>
+<p>构建成功后检查 <code class="docutils literal notranslate"><span class="pre">Output/bin/app.dcf</span></code> 的时间戳。<code class="docutils literal notranslate"><span class="pre">gen-srclist.py</span></code> 会生成 <code class="docutils literal notranslate"><span class="pre">inclist.mk</span></code> 等
+清单，功能开关由工程配置和 X1 工具箱维护。</p>
+</section>
+<section id="id6">
+<h2>编译完成后下载和调试<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<p>环境安装只负责准备工具；实际编译、固件下载、串口日志、升级和真机验证见
+<a class="reference internal" href="../tools/build-download.html"><span class="doc">编译、下载与调试</span></a>。完成本页命令后直接进入该页执行下载，不要把串口助手当成烧录器使用。</p>
+</section>
+<section id="id7">
+<h2>常见问题<a class="headerlink" href="#id7" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>命令找不到：重新打开终端并检查 <code class="docutils literal notranslate"><span class="pre">PATH</span></code>，不要只在旧终端中重试。</p></li>
+<li><p>Python 脚本失败：确认 Python 版本和当前目录，保留第一条异常信息。</p></li>
+<li><p>串口打不开：关闭其他串口工具，重新插拔并核对 COM 口。</p></li>
+<li><p>构建成功但无固件：检查第一条编译错误以及 <code class="docutils literal notranslate"><span class="pre">Output/bin</span></code> 是否被安全软件隔离。</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="index.html" class="btn btn-neutral float-left" title="开始使用" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="../developer-guide/index.html" class="btn btn-neutral float-right" title="开发者指南" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 。
+      <span class="lastupdated">最后更新于 2026-09-18.
+      </span></p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
